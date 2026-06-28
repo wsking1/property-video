@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Property Video — Business Plan</title>
+<style>
+:root {
+  --dark:#080808; --dark2:#0f0a0a; --card:#0e0a0a;
+  --cyan:#FF1744; --cyan-d:#CC0011; --cyan-l:rgba(255,23,68,.1); --cyan-m:rgba(255,23,68,.18);
+  --green:#00C853; --green-d:#007A33; --green-l:rgba(0,200,83,.1);
+  --orange:#FF4444; --orange-l:rgba(255,68,68,.08); --red:#FF1744; --red-l:rgba(255,23,68,.08);
+  --purple:#FF1744; --purple-l:rgba(255,23,68,.06); --gold:#FF1744; --gold-l:rgba(255,23,68,.06);
+  --grey-bg:#080808; --grey-d:#1a0a0a; --grey-t:#554444; --grey-l:#887777; --white:#fff;
+  --glow-cyan:0 0 25px rgba(255,23,68,.25);
+  --glow-green:0 0 20px rgba(0,200,83,.2);
+  --glow-gold:0 0 30px rgba(255,23,68,.3);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:var(--dark);color:var(--white);min-height:100vh;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255,23,68,.05) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 80% 80%, rgba(200,0,20,.04) 0%, transparent 50%);
+}
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(8,8,16,.9);border-bottom:1px solid rgba(255,23,68,.1);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}
+.nav-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:2px;padding:0 12px;overflow-x:auto;scrollbar-width:none}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-brand{font-size:11px;font-weight:800;
+  background:linear-gradient(90deg,#FF1744,#FF6B6B);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  white-space:nowrap;padding:14px 10px 14px 0;border-right:1px solid rgba(255,23,68,.15);margin-right:4px;letter-spacing:1px}
+.nav-btn{background:none;border:none;color:var(--grey-l);font-size:11px;padding:14px 9px;cursor:pointer;white-space:nowrap;font-family:inherit;letter-spacing:.3px;transition:color .2s;border-bottom:2px solid transparent}
+.nav-btn:hover{color:var(--white)}
+.nav-btn.active{color:#FF1744;border-bottom-color:#FF1744}
+/* PAGES */
+.page{display:none;padding:76px 16px 48px;max-width:900px;margin:0 auto}
+.page.active{display:block}
+/* COMMON */
+.section-title{font-size:10px;font-weight:700;letter-spacing:2px;
+  background:linear-gradient(90deg,#FF1744,#FF6B6B);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  text-transform:uppercase;margin-bottom:5px}
+.page-title{font-size:28px;font-weight:900;color:var(--white);line-height:1.15;margin-bottom:7px;letter-spacing:-.5px}
+.page-sub{font-size:13px;color:var(--grey-l);margin-bottom:24px;line-height:1.6}
+.divider{height:1px;background:linear-gradient(90deg,#FF1744,rgba(255,23,68,.3),transparent);margin:22px 0;opacity:.6}
+.card{
+  background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;padding:18px;margin-bottom:14px;
+  backdrop-filter:blur(10px);
+  transition:border-color .3s,box-shadow .3s}
+.card:hover{border-color:rgba(255,23,68,.2);box-shadow:0 4px 30px rgba(255,23,68,.05)}
+.tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.5px}
+/* STAT GRID */
+.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:22px}
+@media(min-width:560px){.stat-grid{grid-template-columns:repeat(4,1fr)}}
+.stat-box{
+  background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(255,255,255,.01));
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;padding:18px 12px;text-align:center;
+  transition:transform .25s,border-color .25s,box-shadow .25s;cursor:default;
+  position:relative;overflow:hidden}
+.stat-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,#FF1744,transparent);opacity:.4}
+.stat-box:hover{transform:translateY(-3px);border-color:rgba(255,23,68,.4);box-shadow:var(--glow-cyan)}
+.stat-num{font-size:22px;font-weight:900;line-height:1.1;margin-bottom:5px;letter-spacing:-.5px}
+.stat-lbl{font-size:10px;color:var(--grey-l);line-height:1.5}
+/* PROGRESS */
+.progress-label{display:flex;justify-content:space-between;font-size:10px;color:var(--grey-l);margin-bottom:4px}
+.progress-track{height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;margin-bottom:10px}
+.progress-fill{height:100%;border-radius:3px}
+/* LEAD CARDS */
+.lead-card{
+  background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;overflow:hidden;margin-bottom:14px;
+  transition:border-color .3s,box-shadow .3s,transform .2s}
+.lead-card:hover{border-color:rgba(255,23,68,.3);box-shadow:0 8px 40px rgba(255,23,68,.07);transform:translateY(-1px)}
+.lead-header{display:flex;justify-content:space-between;align-items:flex-start;padding:16px;
+  background:rgba(255,23,68,.04);border-bottom:1px solid rgba(255,255,255,.06)}
+.lead-name{font-size:14px;font-weight:800;margin-bottom:3px;letter-spacing:-.2px}
+.lead-type{font-size:11px;color:var(--grey-l)}
+.lead-close{text-align:right}
+.lead-close-num{font-size:24px;font-weight:900;line-height:1}
+.lead-close-lbl{font-size:9px;color:var(--grey-l);letter-spacing:.5px;text-transform:uppercase}
+.lead-body{padding:14px 16px}
+.lead-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.lead-stat{text-align:center}
+.lead-stat-val{font-size:15px;font-weight:800}
+.lead-stat-lbl{font-size:9px;color:var(--grey-l);letter-spacing:.3px;text-transform:uppercase}
+.lead-why{font-size:11px;color:var(--grey-l);line-height:1.6;font-style:italic;padding-top:10px;border-top:1px solid rgba(255,255,255,.06)}
+/* TABLES */
+.earn-table{width:100%;border-collapse:collapse;margin-bottom:8px}
+.earn-table th{background:rgba(0,0,0,.4);color:var(--grey-l);font-size:9px;font-weight:700;text-transform:uppercase;padding:10px 8px;text-align:center;letter-spacing:.8px;border-bottom:1px solid rgba(255,255,255,.06)}
+.earn-table th:first-child{text-align:left}
+.earn-table td{padding:11px 8px;font-size:12px;text-align:center;border-bottom:1px solid rgba(255,255,255,.04)}
+.earn-table td:first-child{text-align:left;font-weight:700}
+.earn-table tr.hl{background:rgba(255,23,68,.04)}
+.earn-table tr.hl td{color:var(--white)}
+.net-cell{font-weight:900;color:var(--green)}
+/* MONTHLY */
+.mo-table{width:100%;border-collapse:collapse;font-size:11px}
+.mo-table th{background:rgba(0,0,0,.4);color:var(--grey-l);font-size:9px;text-transform:uppercase;letter-spacing:.8px;padding:8px 6px;text-align:center;font-weight:700;border-bottom:1px solid rgba(255,255,255,.06)}
+.mo-table td{padding:8px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.04)}
+.mo-table tr:nth-child(even) td{background:rgba(255,255,255,.015)}
+.mo-table tr.ms td{background:rgba(255,23,68,.05)}
+.mo-table .ms-col{text-align:left;font-size:10px;color:var(--grey-l);font-style:italic}
+/* TOOL ITEMS */
+.tool-item{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;margin-bottom:6px;transition:opacity .2s}
+.tool-item:hover{opacity:.85}
+.tool-badge{min-width:58px;text-align:center;padding:4px 8px;border-radius:20px;font-size:10px;font-weight:800;white-space:nowrap;letter-spacing:.3px}
+.tool-name{font-size:13px;font-weight:700;letter-spacing:-.1px}
+.tool-desc{font-size:11px;color:var(--grey-l);margin-top:2px}
+/* PKG */
+.pkg-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+@media(min-width:560px){.pkg-grid{grid-template-columns:repeat(4,1fr)}}
+.pkg-card{border-radius:14px;padding:16px;border:1px solid rgba(255,255,255,.08);transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden}
+.pkg-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:.4}
+.pkg-card:hover{transform:translateY(-3px);box-shadow:0 10px 40px rgba(0,0,0,.3)}
+.pkg-stage{font-size:13px;font-weight:800;margin-bottom:2px;letter-spacing:-.1px}
+.pkg-period{font-size:10px;color:var(--grey-l);margin-bottom:8px;letter-spacing:.3px;text-transform:uppercase}
+.pkg-cost{font-size:22px;font-weight:900;
+  background:linear-gradient(135deg,#FF1744,#FF6B6B);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:7px}
+.pkg-tools{font-size:10px;color:var(--grey-l);line-height:1.6}
+/* WHY CARDS */
+.why-grid{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:560px){.why-grid{grid-template-columns:repeat(2,1fr)}}
+.why-card{
+  background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:14px;padding:16px;display:flex;gap:13px;align-items:flex-start;
+  transition:border-color .25s,transform .2s,box-shadow .25s}
+.why-card:hover{border-color:rgba(255,23,68,.3);transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,23,68,.07)}
+.why-icon{font-size:22px;flex-shrink:0;line-height:1}
+.why-title{font-size:13px;font-weight:800;margin-bottom:4px;letter-spacing:-.1px}
+.why-desc{font-size:11px;color:var(--grey-l);line-height:1.6}
+/* PLAN */
+.plan-item{
+  background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
+  border-radius:14px;overflow:hidden;margin-bottom:10px;
+  border:1px solid rgba(255,255,255,.07);transition:border-color .25s,box-shadow .25s}
+.plan-item:hover{box-shadow:0 6px 30px rgba(0,0,0,.2)}
+.plan-header{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;border-bottom:1px solid rgba(255,255,255,.05)}
+.plan-week{font-size:10px;font-weight:700;color:var(--cyan);letter-spacing:1px;text-transform:uppercase;margin-bottom:2px}
+.plan-focus{font-size:15px;font-weight:800;letter-spacing:-.2px}
+.plan-goal{font-size:11px;font-weight:700;color:var(--green)}
+.plan-actions{padding:11px 16px;font-size:11px;color:var(--grey-l);line-height:1.8}
+.plan-action::before{content:"→ ";color:var(--cyan)}
+/* ASSESS */
+.assess-item{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.04)}
+.assess-item:last-child{border-bottom:none}
+.assess-factor{font-size:12px;font-weight:700}
+.assess-desc{font-size:10px;color:var(--grey-l);margin-top:2px}
+.assess-verdict{font-size:11px;font-weight:700;white-space:nowrap;margin-left:12px}
+/* SUCCESS */
+.success-banner{
+  background:linear-gradient(135deg,rgba(0,200,83,.06),rgba(0,0,0,0));
+  border:1px solid rgba(0,200,83,.25);
+  border-radius:20px;padding:28px;text-align:center;margin:20px 0;
+  box-shadow:var(--glow-green)}
+.success-pct{font-size:72px;font-weight:900;
+  background:linear-gradient(135deg,#00C853,#69F0AE);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1}
+/* HERO */
+.hero{text-align:center;padding:12px 0 30px}
+.hero-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  background:linear-gradient(90deg,#FF1744,#FF6B6B);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:12px;font-weight:700}
+.hero-title{font-size:34px;font-weight:900;line-height:1.1;margin-bottom:12px;letter-spacing:-1px;
+  background:linear-gradient(135deg,#fff 30%,#FF1744 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:13px;color:var(--grey-l);line-height:1.7;max-width:500px;margin:0 auto 22px}
+.hero-cta{
+  display:inline-block;
+  background:linear-gradient(135deg,#FF1744,#CC0011);
+  color:var(--white);padding:13px 32px;border-radius:30px;
+  font-weight:800;font-size:13px;cursor:pointer;border:none;font-family:inherit;
+  letter-spacing:.3px;
+  box-shadow:0 4px 20px rgba(255,23,68,.4);
+  transition:transform .2s,box-shadow .2s,opacity .2s}
+.hero-cta:hover{transform:scale(1.04);box-shadow:0 6px 30px rgba(255,23,68,.55);opacity:.95}
+/* VS */
+.vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.vs-col{border-radius:14px;overflow:hidden}
+.vs-header{padding:13px 14px;text-align:center;font-size:13px;font-weight:800;letter-spacing:-.1px}
+.vs-item{display:flex;align-items:center;gap:9px;padding:8px 14px;font-size:11px;color:var(--grey-l);border-bottom:1px solid rgba(255,255,255,.04)}
+.vs-item:last-child{border-bottom:none}
+/* ACCORDION */
+.accordion{border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden;margin-bottom:10px;transition:border-color .2s}
+.accordion:hover{border-color:rgba(255,23,68,.2)}
+.acc-header{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;
+  background:rgba(255,255,255,.02);cursor:pointer;transition:background .2s}
+.acc-header:hover{background:rgba(255,23,68,.05)}
+.acc-title{font-size:13px;font-weight:700}
+.acc-icon{color:var(--cyan);font-size:18px;transition:transform .3s;display:inline-block}
+.accordion.open .acc-icon{transform:rotate(45deg)}
+.acc-body{display:none;padding:14px 16px;background:rgba(0,0,0,.3);font-size:12px;color:var(--grey-l);line-height:1.8}
+.accordion.open .acc-body{display:block}
+/* CHART */
+.chart-bars{display:flex;align-items:flex-end;gap:4px;height:150px;padding-bottom:22px;margin:14px 0}
+.bar-group{flex:1;display:flex;flex-direction:column;align-items:center}
+.bar-wrap{width:100%;position:relative;border-radius:4px 4px 0 0;min-height:2px}
+.bar-net{position:absolute;bottom:0;left:15%;width:70%;border-radius:3px 3px 0 0;min-height:2px}
+.bar-lbl{font-size:8px;color:var(--grey-l);margin-top:4px;text-align:center;letter-spacing:.2px}
+.chart-legend{display:flex;gap:14px;justify-content:center;font-size:10px;color:var(--grey-l);margin-top:6px}
+.legend-dot{width:10px;height:10px;border-radius:2px;display:inline-block;margin-right:4px;vertical-align:middle}
+/* OUTREACH */
+.form-row{margin-bottom:13px}
+.form-label{font-size:11px;color:var(--grey-l);margin-bottom:6px;display:block;letter-spacing:.3px;text-transform:uppercase;font-weight:600}
+.form-input,.form-select{
+  width:100%;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;color:var(--white);font-size:13px;
+  padding:11px 14px;font-family:inherit;outline:none;
+  transition:border-color .2s,box-shadow .2s}
+.form-input:focus,.form-select:focus{border-color:#FF1744;box-shadow:0 0 0 3px rgba(255,23,68,.1)}
+.form-select option{background:#1a0808}
+/* ★ PREMIUM GENERATE BUTTON */
+.gen-btn{
+  width:100%;border:none;border-radius:14px;padding:16px;
+  font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;
+  letter-spacing:.5px;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#FF1744,#CC0011,#FF4444);
+  background-size:200% 200%;
+  color:var(--white);
+  box-shadow:0 4px 25px rgba(255,23,68,.4),0 2px 8px rgba(0,0,0,.5);
+  transition:transform .2s,box-shadow .2s;
+  animation:gradShift 4s ease infinite}
+@keyframes gradShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.gen-btn::before{
+  content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
+  transition:left .5s}
+.gen-btn:hover::before{left:100%}
+.gen-btn:hover{transform:translateY(-2px);box-shadow:0 8px 35px rgba(255,23,68,.6),0 4px 15px rgba(0,0,0,.4)}
+.gen-btn:active{transform:translateY(0);box-shadow:0 2px 15px rgba(255,23,68,.3)}
+.email-out{
+  background:rgba(255,23,68,.03);
+  border:1px solid rgba(255,23,68,.15);
+  border-radius:12px;padding:18px;margin-top:16px;
+  font-size:12px;color:var(--grey-l);line-height:1.9;white-space:pre-wrap;display:none;position:relative}
+.copy-btn{
+  position:absolute;top:12px;right:12px;
+  background:linear-gradient(135deg,#FF1744,#CC0011);
+  border:none;color:var(--white);border-radius:8px;padding:5px 12px;
+  font-size:10px;font-weight:800;cursor:pointer;font-family:inherit;letter-spacing:.5px;
+  transition:opacity .2s,transform .1s}
+.copy-btn:hover{opacity:.9;transform:scale(1.03)}
+/* RANGE */
+input[type=range]{width:100%;accent-color:var(--cyan);cursor:pointer}
+/* WORKFLOW */
+.wf-phase{margin-bottom:22px}
+.wf-phase-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.wf-step{display:flex;gap:13px;padding:13px 15px;border-radius:12px;margin-bottom:7px;transition:opacity .2s}
+.wf-step:hover{opacity:.9}
+.wf-num{min-width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:var(--dark);flex-shrink:0}
+.wf-step-title{font-size:13px;font-weight:800;margin-bottom:4px;letter-spacing:-.1px}
+.wf-step-desc{font-size:11px;color:var(--grey-l);line-height:1.7}
+.wf-time{font-size:10px;white-space:nowrap;margin-left:auto;flex-shrink:0;font-weight:600;letter-spacing:.3px}
+.checklist-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.checklist-item:last-child{border-bottom:none}
+.check-box{font-size:18px;cursor:pointer;flex-shrink:0;color:var(--grey-l);transition:color .2s;user-select:none;line-height:1.3}
+.check-box.done{color:var(--green)}
+.check-label{font-size:12px;color:var(--grey-l);line-height:1.6;padding-top:2px}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-thumb{background:rgba(255,23,68,.28);border-radius:2px}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">📹 AI VIDEO</div>
+    <button class="nav-btn active" data-page="home">Home</button>
+    <button class="nav-btn" data-page="opportunity">Opportunity</button>
+    <button class="nav-btn" data-page="leads">5 Leads</button>
+    <button class="nav-btn" data-page="earnings">Earnings</button>
+    <button class="nav-btn" data-page="monthly">12 Months</button>
+    <button class="nav-btn" data-page="tools">Tools</button>
+    <button class="nav-btn" data-page="plan">Plan</button>
+    <button class="nav-btn" data-page="workflow">Workflow</button>
+    <button class="nav-btn" data-page="outreach">Outreach</button>
+    <button class="nav-btn" data-page="assess">Assessment</button>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-eyebrow">New Zealand Market · June 2026</div>
+    <div class="hero-title">AI Property Video<br>Side Hustle</div>
+    <div class="hero-sub">Find NZ listings with no video. Generate cinematic AI fly-throughs. Sell them to agents for $150–$300. Takes 2–3 hours per video. Fully remote.</div>
+    <button class="hero-cta" data-goto="opportunity">Explore the Plan →</button>
+  </div>
+  <div class="stat-grid">
+    <div class="stat-box"><div class="stat-num" style="color:var(--cyan)">~$25</div><div class="stat-lbl">Monthly tool cost<br>(Higgsfield Plus)</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--green)">$150–300</div><div class="stat-lbl">What you charge<br>per video</div></div>
+    <div class="stat-box"><div class="stat-num">1 Sale</div><div class="stat-lbl">Breaks even<br>per month</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--orange)">35,000+</div><div class="stat-lbl">NZ listings with<br>no video right now</div></div>
+  </div>
+  <div class="divider"></div>
+  <div class="why-grid" id="home-why"></div>
+</div>
+
+<!-- OPPORTUNITY -->
+<div id="page-opportunity" class="page">
+  <div class="section-title">Market Analysis</div>
+  <div class="page-title">The Opportunity</div>
+  <div class="page-sub">AI video vs traditional drone operators — your core sales argument.</div>
+  <div class="vs-grid">
+    <div class="vs-col" style="background:#100505;border:1px solid rgba(229,57,53,.3)">
+      <div class="vs-header" style="background:rgba(229,57,53,.12);color:#ff6b6b">🚁 Drone Operator</div>
+      <div class="vs-item"><span>💸</span><span>$400–$900 per property</span></div>
+      <div class="vs-item"><span>📅</span><span>3–7 days turnaround</span></div>
+      <div class="vs-item"><span>🌧️</span><span>Weather dependent</span></div>
+      <div class="vs-item"><span>📋</span><span>CAA licence required</span></div>
+      <div class="vs-item"><span>✂️</span><span>Social cut = extra cost</span></div>
+      <div class="vs-item"><span>🔁</span><span>Revisions = expensive</span></div>
+      <div class="vs-item"><span>🚗</span><span>Must travel to property</span></div>
+    </div>
+    <div class="vs-col" style="background:#051510;border:1px solid rgba(255,23,68,.4)">
+      <div class="vs-header" style="background:rgba(255,23,68,.08);color:#FF4466">🤖 Your AI Service</div>
+      <div class="vs-item"><span>✅</span><span style="color:var(--green)">$150–$300 per property</span></div>
+      <div class="vs-item"><span>✅</span><span style="color:var(--green)">24–48 hour delivery</span></div>
+      <div class="vs-item"><span>✅</span><span style="color:var(--green)">Zero weather risk</span></div>
+      <div class="vs-item"><span>✅</span><span style="color:var(--green)">No licence needed</span></div>
+      <div class="vs-item"><span>✅</span><span style="color:var(--green)">Vertical cut included</span></div>
+      <div class="vs-item"><span>✅</span><span style="color:var(--green)">Low-cost revisions</span></div>
+      <div class="vs-item"><span>✅</span><span style="color:var(--green)">Fully remote from home</span></div>
+    </div>
+  </div>
+  <div class="card" style="background:linear-gradient(135deg,rgba(255,23,68,.06),rgba(255,23,68,.02));border-color:rgba(255,23,68,.4);text-align:center;padding:20px">
+    <div style="font-size:13px;color:var(--grey-l);margin-bottom:6px">Average saving for the agent</div>
+    <div style="font-size:36px;font-weight:900;color:var(--green)">$250–$600</div>
+    <div style="font-size:12px;color:var(--grey-l);margin-top:4px">per listing · Same result · Faster delivery</div>
+  </div>
+  <div class="divider"></div>
+  <div class="section-title" style="margin-bottom:10px">Key Market Facts</div>
+  <div class="accordion open">
+    <div class="acc-header"><span class="acc-title">Trade Me flags video listings</span><span class="acc-icon">+</span></div>
+    <div class="acc-body">Trade Me Property explicitly labels listings that have video tours. Listings WITHOUT video are identifiable in under 5 seconds. You have a daily, renewable lead pool of 25,000–28,000 properties at any given time.</div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header"><span class="acc-title">NZ agents are behind the curve</span><span class="acc-icon">+</span></div>
+    <div class="acc-body">AI property video is mainstream in Australia and the US. NZ agents are 2–3 years behind. Early movers face minimal competition and high novelty value — the demo video alone creates curiosity that opens doors.</div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header"><span class="acc-title">Why agents say yes</span><span class="acc-icon">+</span></div>
+    <div class="acc-body">At $180 for a $780K listing, the video costs less than 0.03% of the sale price. Agents already know video works. The objection isn't desire — it's cost and logistics. You solve both. A free demo video sent with the pitch removes the last barrier.</div>
+  </div>
+</div>
+
+<!-- LEADS -->
+<div id="page-leads" class="page">
+  <div class="section-title">Found Today · Trade Me Property</div>
+  <div class="page-title">5 Live Leads</div>
+  <div class="page-sub">Real active listings with zero video content. Scored, priced and ready to pitch.</div>
+  <div id="leads-container"></div>
+</div>
+
+<!-- EARNINGS -->
+<div id="page-earnings" class="page">
+  <div class="section-title">Revenue Modelling</div>
+  <div class="page-title">Earnings Scenarios</div>
+  <div class="page-sub">Four scenarios from starting out to full scale. All figures NZD per month.</div>
+  <div class="card" style="overflow-x:auto">
+    <table class="earn-table">
+      <thead><tr><th>Scenario</th><th>Agents/wk</th><th>Close %</th><th>Videos/mo</th><th>Avg $</th><th>Gross</th><th>Tools</th><th>NET</th></tr></thead>
+      <tbody>
+        <tr><td>Conservative</td><td>20</td><td>10%</td><td>8</td><td>$150</td><td>$1,200</td><td style="color:var(--grey-l)">~$25</td><td class="net-cell">$1,175</td></tr>
+        <tr class="hl"><td>Realistic ★</td><td>20</td><td>15%</td><td>12</td><td>$200</td><td>$2,400</td><td style="color:var(--grey-l)">~$25</td><td class="net-cell" style="font-size:15px">$2,375</td></tr>
+        <tr><td>Strong</td><td>30</td><td>20%</td><td>24</td><td>$220</td><td>$5,280</td><td style="color:var(--grey-l)">~$25</td><td class="net-cell">$5,255</td></tr>
+        <tr><td>Scale Up</td><td>50</td><td>20%</td><td>40</td><td>$250</td><td>$10,000</td><td style="color:var(--grey-l)">~$50</td><td class="net-cell">$9,950</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="font-size:10px;color:var(--grey-l);text-align:center;margin-bottom:16px">★ Most likely scenario in months 1–2</div>
+  <div class="section-title" style="margin-bottom:10px">Visualised</div>
+  <div class="card">
+    <div class="chart-bars" id="earn-chart"></div>
+    <div class="chart-legend">
+      <span><span class="legend-dot" style="background:rgba(255,23,68,.4)"></span>Gross Revenue</span>
+      <span><span class="legend-dot" style="background:var(--green)"></span>Net Profit</span>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section-title" style="margin-bottom:10px">Break-Even Calculator</div>
+  <div class="card">
+    <div style="font-size:12px;color:var(--grey-l);margin-bottom:12px">Drag to set your price per video:</div>
+    <div class="form-row">
+      <label class="form-label">Price per video: <strong id="price-display" style="color:var(--cyan)">$200</strong></label>
+      <input type="range" id="price-slider" min="100" max="400" value="200" step="10">
+    </div>
+    <div class="stat-grid" style="margin-top:10px">
+      <div class="stat-box"><div class="stat-num" id="be-videos" style="color:var(--orange)">1</div><div class="stat-lbl">Video to break even<br>(cover $25 tool cost)</div></div>
+      <div class="stat-box"><div class="stat-num" id="be-net" style="color:var(--green)">$1,975</div><div class="stat-lbl">Net profit at 10<br>videos per month</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MONTHLY -->
+<div id="page-monthly" class="page">
+  <div class="section-title">12-Month Projection</div>
+  <div class="page-title">Growth Timeline</div>
+  <div class="page-sub">If you scale consistently. Improving close rate and price as reputation builds.</div>
+  <div class="card">
+    <div class="chart-bars" id="mo-chart" style="height:170px"></div>
+    <div class="chart-legend">
+      <span><span class="legend-dot" style="background:rgba(255,23,68,.4)"></span>Gross Revenue</span>
+      <span><span class="legend-dot" style="background:var(--green)"></span>Net Profit</span>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="card" style="overflow-x:auto">
+    <table class="mo-table">
+      <thead><tr><th>Mo.</th><th>Vids</th><th>Avg</th><th>Gross</th><th>Tools</th><th>NET</th><th class="ms-col">Milestone</th></tr></thead>
+      <tbody id="mo-tbody"></tbody>
+    </table>
+  </div>
+  <div class="card" style="margin-top:12px;background:linear-gradient(135deg,#051510,#051510);border-color:var(--green)">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;text-align:center">
+      <div><div style="font-size:10px;color:var(--grey-l);margin-bottom:4px">Year 1 Gross</div><div style="font-size:22px;font-weight:800;color:var(--cyan)">$81,000</div></div>
+      <div><div style="font-size:10px;color:var(--grey-l);margin-bottom:4px">Year 1 Tools</div><div style="font-size:22px;font-weight:800;color:var(--red)">$625</div></div>
+      <div><div style="font-size:10px;color:var(--grey-l);margin-bottom:4px">Year 1 NET</div><div style="font-size:22px;font-weight:800;color:var(--green)">$80,375</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- TOOLS -->
+<div id="page-tools" class="page">
+  <div class="section-title">What You Need</div>
+  <div class="page-title">Tools & Costs</div>
+  <div class="page-sub">Start free. Add paid tools as revenue grows. Never buy everything at once.</div>
+  <div class="section-title" style="color:var(--green);margin-bottom:10px">Free to Start</div>
+  <div id="free-tools"></div>
+  <div class="divider"></div>
+  <div class="section-title" style="color:var(--red);margin-bottom:10px">Paid — Add as Revenue Grows</div>
+  <div id="paid-tools"></div>
+  <div class="divider"></div>
+  <div class="section-title" style="color:var(--purple);margin-bottom:12px">Recommended Packages by Stage</div>
+  <div class="pkg-grid" id="pkg-grid"></div>
+</div>
+
+<!-- PLAN -->
+<div id="page-plan" class="page">
+  <div class="section-title">Getting Started</div>
+  <div class="page-title">30-Day Action Plan</div>
+  <div class="page-sub">A simple daily routine. 1–2 hours to find leads, 2–3 hours to produce a video.</div>
+  <div id="plan-container"></div>
+</div>
+
+<!-- WORKFLOW -->
+<div id="page-workflow" class="page">
+  <div class="section-title">Step-by-Step Process</div>
+  <div class="page-title">The Full Workflow</div>
+  <div class="page-sub">Everything from finding a listing to getting paid. Follow this every time.</div>
+  <div class="stat-grid">
+    <div class="stat-box"><div class="stat-num" style="color:var(--cyan)">30 min</div><div class="stat-lbl">Finding &amp; qualifying<br>leads on Trade Me</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--orange)">15 min</div><div class="stat-lbl">Writing &amp; sending<br>the pitch email</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--purple)">2–3 hrs</div><div class="stat-lbl">Generating &amp; editing<br>the video</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--green)">10 min</div><div class="stat-lbl">Delivering &amp;<br>getting paid</div></div>
+  </div>
+  <div id="wf-container"></div>
+  <div class="divider"></div>
+  <div class="section-title" style="margin-bottom:12px">First Video Checklist</div>
+  <div class="card" id="checklist-container"></div>
+</div>
+
+<!-- OUTREACH -->
+<div id="page-outreach" class="page">
+  <div class="section-title">Sales Tool</div>
+  <div class="page-title">Outreach Builder</div>
+  <div class="page-sub">Generate a personalised pitch email for any agent. Copy and send.</div>
+  <div class="card">
+    <div class="form-row">
+      <label class="form-label">Select listing</label>
+      <select class="form-select" id="lead-select">
+        <option value="0">30 Ngatoto Rd, Tinopai — Coastal Bach — $355K</option>
+        <option value="1">23 Swan Rd, Te Kauwhata — Modern Brick — $780K</option>
+        <option value="2">33 Trias Rd, Totara Vale — North Shore Auction — ~$900K+</option>
+        <option value="3">18 Vogel St, Hawera — Character Home — $399K+</option>
+        <option value="4">2 Nikau Pl, Whangarei — Family Home — Deadline Sale</option>
+        <option value="custom">Custom listing</option>
+      </select>
+    </div>
+    <div id="custom-fields" style="display:none">
+      <div class="form-row"><label class="form-label">Property address</label><input class="form-input" id="custom-address" placeholder="e.g. 10 Example Street, Suburb, City"></div>
+      <div class="form-row"><label class="form-label">Listing price</label><input class="form-input" id="custom-price" placeholder="e.g. $850,000 or Auction"></div>
+    </div>
+    <div class="form-row"><label class="form-label">Agent name</label><input class="form-input" id="agent-name" placeholder="e.g. Sarah Johnson"></div>
+    <div class="form-row"><label class="form-label">Your name</label><input class="form-input" id="your-name" placeholder="e.g. Haydn"></div>
+    <div class="form-row">
+      <label class="form-label">Your price</label>
+      <select class="form-select" id="your-price">
+        <option value="$150">$150 — Regional/entry level</option>
+        <option value="$180">$180 — Standard</option>
+        <option value="$200" selected>$200 — Mid range</option>
+        <option value="$220">$220 — Premium suburb</option>
+        <option value="$250">$250 — Auckland/luxury</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label class="form-label">Email tone</label>
+      <select class="form-select" id="email-tone">
+        <option value="direct">Direct &amp; confident</option>
+        <option value="friendly">Friendly &amp; casual</option>
+        <option value="professional">Professional &amp; formal</option>
+      </select>
+    </div>
+    <button class="gen-btn" id="gen-btn">Generate Pitch Email →</button>
+  </div>
+  <div class="email-out" id="email-out">
+    <button class="copy-btn" id="copy-btn">Copy</button>
+    <div id="email-text"></div>
+  </div>
+</div>
+
+<!-- ASSESS -->
+<div id="page-assess" class="page">
+  <div class="section-title">Honest Analysis</div>
+  <div class="page-title">Will It Work?</div>
+  <div class="page-sub">A factor-by-factor breakdown — no hype, no fluff.</div>
+  <div class="success-banner">
+    <div class="success-pct">72%</div>
+    <div style="font-size:16px;font-weight:800;color:var(--green);margin-top:6px">Overall Success Probability</div>
+    <div style="font-size:12px;color:var(--grey-l);margin-top:4px">Chance of closing first client within 30 days</div>
+  </div>
+  <div class="card" style="padding:0;overflow:hidden" id="assess-container"></div>
+  <div class="divider"></div>
+  <div class="card">
+    <div style="font-size:12px;color:var(--grey-l);margin-bottom:12px;text-align:center">Confidence breakdown</div>
+    <div class="progress-label"><span>Market demand</span><span style="color:var(--green)">High</span></div>
+    <div class="progress-track"><div class="progress-fill" style="width:88%;background:var(--green)"></div></div>
+    <div class="progress-label"><span>Competition level</span><span style="color:var(--green)">Low</span></div>
+    <div class="progress-track"><div class="progress-fill" style="width:82%;background:#FF1744"></div></div>
+    <div class="progress-label"><span>Price accessibility</span><span style="color:var(--green)">High</span></div>
+    <div class="progress-track"><div class="progress-fill" style="width:90%;background:var(--green)"></div></div>
+    <div class="progress-label"><span>Execution difficulty</span><span style="color:var(--orange)">Medium</span></div>
+    <div class="progress-track"><div class="progress-fill" style="width:55%;background:var(--orange)"></div></div>
+    <div class="progress-label"><span>Risk level</span><span style="color:var(--green)">Very Low</span></div>
+    <div class="progress-track" style="margin-bottom:0"><div class="progress-fill" style="width:92%;background:var(--green)"></div></div>
+  </div>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────────
+var LEADS = [
+  {name:"30 Ngatoto Rd, Tinopai",suburb:"Tinopai, Northland",type:"Coastal Bach",price:"$355K",days:"20",score:65,yours:"$180",drone:"$550+",close:72,why:"3,207 views on Trade Me. Harbour aerial drone shot. Classic Kiwi lifestyle — the story sells itself on video."},
+  {name:"23 Swan Rd, Te Kauwhata",suburb:"Te Kauwhata, Waikato",type:"Modern Brick Home",price:"$780K",days:"13",score:74,yours:"$220",drone:"$600+",close:68,why:"Fresh listing at 13 days. Modern photogenic home with solar panels and double internal garage."},
+  {name:"33 Trias Rd, Totara Vale",suburb:"Totara Vale, Auckland",type:"North Shore Auction",price:"~$900K+",days:"20",score:70,yours:"$250",drone:"$750+",close:65,why:"Auckland agents expect premium marketing. Auction format means motivated agent."},
+  {name:"18 Vogel St, Hawera",suburb:"Hawera, South Taranaki",type:"Character Home",price:"$399K+",days:"20",score:61,yours:"$150",drone:"$450+",close:55,why:"Character 1910s home with a large 1,012m² section. Regional agent means less competition."},
+  {name:"2 Nikau Pl, Whangarei",suburb:"Parahaki, Whangarei",type:"Family Home",price:"Deadline Sale",days:"33",score:58,yours:"$150",drone:"$400+",close:60,why:"33 days listed. Motivated agent needs a circuit breaker. Video refresh re-ignites buyer interest."}
+];
+
+var MONTHLY = [
+  ["M1",8,175,1400,25,1375,"First clients. Refine the pitch."],
+  ["M2",12,185,2220,25,2195,"Word of mouth begins."],
+  ["M3",16,195,3120,25,3095,"Workflow systemised."],
+  ["M4",20,200,4000,25,3975,"Referral network forming."],
+  ["M5",24,210,5040,50,4990,"Upgrade Higgsfield plan."],
+  ["M6",28,215,6020,50,5970,"6-month milestone."],
+  ["M7",32,220,7040,50,6990,"Consistent deal flow."],
+  ["M8",36,225,8100,75,8025,"Premium package introduced."],
+  ["M9",40,230,9200,75,9125,"Scale to 30+ pitches/week."],
+  ["M10",44,235,10340,75,10265,"Agency retainer talks."],
+  ["M11",48,240,11520,100,11420,"White-label potential."],
+  ["M12",52,250,13000,100,12900,"Year 1 complete."]
+];
+
+var FREE_TOOLS = [
+  {name:"Higgsfield AI",cost:"Free tier",desc:"Core image-to-video generation tool."},
+  {name:"CapCut",cost:"Free",desc:"Edit clips, add music, text overlays, export vertical cuts."},
+  {name:"DaVinci Resolve",cost:"Free",desc:"Professional colour grading and editing."},
+  {name:"Canva",cost:"Free tier",desc:"Thumbnails, agent proposals, social graphics."},
+  {name:"Claude AI",cost:"Free tier",desc:"Lead research, outreach writing, scoring."},
+  {name:"Trade Me Property",cost:"Free",desc:"Source no-video listings every day."},
+  {name:"Gmail / Google",cost:"Free",desc:"Email outreach, tracking, calendar."}
+];
+
+var PAID_TOOLS = [
+  {name:"Higgsfield Plus",cost:"~$25/mo",desc:"1,000 credits. Unlocks Kling 3.0 and Seedance 2.0."},
+  {name:"Higgsfield Ultra",cost:"~$75/mo",desc:"3,000 credits. For 40+ videos per month."},
+  {name:"CapCut Pro",cost:"~$10/mo",desc:"No watermark, advanced effects, auto captions."},
+  {name:"Canva Pro",cost:"~$25/mo",desc:"Unlimited exports, branded agent proposals."},
+  {name:"Claude Pro",cost:"~$30/mo",desc:"5x more usage. Faster research and outreach."},
+  {name:"Mailchimp",cost:"~$20/mo",desc:"Send 100s of personalised pitch emails per week."},
+  {name:"Loom",cost:"~$15/mo",desc:"Record screen showing demo video to agents."}
+];
+
+var PACKAGES = [
+  {stage:"Starter",period:"Month 1–2",cost:"~$25/mo",tools:"Higgsfield Plus + CapCut Free + Claude Free + Trade Me",bg:"rgba(255,23,68,.06)",border:"var(--cyan)"},
+  {stage:"Growth",period:"Month 3–5",cost:"~$65/mo",tools:"Higgsfield Plus + CapCut Pro + Claude Pro + Canva Free",bg:"rgba(29,185,84,.08)",border:"var(--green)"},
+  {stage:"Scale",period:"Month 6–12",cost:"~$165/mo",tools:"Higgsfield Ultra + CapCut Pro + Claude Pro + Canva Pro + Mailchimp",bg:"rgba(255,140,0,.08)",border:"var(--orange)"},
+  {stage:"Agency",period:"Month 12+",cost:"~$300/mo",tools:"All above + Loom + VA assistant for outreach ($5–10/hr)",bg:"rgba(255,23,68,.06)",border:"var(--purple)"}
+];
+
+var WHY = [
+  {icon:"📈",title:"Clear Gap in Market",desc:"35,000+ active NZ listings. Trade Me flags listings WITH video — making no-video listings instantly identifiable every day."},
+  {icon:"💰",title:"Agents Already Spend",desc:"NZ agents pay $400–$900 for drone video. You offer the same result at half the price in half the time."},
+  {icon:"⚡",title:"Speed is Your Edge",desc:"Drone operators take 3–7 days. You deliver in 24–48 hours. Urgency alone closes deals."},
+  {icon:"🌏",title:"NZ is Underserved",desc:"AI property video is mainstream in Australia and the US. NZ agents are behind — early movers win."},
+  {icon:"🏠",title:"No Travel or Licence",desc:"No CAA drone licence, no fuel, no weather delays. Run this from home in 1–2 hours per video."},
+  {icon:"🔄",title:"Repeat Business Built In",desc:"One happy agent has multiple listings per year. One relationship = 5–10 videos annually."}
+];
+
+var PLAN = [
+  {week:"Week 1",focus:"Setup & First Demo",actions:["Get Higgsfield Plus plan","Generate demo video for Tinopai listing","Set up pitch email template"],goal:"1 demo video ready to pitch",bg:"rgba(255,23,68,.06)",border:"var(--cyan)"},
+  {week:"Week 2",focus:"First Outreach Batch",actions:["Email all 5 leads from this report","Find 15 more no-video listings","Follow up on no-replies"],goal:"First paying client",bg:"rgba(29,185,84,.08)",border:"var(--green)"},
+  {week:"Week 3",focus:"Systemise",actions:["Build weekly listing sweep routine","Create 3 pricing packages","Get first agent testimonial"],goal:"$300–$600 revenue",bg:"rgba(255,140,0,.08)",border:"var(--orange)"},
+  {week:"Week 4",focus:"Scale Outreach",actions:["Pitch 20+ agents per week","Offer referral deal to happy agents","Track what converts"],goal:"$1,000+ in month 1",bg:"rgba(255,23,68,.06)",border:"var(--purple)"}
+];
+
+var WORKFLOW = [
+  {phase:"PHASE 1 — FIND",icon:"🔍",title:"Find No-Video Listings",time:"~30 min",color:"#00C2CB",bg:"rgba(255,23,68,.04)",border:"rgba(255,23,68,.22)",steps:[
+    {n:"1",title:"Open Trade Me Property",time:"2 min",desc:"Go to trademe.co.nz/property. Set Residential → For Sale. Sort by Latest Listings."},
+    {n:"2",title:"Scan for no-video listings",time:"10 min",desc:"Listings with video show a 'Video' badge. Listings without one are your targets. Focus on the last 7–30 days."},
+    {n:"3",title:"Qualify the listing",time:"5 min",desc:"Is it $350K+? Good photos? Photogenic property? Still active? Yes to 3+ = it's a lead."},
+    {n:"4",title:"Get agent contact details",time:"3 min",desc:"Note the agent's name, email, and phone from the listing. Copy the listing URL."},
+    {n:"5",title:"Log it in your lead tracker",time:"2 min",desc:"Spreadsheet columns: address, agent name, email, price, days listed, pitch date."}
+  ]},
+  {phase:"PHASE 2 — PITCH",icon:"📧",title:"Pitch the Agent",time:"~15 min",color:"#FF8C00",bg:"rgba(255,140,0,.06)",border:"rgba(255,140,0,.25)",steps:[
+    {n:"6",title:"Generate a demo video (powerful)",time:"2–3 hrs",desc:"Generate a short fly-through from the listing photos in Higgsfield. Agents who see their own listing in video almost always respond."},
+    {n:"7",title:"Write the pitch email",time:"5 min",desc:"Use the Outreach Builder tab. Enter the agent name, listing, your price, and tone. Personalise the first line with one specific detail from their listing."},
+    {n:"8",title:"Send the email",time:"2 min",desc:"Send from your professional email. Subject line includes the property address. Keep it under 150 words. Attach the demo video."},
+    {n:"9",title:"Follow up after 3 days",time:"3 min",desc:"One short follow-up if no reply: 'Hey [name], just checking you got this.' No more than 2 follow-ups total."}
+  ]},
+  {phase:"PHASE 3 — PRODUCE",icon:"🎬",title:"Produce the Video",time:"~2–3 hrs",color:"#FF1744",bg:"rgba(255,23,68,.06)",border:"rgba(255,23,68,.25)",steps:[
+    {n:"10",title:"Collect the best photos",time:"15 min",desc:"Download 4–8 photos: exterior, aerial/elevated view, living area, kitchen, outdoor space, unique feature. Save to a named folder."},
+    {n:"11",title:"Upload to Higgsfield",time:"5 min",desc:"Go to higgsfield.ai. Upload photos via the media upload widget. Start with the best exterior or aerial shot."},
+    {n:"12",title:"Generate video clips",time:"30–60 min",desc:"Use Seedance 2.0 or Kling 3.0. For each key photo, generate a 5–8 second cinematic clip. Prompt: 'Slow cinematic dolly, warm golden light, smooth camera movement, real estate lifestyle feel.'"},
+    {n:"13",title:"Edit in CapCut",time:"30–45 min",desc:"Arrange: aerial → living → kitchen → outdoor → final exterior. Add background music. Add text overlay with address on first frame and contact details on last. Export 1080p."},
+    {n:"14",title:"Create the vertical cut",time:"15 min",desc:"Crop to 9:16 in CapCut. Trim to 30 seconds for Instagram/TikTok. This is included free — agents love the social media cut."},
+    {n:"15",title:"Review before sending",time:"10 min",desc:"Watch it fully. Does it flow? Is the music right? Are overlays readable? Does it make the property look desirable? If you'd be proud showing it, it's ready."}
+  ]},
+  {phase:"PHASE 4 — DELIVER & GET PAID",icon:"💰",title:"Deliver & Get Paid",time:"~10 min",color:"#1DB954",bg:"rgba(29,185,84,.06)",border:"rgba(29,185,84,.25)",steps:[
+    {n:"16",title:"Upload the video",time:"5 min",desc:"Upload to Google Drive. Create a shared folder named after the agent and property. Drop landscape and vertical 9:16 versions inside. Set sharing to 'Anyone with link can view and download'."},
+    {n:"17",title:"Send the delivery email",time:"3 min",desc:"'Hi [name], here are your files — [link]. Landscape (for portals) and vertical (for social). Let me know if you'd like any tweaks. Payment: [bank account]. Thanks, [your name].'"},
+    {n:"18",title:"Invoice them",time:"2 min",desc:"Use Wave or Hnry (free). Include: your name, property address, video description, amount, bank account. Due on receipt. Most agents pay within 1–3 days."},
+    {n:"19",title:"Follow up if unpaid after 5 days",time:"2 min",desc:"One polite nudge: 'Hi [name], just checking the invoice came through — happy to resend.' If still nothing after 10 days, call the agency directly."},
+    {n:"20",title:"Ask for a testimonial",time:"2 min",desc:"Once paid: 'Would you mind leaving a quick Google review? It helps a lot.' A testimonial from one agent leads to referrals from three more."}
+  ]},
+  {phase:"PHASE 5 — SCALE",icon:"🚀",title:"Scale & Systemise",time:"Ongoing",color:"#F59E0B",bg:"rgba(245,158,11,.06)",border:"rgba(245,158,11,.25)",steps:[
+    {n:"21",title:"Build your lead tracker",time:"30 min once",desc:"Spreadsheet: Date Found, Address, Agent, Email, Price, Days Listed, Score, Pitched Y/N, Response, Sale Status, Notes. Review daily."},
+    {n:"22",title:"Create 3 pricing packages",time:"1 hr once",desc:"Basic $150: 60-sec landscape only. Standard $200: 90-sec + vertical cut. Premium $280: 90-sec cinematic + vertical + 3 still thumbnails."},
+    {n:"23",title:"Build a referral system",time:"15 min",desc:"After each happy client: 'Refer me to another agent in your office and you both get 20% off your next video.' Word spreads fast in real estate offices."},
+    {n:"24",title:"Approach agencies directly",time:"1 hr/week",desc:"Email office managers of Harcourts, Ray White, Bayleys branches. Offer a 'try one free' deal. One agent in the office = the whole office."},
+    {n:"25",title:"Track what's working",time:"10 min/week",desc:"Every Friday: pitches sent, replies, sales, close rate, best listing type. Double down on what works. Cut what doesn't."}
+  ]}
+];
+
+var CHECKLIST = [
+  "Higgsfield Plus plan is active",
+  "CapCut installed on phone or desktop",
+  "Gmail set up with a professional email address",
+  "Google Drive folder structure created (one folder per client)",
+  "Lead tracker spreadsheet is set up",
+  "At least one demo video generated",
+  "Pitch email template written and ready to personalise",
+  "Pricing decided ($150 / $200 / $280 packages)",
+  "Bank account details ready to include in invoices",
+  "Invoice template created in Wave or Hnry"
+];
+
+var ASSESS = [
+  {factor:"Market Demand",assessment:"High — agents actively seek affordable video solutions",verdict:"✅ Strong"},
+  {factor:"Competition",assessment:"Low — AI video is new to most NZ agents in 2026",verdict:"✅ Strong"},
+  {factor:"Price Point",assessment:"$150–$250 is an easy yes for an agent on a $780K listing",verdict:"✅ Strong"},
+  {factor:"Your Execution",assessment:"1–2 hrs to find leads, 2–3 hrs per video. Self-managed.",verdict:"⚡ Manageable"},
+  {factor:"Video Quality",assessment:"AI video is good enough now and improving every month",verdict:"✅ Good"},
+  {factor:"Agent Scepticism",assessment:"Some unfamiliar with AI — a free demo video resolves this",verdict:"⚡ Manageable"},
+  {factor:"Repeat Business",assessment:"High once trust is established after first delivery",verdict:"✅ Strong"},
+  {factor:"Scalability",assessment:"Batch processing and email templates make this systematic",verdict:"✅ Strong"},
+  {factor:"Risk Level",assessment:"~$25/mo tool cost only. No physical assets. Near zero risk.",verdict:"✅ Very Low"},
+  {factor:"Overall Probability",assessment:"Conservative estimate of landing first client within 30 days",verdict:"70–75% ✅"}
+];
+
+// ── NAVIGATION ────────────────────────────────────────────────────────────────
+document.querySelectorAll('.nav-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    showPage(this.getAttribute('data-page'));
+  });
+});
+
+document.querySelectorAll('[data-goto]').forEach(function(el) {
+  el.addEventListener('click', function() {
+    showPage(this.getAttribute('data-goto'));
+  });
+});
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.nav-btn').forEach(function(b) { b.classList.remove('active'); });
+  var page = document.getElementById('page-' + id);
+  if (page) page.classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(function(b) {
+    if (b.getAttribute('data-page') === id) b.classList.add('active');
+  });
+  window.scrollTo(0, 0);
+}
+
+// ── ACCORDIONS ────────────────────────────────────────────────────────────────
+document.querySelectorAll('.acc-header').forEach(function(header) {
+  header.addEventListener('click', function() {
+    this.parentElement.classList.toggle('open');
+  });
+});
+
+// ── RENDER FUNCTIONS ──────────────────────────────────────────────────────────
+function renderHomeWhy() {
+  var c = document.getElementById('home-why');
+  c.innerHTML = WHY.map(function(w) {
+    return '<div class="why-card"><div class="why-icon">'+w.icon+'</div><div><div class="why-title">'+w.title+'</div><div class="why-desc">'+w.desc+'</div></div></div>';
+  }).join('');
+}
+
+function renderLeads() {
+  var c = document.getElementById('leads-container');
+  c.innerHTML = LEADS.map(function(l) {
+    var sc = l.score >= 65 ? 'var(--green)' : 'var(--orange)';
+    var cc = l.close >= 65 ? 'var(--green)' : 'var(--orange)';
+    return '<div class="lead-card">'+
+      '<div class="lead-header">'+
+        '<div><div class="lead-name">'+l.name+'</div><div class="lead-type">'+l.type+' · '+l.price+' · '+l.days+' days listed</div></div>'+
+        '<div class="lead-close"><div class="lead-close-num" style="color:'+cc+'">'+l.close+'%</div><div class="lead-close-lbl">close chance</div></div>'+
+      '</div>'+
+      '<div class="lead-body">'+
+        '<div class="lead-stats">'+
+          '<div class="lead-stat"><div class="lead-stat-val" style="color:'+sc+'">'+l.score+'/100</div><div class="lead-stat-lbl">Score</div></div>'+
+          '<div class="lead-stat"><div class="lead-stat-val" style="color:var(--green)">'+l.yours+'</div><div class="lead-stat-lbl">Your Price</div></div>'+
+          '<div class="lead-stat"><div class="lead-stat-val" style="color:var(--red)">'+l.drone+'</div><div class="lead-stat-lbl">Drone Equiv.</div></div>'+
+        '</div>'+
+        '<div class="progress-label"><span>Score</span><span style="color:'+sc+'">'+l.score+'/100</span></div>'+
+        '<div class="progress-track"><div class="progress-fill" style="width:'+l.score+'%;background:'+sc+'"></div></div>'+
+        '<div class="lead-why">💡 '+l.why+'</div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+
+function renderEarnChart() {
+  var data = [{l:'Conservative',g:1200,n:1175},{l:'Realistic',g:2400,n:2375},{l:'Strong',g:5280,n:5255},{l:'Scale Up',g:10000,n:9950}];
+  var max = 10000;
+  var c = document.getElementById('earn-chart');
+  c.innerHTML = data.map(function(d) {
+    var gh = Math.round((d.g/max)*120);
+    var nh = Math.round((d.n/max)*120);
+    return '<div class="bar-group"><div class="bar-wrap" style="height:'+gh+'px;background:rgba(255,23,68,.35)"><div class="bar-net" style="height:'+nh+'px;background:var(--green)"></div></div><div class="bar-lbl">'+d.l+'</div></div>';
+  }).join('');
+}
+
+function renderMonthlyChart() {
+  var max = 13000;
+  var c = document.getElementById('mo-chart');
+  c.innerHTML = MONTHLY.map(function(m) {
+    var gh = Math.round((m[3]/max)*155);
+    var nh = Math.round((m[5]/max)*155);
+    return '<div class="bar-group"><div class="bar-wrap" style="height:'+gh+'px;background:rgba(255,23,68,.28)"><div class="bar-net" style="height:'+nh+'px;background:var(--green)"></div></div><div class="bar-lbl">'+m[0]+'</div></div>';
+  }).join('');
+}
+
+function renderMonthlyTable() {
+  var tb = document.getElementById('mo-tbody');
+  tb.innerHTML = MONTHLY.map(function(m, i) {
+    var nc = m[5]>=10000?'var(--green-d)':m[5]>=5000?'var(--green)':m[5]>=3000?'var(--cyan)':'var(--grey-l)';
+    var ms = (i===5||i===11)?'ms':'';
+    return '<tr class="'+ms+'"><td style="font-weight:700;color:var(--cyan)">'+m[0]+'</td><td>'+m[1]+'</td><td>$'+m[2]+'</td><td>$'+m[3].toLocaleString()+'</td><td style="color:var(--grey-l)">~$'+m[4]+'</td><td style="font-weight:700;color:'+nc+'">$'+m[5].toLocaleString()+'</td><td class="ms-col">'+m[6]+'</td></tr>';
+  }).join('');
+}
+
+function renderFreeTools() {
+  var c = document.getElementById('free-tools');
+  c.innerHTML = FREE_TOOLS.map(function(t) {
+    return '<div class="tool-item" style="background:rgba(29,185,84,.06);border:1px solid rgba(29,185,84,.2)"><div class="tool-badge" style="background:var(--green-l);color:var(--green-d)">FREE</div><div><div class="tool-name">'+t.name+'</div><div class="tool-desc">'+t.desc+'</div></div></div>';
+  }).join('');
+}
+
+function renderPaidTools() {
+  var c = document.getElementById('paid-tools');
+  c.innerHTML = PAID_TOOLS.map(function(t) {
+    return '<div class="tool-item" style="background:rgba(229,57,53,.04);border:1px solid rgba(229,57,53,.15)"><div class="tool-badge" style="background:var(--red-l);color:var(--red)">'+t.cost+'</div><div><div class="tool-name">'+t.name+'</div><div class="tool-desc">'+t.desc+'</div></div></div>';
+  }).join('');
+}
+
+function renderPackages() {
+  var c = document.getElementById('pkg-grid');
+  c.innerHTML = PACKAGES.map(function(p) {
+    return '<div class="pkg-card" style="background:'+p.bg+';border-color:'+p.border+'"><div class="pkg-stage">'+p.stage+'</div><div class="pkg-period">'+p.period+'</div><div class="pkg-cost">'+p.cost+'</div><div class="pkg-tools">'+p.tools+'</div></div>';
+  }).join('');
+}
+
+function renderPlan() {
+  var c = document.getElementById('plan-container');
+  c.innerHTML = PLAN.map(function(p) {
+    return '<div class="plan-item" style="border-color:'+p.border+'">'+
+      '<div class="plan-header" style="background:'+p.bg+'">'+
+        '<div><div class="plan-week">'+p.week+'</div><div class="plan-focus">'+p.focus+'</div></div>'+
+        '<div class="plan-goal">🎯 '+p.goal+'</div>'+
+      '</div>'+
+      '<div class="plan-actions">'+p.actions.map(function(a){return '<div class="plan-action">'+a+'</div>';}).join('')+'</div>'+
+    '</div>';
+  }).join('');
+}
+
+function renderWorkflow() {
+  var c = document.getElementById('wf-container');
+  c.innerHTML = WORKFLOW.map(function(ph) {
+    return '<div class="wf-phase">'+
+      '<div class="wf-phase-header">'+
+        '<div style="font-size:22px">'+ph.icon+'</div>'+
+        '<div>'+
+          '<div style="font-size:10px;font-weight:700;letter-spacing:1px;color:'+ph.color+';text-transform:uppercase">'+ph.phase+'</div>'+
+          '<div style="font-size:16px;font-weight:800">'+ph.title+'</div>'+
+        '</div>'+
+        '<span class="tag" style="margin-left:auto;background:'+ph.bg+';color:'+ph.color+';border:1px solid '+ph.border+'">'+ph.time+'</span>'+
+      '</div>'+
+      ph.steps.map(function(s) {
+        return '<div class="wf-step" style="background:'+ph.bg+';border:1px solid '+ph.border+'">'+
+          '<div class="wf-num" style="background:'+ph.color+'">'+s.n+'</div>'+
+          '<div style="flex:1">'+
+            '<div style="display:flex;justify-content:space-between;align-items:baseline">'+
+              '<div class="wf-step-title">'+s.title+'</div>'+
+              '<div class="wf-time" style="color:'+ph.color+'">⏱ '+s.time+'</div>'+
+            '</div>'+
+            '<div class="wf-step-desc">'+s.desc+'</div>'+
+          '</div>'+
+        '</div>';
+      }).join('')+
+    '</div>';
+  }).join('');
+}
+
+function renderChecklist() {
+  var c = document.getElementById('checklist-container');
+  c.innerHTML = '<div style="font-size:12px;color:var(--grey-l);margin-bottom:12px">Tick these off before you send your first video:</div>'+
+    CHECKLIST.map(function(item, i) {
+      return '<div class="checklist-item"><div class="check-box" data-idx="'+i+'">☐</div><div class="check-label">'+item+'</div></div>';
+    }).join('');
+  c.querySelectorAll('.check-box').forEach(function(box) {
+    box.addEventListener('click', function() {
+      if (this.classList.contains('done')) {
+        this.classList.remove('done');
+        this.textContent = '☐';
+      } else {
+        this.classList.add('done');
+        this.textContent = '✅';
+      }
+    });
+  });
+}
+
+function renderAssess() {
+  var c = document.getElementById('assess-container');
+  c.innerHTML = ASSESS.map(function(a, i) {
+    var vc = a.verdict.includes('✅') ? 'var(--green)' : a.verdict.includes('⚡') ? 'var(--orange)' : 'var(--cyan)';
+    return '<div class="assess-item" style="background:'+(i%2===0?'rgba(255,255,255,.02)':'transparent')+'">'+
+      '<div><div class="assess-factor">'+a.factor+'</div><div class="assess-desc">'+a.assessment+'</div></div>'+
+      '<div class="assess-verdict" style="color:'+vc+'">'+a.verdict+'</div>'+
+    '</div>';
+  }).join('');
+}
+
+// ── CALCULATOR ────────────────────────────────────────────────────────────────
+document.getElementById('price-slider').addEventListener('input', function() {
+  var price = parseInt(this.value);
+  document.getElementById('price-display').textContent = '$' + price;
+  document.getElementById('be-videos').textContent = Math.ceil(25 / price);
+  document.getElementById('be-net').textContent = '$' + ((price * 10) - 25).toLocaleString();
+});
+
+// ── OUTREACH ──────────────────────────────────────────────────────────────────
+document.getElementById('lead-select').addEventListener('change', function() {
+  document.getElementById('custom-fields').style.display = this.value === 'custom' ? 'block' : 'none';
+});
+
+document.getElementById('gen-btn').addEventListener('click', function() {
+  var idx = document.getElementById('lead-select').value;
+  var agent = document.getElementById('agent-name').value || 'there';
+  var me = document.getElementById('your-name').value || 'Haydn';
+  var price = document.getElementById('your-price').value;
+  var tone = document.getElementById('email-tone').value;
+  var address, listPrice;
+  if (idx === 'custom') {
+    address = document.getElementById('custom-address').value || '[Property address]';
+    listPrice = document.getElementById('custom-price').value || '[Price]';
+  } else {
+    var l = LEADS[parseInt(idx)];
+    address = l.name + ', ' + l.suburb;
+    listPrice = l.price;
+  }
+  var subject, body;
+  if (tone === 'direct') {
+    subject = 'Free demo video for ' + address;
+    body = 'Hi ' + agent + ',\n\nI noticed your listing at ' + address + ' (' + listPrice + ') doesn\'t have a video tour yet — so I made one.\n\nAttached is a free demo fly-through I put together using the listing photos. Takes about 30 seconds to watch.\n\nI create cinematic AI property videos for NZ agents at ' + price + ' per video, delivered in 24–48 hours. That\'s a fraction of what a drone operator charges, with faster turnaround and no weather delays.\n\nIf you like what you see, I can have the full version ready before your next open home.\n\nWorth a quick call?\n\n' + me;
+  } else if (tone === 'friendly') {
+    subject = 'Hey — made a quick video for your ' + address.split(',')[0] + ' listing';
+    body = 'Hey ' + agent + ',\n\nSpotted your listing at ' + address + ' and put together a quick AI fly-through demo — thought you might get a kick out of seeing your own listing in video form!\n\nVideo is attached. Took me about an hour to make.\n\nI do these for NZ agents at ' + price + ' a pop — way cheaper than hiring a drone operator, and I turn them around in 24–48 hours.\n\nWould love to make a proper one for you if you\'re keen!\n\n' + me;
+  } else {
+    subject = 'Cinematic property video for ' + address + ' — Demo enclosed';
+    body = 'Dear ' + agent + ',\n\nI am writing regarding your current listing at ' + address + ', listed at ' + listPrice + '.\n\nI have produced a complimentary demonstration video for the property using AI video generation technology. Please find this attached for your review.\n\nMy service offers:\n• Professional cinematic quality at ' + price + ' per video\n• 24–48 hour turnaround\n• Significantly lower cost than traditional drone videography\n• Vertical social media cut included at no extra charge\n\nShould you wish to proceed, I would be pleased to discuss further.\n\nKind regards,\n' + me;
+  }
+  var out = document.getElementById('email-out');
+  document.getElementById('email-text').textContent = 'Subject: ' + subject + '\n\n' + body;
+  out.style.display = 'block';
+});
+
+document.getElementById('copy-btn').addEventListener('click', function() {
+  var txt = document.getElementById('email-text').textContent;
+  var self = this;
+  navigator.clipboard.writeText(txt).then(function() {
+    self.textContent = 'Copied!';
+    setTimeout(function() { self.textContent = 'Copy'; }, 2000);
+  });
+});
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+renderHomeWhy();
+renderLeads();
+renderEarnChart();
+renderMonthlyChart();
+renderMonthlyTable();
+renderFreeTools();
+renderPaidTools();
+renderPackages();
+renderPlan();
+renderWorkflow();
+renderChecklist();
+renderAssess();
+</script>
+</body>
+</html>

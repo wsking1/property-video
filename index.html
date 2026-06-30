@@ -297,6 +297,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);cursor:pointer}
     <button class="nav-btn active" data-page="home">Home</button>
     <button class="nav-btn" data-page="opportunity">Opportunity</button>
     <button class="nav-btn" data-page="leads">13 Leads</button>
+    <button class="nav-btn" data-page="airbnb" style="color:#FFB700;font-weight:700">🏡 Airbnb</button>
     <button class="nav-btn" data-page="earnings">Earnings</button>
     <button class="nav-btn" data-page="monthly">12 Months</button>
     <button class="nav-btn" data-page="tools">Tools</button>
@@ -547,6 +548,27 @@ input[type=range]{width:100%;accent-color:var(--cyan);cursor:pointer}
   <div class="page-title" style="font-size:22px">5 Property Management Companies</div>
   <div class="page-sub">Airbnb and Bookabach don't expose individual host contact info — but the companies managing dozens of those listings publish real business contact details, because they're actively chasing new clients. One yes here unlocks 20–50+ properties instead of one.</div>
   <div id="companies-container"></div>
+</div>
+
+<!-- AIRBNB -->
+<div id="page-airbnb" class="page">
+  <div class="section-title">Premium Vertical · Queenstown Luxury Stays</div>
+  <div class="page-title" style="background:linear-gradient(135deg,#FFB700,#FF1744);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Top 5 Airbnb Opportunities</div>
+  <div class="page-sub">Ranked from 10 luxury Queenstown listings by visual appeal, luxury perception, architecture, photography quality, emotional impact and earning potential. Real listings, real hosts, real photos.</div>
+
+  <div class="stat-grid" style="margin-bottom:20px">
+    <div class="stat-box"><div class="stat-num" style="color:#FFB700">10</div><div class="stat-lbl">Listings<br>analysed</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--green)">5</div><div class="stat-lbl">Top picks<br>selected</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--cyan)">4/5</div><div class="stat-lbl">Run by named<br>PMC companies</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:#FF1744">$150–280</div><div class="stat-lbl">Package<br>pricing</div></div>
+  </div>
+
+  <div class="card" style="background:rgba(255,183,0,.05);border-color:rgba(255,183,0,.25);margin-bottom:18px">
+    <div style="font-size:11px;font-weight:700;color:#FFB700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px">⚠️ A note on contacting Airbnb hosts</div>
+    <div style="font-size:11px;color:var(--grey-l);line-height:1.7">Airbnb doesn't publish host emails or phone numbers — all contact happens through Airbnb's own "Message Host" system. The emails below are written and ready, but you'll send them by tapping <strong style="color:#fff">Message Host</strong> on each listing page (link included on every card) rather than via regular email. For the 4 listings run by named companies, it's also worth searching for their business website or Instagram directly — that often gives you a faster, more professional channel than Airbnb's internal inbox.</div>
+  </div>
+
+  <div id="airbnb-container"></div>
 </div>
 
 <!-- EARNINGS -->
@@ -1065,6 +1087,124 @@ var COMPANIES = [
   {name:"Aotearoa Escapes",region:"Auckland (nationwide — Tauranga, Taupō, Rotorua, Hastings, Christchurch, Dunedin, Te Anau)",owners:"Hannah & Iliya",email:"info@aotearoaescapes.com",phone:"0211 555 777",why:"Family-run but operating nationwide — services properties in 8+ regions. A single relationship here could supply leads across the whole country, not just one city."},
   {name:"Element Escapes",region:"Queenstown",owners:"",email:"info@elementescapes.co.nz",phone:"(03) 441 0370",why:"Manages 3 apartment complexes directly (Kent Street, Marina, Panorama Terrace) — meaning one yes could mean multiple properties immediately, not just a future pipeline."},
   {name:"Hosting Queenstown",region:"Queenstown",owners:"Tim & Bron",email:"contact@hostingqueenstown.co.nz",phone:"(027) 303 9876",why:"Small family business, early Airbnb adopters since 2017. Markets across Airbnb, Booking.com, VRBO and Bookabach — exactly the kind of operator who'd want a vertical cut for socials too."}
+];
+
+var AIRBNB_PROPERTIES = [
+  {
+    rank:1, score:8.7, oppScore:74,
+    name:"Spectacular Lakefront Home with Majestic Views",
+    location:"Queenstown (Queenstown–Frankton corridor), Otago",
+    host:"Anna", hostType:"Individual host (co-hosts Holly & Nic)",
+    rating:"4.96★", reviews:"93 reviews", badge:"Guest Favourite",
+    image:"https://a0.muscache.com/im/pictures/033549b8-da13-4598-98bd-3296a9a718ca.jpg",
+    url:"https://www.airbnb.co.nz/rooms/43959968",
+    summary:"Architect-designed lakefront home — described by the host as one of \"the most stunning Airbnbs in Queenstown.\" Spa pool overlooking Lake Wakatipu, private courtyard, vintage-farmhouse-meets-designer interior styling.",
+    whySelected:"Highest overall score of all 10 listings. The architect pedigree, lakefront position, and the host's own confident self-description give this the strongest storytelling potential — this is the property a cinematic walkthrough was built for.",
+    improve:"Photos are good but static — none currently capture the floating-above-the-lake feeling guests describe in reviews. A slow push-in from the courtyard toward the water would translate that feeling into motion instantly.",
+    emotion:"Awe, tranquility, aspirational luxury — the feeling of having 'made it' to a private lakefront retreat.",
+    pkg:"Premium", price:"$280",
+    roi:"At an estimated $650–900/night rate, one extra booking from improved listing performance covers the video cost more than twice over. Established 93-review track record means this is about extending an already-strong position, not rescuing a weak one.",
+    shots:[
+      {label:"Hero — Lakefront Exterior", img:"033549b8-da13-4598-98bd-3296a9a718ca.jpg", prompt:"Slow cinematic push-in toward architecturally designed lakefront home, golden hour light reflecting off Lake Wakatipu, mountains framing the background, gentle stabilized motion, warm luxury real estate grade, soft natural parallax, 6 seconds"},
+      {label:"Master Bedroom", img:"ddb34926-f599-440a-9bab-e1346f72e39b.jpg", prompt:"Smooth lateral dolly across luxury master bedroom, soft morning light through windows, premium linens in sharp focus, shallow depth of field drawing the eye toward the lake view beyond, 5 seconds"},
+      {label:"Outdoor Courtyard & Spa", img:"0c03a656-d525-42e3-a128-f90dd52a82ad.jpg", prompt:"Gentle orbit around private courtyard spa pool overlooking the lake, soft steam rising, golden hour glow, cinematic lifestyle real estate feel, smooth uninterrupted arc, 6 seconds"},
+      {label:"Living & Kitchen", img:"a3a842e8-1310-486a-9d04-6f37bc59791c.jpg", prompt:"Slow forward push through open-plan living space, natural light streaming through floor-to-ceiling windows, vintage-farmhouse-meets-designer styling in soft focus, warm cinematic colour grade, 5 seconds"}
+    ],
+    emailSubject:"A cinematic video for your lakefront Queenstown listing",
+    emailBody:"Hi Anna,\n\nI came across your listing — the architect-designed lakefront home with the spa pool over Lake Wakatipu — and honestly, it's one of the most striking properties I've seen on Airbnb in Queenstown. The way you've described it as \"one of the most stunning Airbnbs in Queenstown\" is well earned.\n\nI produce cinematic AI walkthrough videos for premium Airbnb listings — turning your existing photos into a smooth, moving showcase that captures the lakefront feeling photos alone can't quite deliver. With 93 reviews and a 4.96 rating, your listing already converts well; a video like this is about extending that edge further, especially on Instagram and in the Airbnb search results where video listings get disproportionate attention.\n\nI'd love to put together a short demo using your existing photos at no cost, so you can see the quality before deciding on anything. Would that be of interest?\n\nBest,\nPropShots"
+  },
+  {
+    rank:2, score:8.6, oppScore:88,
+    name:"Korimako – Luxe Alpine Retreat",
+    location:"Private laneway, central Queenstown, Otago",
+    host:"Hello Queenstown", hostType:"Property Management Company — physical guest lounge at 19 Shotover St",
+    rating:"5.0★", reviews:"11 reviews (new listing)", badge:"New & Unestablished",
+    image:"https://a0.muscache.com/im/pictures/prohost-api/Hosting-1440255310196733949/original/4aba1923-e788-4314-a82f-4bd5aeda5d92.jpeg",
+    url:"https://www.airbnb.co.nz/rooms/1440255310196733949",
+    summary:"Five-bedroom alpine residence with a private Onsen-style outdoor bath, media lounge with pool table, and panoramic Lake Wakatipu + Remarkables views. Managed by Hello Queenstown, a PMC with a real guest-facing office in town.",
+    whySelected:"Second-highest score and the single highest 'opportunity through marketing' score of all 10 — this listing only has 11 reviews. A new, beautifully designed property hasn't yet built the review volume to win on reputation alone; video is exactly the lever that helps a new listing compete with established 200+ review competitors immediately.",
+    improve:"Almost zero brand differentiation visible yet given how new the listing is — a hero video would do more to build instant trust here than almost anywhere else on this list.",
+    emotion:"Exclusivity, discovery, the thrill of finding a 'hidden gem' before everyone else does.",
+    pkg:"Premium", price:"$280",
+    roi:"Highest ROI ceiling of the five — every booking this listing wins now compounds into review volume that drives future bookings. Video could meaningfully accelerate the journey from 11 reviews to 100.",
+    shots:[
+      {label:"Hero — Alpine Exterior", img:"4aba1923-e788-4314-a82f-4bd5aeda5d92.jpeg", prompt:"Slow cinematic dolly toward sophisticated alpine residence, panoramic Lake Wakatipu and Remarkables mountains in soft background, late afternoon alpine light, smooth stabilized camera, premium architectural real estate grade, 6 seconds"},
+      {label:"Onsen-style Outdoor Bath", img:"c94a377c-d185-4882-baa0-905cff8fa2e5.jpeg", prompt:"Gentle slow orbit around secluded Onsen-style bath tub area, soft natural light, steam wisps catching the light, tranquil luxury spa atmosphere, smooth uninterrupted motion, 6 seconds"},
+      {label:"Media Lounge", img:"d11eb108-8dd0-4864-96d1-f6420c33215b.jpeg", prompt:"Smooth lateral pan across media lounge with pool table, warm ambient lighting, relaxed evening atmosphere, cinematic depth of field, 5 seconds"},
+      {label:"King Bedroom with View", img:"f4af013e-9924-4a9a-98dc-66e38c77e575.jpeg", prompt:"Slow push-in across elegant bedroom with soft natural light, premium linens, large windows revealing lake and mountain views beyond, calm cinematic grade, 5 seconds"}
+    ],
+    emailSubject:"A demo video for Korimako, on the house",
+    emailBody:"Hi Hello Queenstown team,\n\nI came across Korimako and the Onsen-style outdoor bath genuinely stopped me scrolling — it's a beautifully designed property, and I can see why it's already sitting at a perfect 5.0 rating.\n\nI noticed it's still building up its review count, which is completely normal for a newer listing, but it means it's competing against properties with 100+ reviews using the same static photo set everyone else has. I produce cinematic AI walkthrough videos for premium Airbnb listings — they're proven to lift click-through and booking conversion, which matters most early on when a listing needs every edge it can get.\n\nGiven you manage a portfolio of properties, I'd be happy to put together a free demo using Korimako's existing photos first, with the option to discuss a package across more of your properties if it's a good fit.\n\nWould that be useful?\n\nBest,\nPropShots"
+  },
+  {
+    rank:3, score:8.3, oppScore:69,
+    name:"Summit Escape – Hot Tub, Fireplace, BBQ, AC & Views",
+    location:"Queenstown Hill area, Otago",
+    host:"Bridget (Aaron & Bridget Murphy)", hostType:"Luxury Stays Queenstown — manages 65 villas",
+    rating:"4.98★", reviews:"60 reviews", badge:"Airbnb Luxe · Top 10%",
+    image:"https://a0.muscache.com/im/pictures/prohost-api/Hosting-1305271650025377413/original/74745820-303f-408b-b907-174fb168a334.jpeg",
+    url:"https://www.airbnb.co.nz/rooms/1305271650025377413",
+    summary:"Newly built four-bedroom villa, Airbnb Luxe certified, with panoramic Lake Wakatipu and Remarkables views, private hot tub on the deck. Run by Luxury Stays Queenstown, a husband-and-wife operation managing 65 villas across the region.",
+    whySelected:"Airbnb Luxe certification is a quality bar very few listings clear — it signals the property and the management company both meet a premium standard. Combined with a 65-villa portfolio, this is the single biggest long-term business opportunity on the list.",
+    improve:"Strong photos but the panoramic view — the property's single biggest selling point — is hard to feel in a still image. A sweeping shot across the deck toward the Remarkables would be transformative.",
+    emotion:"Indulgence, relaxation, the reward of having arrived after a day in the mountains.",
+    pkg:"Premium + Portfolio Deal", price:"$280 (first property) — bulk rate for additional villas",
+    roi:"Even a 5% improvement in booking rate across 65 properties represents a substantial annual revenue lift for Luxury Stays Queenstown — making this the strongest case for a recurring monthly contract rather than a one-off sale.",
+    shots:[
+      {label:"Hero — Villa Exterior", img:"74745820-303f-408b-b907-174fb168a334.jpeg", prompt:"Slow cinematic approach toward newly built luxury villa, panoramic Lake Wakatipu and Remarkables mountain range in background, soft golden light, smooth stabilized push-in, premium architectural grade, 6 seconds"},
+      {label:"Hot Tub & Deck Views", img:"6e04a718-2b5e-45b5-9bae-31223beaa748.jpeg", prompt:"Gentle slow pan across private hot tub deck overlooking panoramic mountain views, warm late-afternoon light, soft steam rising from water, relaxed luxury lifestyle feel, 6 seconds"},
+      {label:"Master Suite", img:"4f11a994-0a6d-4ef0-895f-0b30c265ffbc.jpeg", prompt:"Smooth dolly across spacious master suite with ensuite, soft natural light, plush bedding in focus, calm premium real estate grade, 5 seconds"},
+      {label:"Panoramic Living Area", img:"c75bdf80-7b8b-43d3-bf3b-fb9e989ce7bb.jpeg", prompt:"Slow forward push through open living area, large windows framing mountain views, warm interior lighting contrasted against cool alpine light outside, cinematic grade, 5 seconds"}
+    ],
+    emailSubject:"Cinematic video for Summit Escape — and a portfolio idea",
+    emailBody:"Hi Aaron and Bridget,\n\nI came across Summit Escape and noticed it's Airbnb Luxe certified — that's a high bar, and the panoramic Remarkables views genuinely come through even in static photos. I also saw you manage Luxury Stays Queenstown's full portfolio of 65 villas, which is impressive.\n\nI produce cinematic AI walkthrough videos for premium Airbnb listings, turning existing photos into smooth, professional motion content that performs significantly better than static photos in search results and on social media. Given the scale of your portfolio, I think there could be real value in a package deal — starting with one demo video for Summit Escape, with discounted bulk pricing if it's something you'd want to roll out further.\n\nHappy to put together a free demo first so you can judge the quality before any commitment. Would that be worth a conversation?\n\nBest,\nPropShots"
+  },
+  {
+    rank:4, score:8.3, oppScore:71,
+    name:"Views on Edinburgh – Every Room Has a View",
+    location:"Queenstown Hill, Otago",
+    host:"Relax It's Done Ltd", hostType:"Registered company — named 6-person team (Sarah, Margaret, Abi, Michaela, Dayna, Erica)",
+    rating:"4.89★", reviews:"37 reviews", badge:"363 sqm · Hot Spring Spa",
+    image:"https://a0.muscache.com/im/pictures/hosting/Hosting-46491210/original/233fe4cc-82bf-47b1-887c-06cd99813006.jpeg",
+    url:"https://www.airbnb.co.nz/rooms/46491210",
+    summary:"363 sqm modern home on Queenstown Hill where literally every room has a view of Lake Wakatipu, the Remarkables, Cecil Peak and Walter Peak. 'Hot Spring' style spa pool, six-and-a-half bathrooms, run by registered company Relax It's Done Ltd.",
+    whySelected:"The single cleanest outreach target of all 10 — a registered Ltd company almost always means a discoverable business website and a real decision-maker on the other end, not a guessing game through Airbnb's inbox. The 'every room has a view' positioning is also inherently video-friendly — it's a tagline built for motion, not stills.",
+    improve:"The view is the entire selling proposition and currently relies on the guest imagining it room to room from separate photos — a single flowing shot connecting several rooms would let the view tell its own story.",
+    emotion:"Wonder, scale, the feeling of being on top of the world above Queenstown.",
+    pkg:"Premium", price:"$280",
+    roi:"As a registered Ltd company managing 'a careful selection' of luxury homes, Relax It's Done is the most likely of the five to convert into a standing monthly or quarterly content arrangement rather than a single video.",
+    shots:[
+      {label:"Hero — Hillside Exterior", img:"233fe4cc-82bf-47b1-887c-06cd99813006.jpeg", prompt:"Slow cinematic crane-up revealing modern hillside home perched above Queenstown, sweeping Lake Wakatipu and mountain panorama, golden hour light, smooth stabilized motion, premium architectural grade, 6 seconds"},
+      {label:"Hot Spring Spa Deck", img:"569a5962-fe58-49ab-af19-ccc23272b57f.jpeg", prompt:"Gentle orbit around hot spring-style spa pool on entertainers' deck, panoramic mountain backdrop, warm light, soft steam, relaxed luxury atmosphere, 6 seconds"},
+      {label:"Floor-to-Ceiling Living Room", img:"49376de5-2aee-4aa3-93f7-a5bd676a1417.jpeg", prompt:"Slow forward push through light-filled living room, floor-to-ceiling windows revealing lake and mountain views, lofty ceilings, soft natural light, cinematic real estate grade, 5 seconds"},
+      {label:"Master Bedroom with View", img:"43a12404-3f38-4570-ba80-644e8c1fcad1.jpeg", prompt:"Smooth lateral dolly across master bedroom toward private balcony, mountain views through glass doors, soft morning light, calm premium grade, 5 seconds"}
+    ],
+    emailSubject:"A video for Views on Edinburgh — every room deserves to be seen moving",
+    emailBody:"Hi team at Relax It's Done,\n\nViews on Edinburgh caught my eye immediately — \"every room has a view\" is exactly the kind of claim that's made for video rather than static photos, and the hot spring-style spa overlooking the Remarkables is stunning.\n\nI produce cinematic AI walkthrough videos for premium Airbnb listings. For a property built entirely around its panoramic outlook, a flowing video lets guests feel the scale of the view in a way photos alone can't capture — and it travels much further on social media too.\n\nI'd love to put together a free demo using your existing listing photos so you can see exactly what it would look like before deciding on anything. Since you manage a curated portfolio of properties, happy to discuss options beyond just this one if it's a good fit.\n\nBest,\nPropShots"
+  },
+  {
+    rank:5, score:7.9, oppScore:58,
+    name:"One Epic Location",
+    location:"Quiet cul-de-sac, Queenstown, Otago",
+    host:"Juliet", hostType:"Director, Hot Property Queenstown (co-host Ashar)",
+    rating:"4.98★", reviews:"231 reviews", badge:"Top 1% of Homes",
+    image:"https://a0.muscache.com/im/pictures/2768981d-7401-4551-a157-8729d1d4387c.jpg",
+    url:"https://www.airbnb.co.nz/rooms/23931560",
+    summary:"Architecturally designed modern home with epic mountain and lake views, built on a quiet cul-de-sac. Hosted by Juliet, Director of Hot Property Queenstown, with 231 reviews and a Top 1% ranking — one of the highest-ranked homes in the area.",
+    whySelected:"Top 1% is Airbnb's rarest quality badge, and 231 reviews represents a genuinely proven, long-running earner. The host's title — Director — signals a real decision-maker rather than a casual host, and the business name gives a clean path to outreach.",
+    improve:"Already performing exceptionally well — the opportunity here is less about rescuing underperformance and more about defending an elite position as more Queenstown listings start using video over the next 12-24 months.",
+    emotion:"Confidence, proven quality, the reassurance of staying somewhere with an outstanding track record.",
+    pkg:"Standard", price:"$200",
+    roi:"Lower urgency than the other four given the established 231-review track record, but a smaller-footprint video still extends a Top 1% listing's edge cheaply, and Juliet's Director title suggests she may oversee other properties worth a follow-up conversation.",
+    shots:[
+      {label:"Hero — Architectural Exterior", img:"2768981d-7401-4551-a157-8729d1d4387c.jpg", prompt:"Slow cinematic dolly toward architecturally designed modern home, epic mountain and lake backdrop, quiet cul-de-sac setting, soft afternoon light, smooth stabilized camera, premium real estate grade, 6 seconds"},
+      {label:"Master Bedroom with Remarkables View", img:"f40f7c25-5ef6-473d-a37f-a640384488a4.jpg", prompt:"Smooth push-in across master bedroom, large window framing the Remarkables mountain range, soft natural light, calm cinematic grade, 5 seconds"},
+      {label:"Living Area & Hot Tub", img:"43cb429b-15a6-4d5a-9c6b-ba1925c186ff.jpg", prompt:"Slow lateral pan from architectural living space out toward private hot tub area, golden hour transition light, smooth uninterrupted motion, premium lifestyle grade, 6 seconds"},
+      {label:"Open Plan Interior", img:"c4af4c5d-a317-4529-b112-d1472c078d55.jpg", prompt:"Gentle forward push through modern open-plan interior, clean architectural lines, soft daylight, understated luxury real estate grade, 5 seconds"}
+    ],
+    emailSubject:"A video for One Epic Location — defending the Top 1% spot",
+    emailBody:"Hi Juliet,\n\nOne Epic Location stood out immediately — Top 1% with 231 reviews is a genuinely rare achievement in Queenstown, and the architectural design clearly backs it up.\n\nI produce cinematic AI walkthrough videos for premium Airbnb listings. Properties at the top tend to stay there by continuing to evolve their marketing, and video is becoming the next differentiator as more Queenstown listings adopt it. For a listing already performing this well, it's less about fixing something and more about protecting the position you've built.\n\nGiven your role with Hot Property Queenstown, I'd also be glad to discuss options if you manage other properties that might benefit. Happy to start with a free demo for One Epic Location using your existing photos, no obligation either way.\n\nBest,\nPropShots"
+  }
 ];
 
 var MONTHLY = [
@@ -1612,6 +1752,130 @@ function renderCompanies() {
       '</div>'+
     '</div>';
   }).join('');
+}
+
+function renderAirbnb() {
+  var c = document.getElementById('airbnb-container');
+  if (!c) return;
+
+  c.innerHTML = AIRBNB_PROPERTIES.map(function(p, idx) {
+    var scoreCol = p.score >= 8.3 ? 'var(--green)' : '#FFB700';
+    var oppCol = p.oppScore >= 70 ? 'var(--green)' : p.oppScore >= 55 ? '#FFB700' : 'var(--orange)';
+
+    var shotsHtml = p.shots.map(function(s, si) {
+      return '<div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:10px 12px;margin-bottom:6px">'+
+        '<div style="font-size:11px;font-weight:700;color:#FFB700;margin-bottom:4px">Shot '+(si+1)+' — '+s.label+'</div>'+
+        '<div style="font-size:10.5px;color:var(--grey-l);line-height:1.6;font-family:monospace">'+s.prompt+'</div>'+
+      '</div>';
+    }).join('');
+
+    var allPrompts = p.shots.map(function(s, si) { return 'Shot '+(si+1)+' — '+s.label+':\n'+s.prompt; }).join('\n\n');
+
+    return '<div class="card" style="padding:0;overflow:hidden;margin-bottom:18px;border-color:rgba(255,183,0,.2)">'+
+      // Image header
+      '<div style="position:relative;height:200px;overflow:hidden">'+
+        '<img src="'+p.image+'" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">'+
+        '<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.1) 0%,rgba(8,8,8,.85) 100%)"></div>'+
+        '<div style="position:absolute;top:12px;left:12px;background:rgba(255,183,0,.95);color:#080808;font-size:10px;font-weight:900;padding:4px 10px;border-radius:20px;letter-spacing:.3px">#'+p.rank+' RANKED</div>'+
+        '<div style="position:absolute;top:12px;right:12px;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px">'+p.badge+'</div>'+
+        '<div style="position:absolute;bottom:12px;left:14px;right:14px">'+
+          '<div style="font-size:17px;font-weight:900;color:#fff;line-height:1.25;text-shadow:0 2px 8px rgba(0,0,0,.5)">'+p.name+'</div>'+
+          '<div style="font-size:11px;color:rgba(255,255,255,.85);margin-top:2px">'+p.location+'</div>'+
+        '</div>'+
+      '</div>'+
+      // Body
+      '<div style="padding:16px">'+
+        // Host info
+        '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:12px;flex-wrap:wrap">'+
+          '<div>'+
+            '<div style="font-size:12px;font-weight:700;color:#fff">'+p.host+'</div>'+
+            '<div style="font-size:10.5px;color:var(--grey-l);margin-top:1px">'+p.hostType+'</div>'+
+          '</div>'+
+          '<div style="text-align:right">'+
+            '<div style="font-size:12px;font-weight:700;color:#fff">'+p.rating+'</div>'+
+            '<div style="font-size:10px;color:var(--grey-l)">'+p.reviews+'</div>'+
+          '</div>'+
+        '</div>'+
+        // Scores
+        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">'+
+          '<div style="background:rgba(255,255,255,.03);border-radius:10px;padding:10px;text-align:center">'+
+            '<div style="font-size:18px;font-weight:900;color:'+scoreCol+'">'+p.score+'/10</div>'+
+            '<div style="font-size:9px;color:var(--grey-l);text-transform:uppercase;letter-spacing:.3px">Overall Score</div>'+
+          '</div>'+
+          '<div style="background:rgba(255,255,255,.03);border-radius:10px;padding:10px;text-align:center">'+
+            '<div style="font-size:18px;font-weight:900;color:'+oppCol+'">'+p.oppScore+'%</div>'+
+            '<div style="font-size:9px;color:var(--grey-l);text-transform:uppercase;letter-spacing:.3px">Opportunity Score</div>'+
+          '</div>'+
+        '</div>'+
+        // Summary
+        '<div style="font-size:11.5px;color:var(--grey-l);line-height:1.7;margin-bottom:10px">'+p.summary+'</div>'+
+        // Why selected
+        '<div style="background:rgba(255,183,0,.05);border-left:3px solid #FFB700;border-radius:0 8px 8px 0;padding:9px 12px;margin-bottom:8px">'+
+          '<div style="font-size:9.5px;font-weight:700;color:#FFB700;text-transform:uppercase;letter-spacing:.3px;margin-bottom:3px">Why this made the top 5</div>'+
+          '<div style="font-size:11px;color:var(--grey-l);line-height:1.6">'+p.whySelected+'</div>'+
+        '</div>'+
+        // Emotion + improve
+        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">'+
+          '<div style="background:rgba(255,255,255,.02);border-radius:8px;padding:9px">'+
+            '<div style="font-size:9px;font-weight:700;color:var(--cyan);text-transform:uppercase;margin-bottom:3px">Target Emotion</div>'+
+            '<div style="font-size:10.5px;color:var(--grey-l);line-height:1.5">'+p.emotion+'</div>'+
+          '</div>'+
+          '<div style="background:rgba(255,255,255,.02);border-radius:8px;padding:9px">'+
+            '<div style="font-size:9px;font-weight:700;color:var(--orange);text-transform:uppercase;margin-bottom:3px">Improvement Angle</div>'+
+            '<div style="font-size:10.5px;color:var(--grey-l);line-height:1.5">'+p.improve+'</div>'+
+          '</div>'+
+        '</div>'+
+        // Package + ROI
+        '<div style="display:flex;justify-content:space-between;align-items:center;background:rgba(0,200,83,.06);border:1px solid rgba(0,200,83,.2);border-radius:10px;padding:10px 12px;margin-bottom:12px">'+
+          '<div>'+
+            '<div style="font-size:9px;color:var(--grey-l);text-transform:uppercase;letter-spacing:.3px">Suggested Package</div>'+
+            '<div style="font-size:13px;font-weight:800;color:var(--green)">'+p.pkg+'</div>'+
+          '</div>'+
+          '<div style="font-size:20px;font-weight:900;color:var(--green)">'+p.price+'</div>'+
+        '</div>'+
+        '<div style="font-size:10.5px;color:var(--grey-l);line-height:1.6;margin-bottom:14px;font-style:italic">💰 '+p.roi+'</div>'+
+        // Buttons
+        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">'+
+          '<button class="ab-toggle-btn" data-target="ab-prompt-'+idx+'" style="background:rgba(255,183,0,.12);border:1px solid rgba(255,183,0,.35);border-radius:10px;padding:10px;font-size:11px;font-weight:800;color:#FFB700;cursor:pointer;font-family:inherit">🎬 AI Video Prompts</button>'+
+          '<button class="ab-toggle-btn" data-target="ab-email-'+idx+'" style="background:rgba(255,23,68,.1);border:1px solid rgba(255,23,68,.35);border-radius:10px;padding:10px;font-size:11px;font-weight:800;color:#FF1744;cursor:pointer;font-family:inherit">✉️ Outreach Email</button>'+
+        '</div>'+
+        '<a href="'+p.url+'" target="_blank" style="display:block;text-align:center;font-size:10.5px;color:var(--grey-l);text-decoration:underline;margin-bottom:4px">View original listing on Airbnb →</a>'+
+        // Prompt panel
+        '<div id="ab-prompt-'+idx+'" style="display:none;margin-top:10px">'+
+          '<div style="font-size:10px;font-weight:700;color:#FFB700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Higgsfield Image-to-Video Prompts</div>'+
+          shotsHtml+
+          '<button class="ab-copy-btn" data-copy="'+allPrompts.replace(/"/g,'&quot;')+'" style="width:100%;background:rgba(255,183,0,.15);border:1px solid #FFB700;border-radius:8px;padding:8px;font-size:11px;font-weight:700;color:#FFB700;cursor:pointer;font-family:inherit;margin-top:4px">Copy All Prompts</button>'+
+        '</div>'+
+        // Email panel
+        '<div id="ab-email-'+idx+'" style="display:none;margin-top:10px">'+
+          '<div style="font-size:10px;font-weight:700;color:#FF1744;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Personalised Outreach Email</div>'+
+          '<div style="background:rgba(255,23,68,.04);border:1px solid rgba(255,23,68,.2);border-radius:10px;padding:12px;font-size:11px;color:var(--grey-l);line-height:1.8;white-space:pre-wrap;margin-bottom:8px">Subject: '+p.emailSubject+'\n\n'+p.emailBody+'</div>'+
+          '<button class="ab-copy-btn" data-copy="'+('Subject: '+p.emailSubject+'\n\n'+p.emailBody).replace(/"/g,'&quot;')+'" style="width:100%;background:rgba(255,23,68,.15);border:1px solid #FF1744;border-radius:8px;padding:8px;font-size:11px;font-weight:700;color:#FF1744;cursor:pointer;font-family:inherit">Copy Email</button>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+
+  // Bind toggle buttons
+  c.querySelectorAll('.ab-toggle-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var target = document.getElementById(this.getAttribute('data-target'));
+      if (target) target.style.display = target.style.display === 'none' ? 'block' : 'none';
+    });
+  });
+
+  // Bind copy buttons
+  c.querySelectorAll('.ab-copy-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var text = this.getAttribute('data-copy');
+      var self = this;
+      navigator.clipboard.writeText(text).then(function() {
+        var orig = self.textContent;
+        self.textContent = 'Copied!';
+        setTimeout(function() { self.textContent = orig; }, 1800);
+      });
+    });
+  });
 }
 
 function renderEarnChart() {
@@ -2557,6 +2821,7 @@ document.getElementById('wt-back').addEventListener('click', function() {
 renderHomeWhy();
 renderLeads();
 renderCompanies();
+renderAirbnb();
 renderEarnChart();
 renderMonthlyChart();
 renderMonthlyTable();

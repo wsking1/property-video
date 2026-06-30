@@ -1,4 +1,2578 @@
-TEST<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Property Video — Business Plan</title>
+<style>
+:root {
+  --dark:#080808; --dark2:#0f0a0a; --card:#0e0a0a;
+  --cyan:#FF1744; --cyan-d:#CC0011; --cyan-l:rgba(255,23,68,.1); --cyan-m:rgba(255,23,68,.18);
+  --green:#00C853; --green-d:#007A33; --green-l:rgba(0,200,83,.1);
+  --orange:#FF4444; --orange-l:rgba(255,68,68,.08); --red:#FF1744; --red-l:rgba(255,23,68,.08);
+  --purple:#FF1744; --purple-l:rgba(255,23,68,.06); --gold:#FF1744; --gold-l:rgba(255,23,68,.06);
+  --grey-bg:#080808; --grey-d:#1a0a0a; --grey-t:#554444; --grey-l:#887777; --white:#fff;
+  --glow-cyan:0 0 25px rgba(255,23,68,.25);
+  --glow-green:0 0 20px rgba(0,200,83,.2);
+  --glow-gold:0 0 30px rgba(255,23,68,.3);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:var(--dark);color:var(--white);min-height:100vh;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255,23,68,.05) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 80% 80%, rgba(200,0,20,.04) 0%, transparent 50%);
+}
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(8,8,16,.9);border-bottom:1px solid rgba(255,23,68,.1);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}
+.nav-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:2px;padding:0 36px;overflow-x:auto;scrollbar-width:none;scroll-behavior:smooth;position:relative}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-arrow{
+  position:absolute;top:0;bottom:0;z-index:5;width:32px;
+  background:linear-gradient(90deg,rgba(8,8,16,.97) 60%,transparent);
+  border:none;color:#FF1744;font-size:20px;font-weight:900;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity .2s,color .2s;opacity:.95;
+  font-family:inherit;line-height:1;padding:0}
+.nav-arrow:hover{color:#FF6B6B}
+.nav-arrow:active{transform:scale(.92)}
+.nav-arrow-left{left:0;justify-content:flex-start;padding-left:4px}
+.nav-arrow-right{right:0;justify-content:flex-end;padding-right:4px;background:linear-gradient(270deg,rgba(8,8,16,.97) 60%,transparent)}
+.nav-arrow.hidden{opacity:0;pointer-events:none}
+.nav-brand{font-size:11px;font-weight:800;
+  background:linear-gradient(90deg,#FF1744,#FF6B6B);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  white-space:nowrap;padding:14px 10px 14px 0;border-right:1px solid rgba(255,23,68,.15);margin-right:4px;letter-spacing:1px}
+.nav-btn{background:none;border:none;color:var(--grey-l);font-size:11px;padding:14px 9px;cursor:pointer;white-space:nowrap;font-family:inherit;letter-spacing:.3px;transition:color .2s;border-bottom:2px solid transparent}
+.nav-btn:hover{color:var(--white)}
+.nav-btn.active{color:#FF1744;border-bottom-color:#FF1744}
+/* PAGES */
+.page{display:none;padding:76px 16px 48px;max-width:900px;margin:0 auto}
+.page.active{display:block}
+/* COMMON */
+.section-title{font-size:10px;font-weight:700;letter-spacing:2px;
+  background:linear-gradient(90deg,#FF1744,#FF6B6B);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  text-transform:uppercase;margin-bottom:5px}
+.page-title{font-size:28px;font-weight:900;color:var(--white);line-height:1.15;margin-bottom:7px;letter-spacing:-.5px}
+.page-sub{font-size:13px;color:var(--grey-l);margin-bottom:24px;line-height:1.6}
+.divider{height:1px;background:linear-gradient(90deg,#FF1744,rgba(255,23,68,.3),transparent);margin:22px 0;opacity:.6}
+.card{
+  background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;padding:18px;margin-bottom:14px;
+  backdrop-filter:blur(10px);
+  transition:border-color .3s,box-shadow .3s}
+.card:hover{border-color:rgba(255,23,68,.2);box-shadow:0 4px 30px rgba(255,23,68,.05)}
+.tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.5px}
+/* STAT GRID */
+.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:22px}
+@media(min-width:560px){.stat-grid{grid-template-columns:repeat(4,1fr)}}
+.stat-box{
+  background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(255,255,255,.01));
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;padding:18px 12px;text-align:center;
+  transition:transform .25s,border-color .25s,box-shadow .25s;cursor:default;
+  position:relative;overflow:hidden}
+.stat-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,#FF1744,transparent);opacity:.4}
+.stat-box:hover{transform:translateY(-3px);border-color:rgba(255,23,68,.4);box-shadow:var(--glow-cyan)}
+.stat-num{font-size:22px;font-weight:900;line-height:1.1;margin-bottom:5px;letter-spacing:-.5px}
+.stat-lbl{font-size:10px;color:var(--grey-l);line-height:1.5}
+/* PROGRESS */
+.progress-label{display:flex;justify-content:space-between;font-size:10px;color:var(--grey-l);margin-bottom:4px}
+.progress-track{height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;margin-bottom:10px}
+.progress-fill{height:100%;border-radius:3px}
+/* LEAD CARDS */
+.lead-card{
+  background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;overflow:hidden;margin-bottom:14px;
+  transition:border-color .3s,box-shadow .3s,transform .2s}
+.lead-card:hover{border-color:rgba(255,23,68,.3);box-shadow:0 8px 40px rgba(255,23,68,.07);transform:translateY(-1px)}
+.lead-header{display:flex;justify-content:space-between;align-items:flex-start;padding:16px;
+  background:rgba(255,23,68,.04);border-bottom:1px solid rgba(255,255,255,.06)}
+.lead-name{font-size:14px;font-weight:800;margin-bottom:3px;letter-spacing:-.2px}
+.lead-type{font-size:11px;color:var(--grey-l)}
+.lead-close{text-align:right}
+.lead-close-num{font-size:24px;font-weight:900;line-height:1}
+.lead-close-lbl{font-size:9px;color:var(--grey-l);letter-spacing:.5px;text-transform:uppercase}
+.lead-body{padding:14px 16px}
+.lead-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.lead-stat{text-align:center}
+.lead-stat-val{font-size:15px;font-weight:800}
+.lead-stat-lbl{font-size:9px;color:var(--grey-l);letter-spacing:.3px;text-transform:uppercase}
+.lead-why{font-size:11px;color:var(--grey-l);line-height:1.6;font-style:italic;padding-top:10px;border-top:1px solid rgba(255,255,255,.06)}
+/* TABLES */
+.earn-table{width:100%;border-collapse:collapse;margin-bottom:8px}
+.earn-table th{background:rgba(0,0,0,.4);color:var(--grey-l);font-size:9px;font-weight:700;text-transform:uppercase;padding:10px 8px;text-align:center;letter-spacing:.8px;border-bottom:1px solid rgba(255,255,255,.06)}
+.earn-table th:first-child{text-align:left}
+.earn-table td{padding:11px 8px;font-size:12px;text-align:center;border-bottom:1px solid rgba(255,255,255,.04)}
+.earn-table td:first-child{text-align:left;font-weight:700}
+.earn-table tr.hl{background:rgba(255,23,68,.04)}
+.earn-table tr.hl td{color:var(--white)}
+.net-cell{font-weight:900;color:var(--green)}
+/* MONTHLY */
+.mo-table{width:100%;border-collapse:collapse;font-size:11px}
+.mo-table th{background:rgba(0,0,0,.4);color:var(--grey-l);font-size:9px;text-transform:uppercase;letter-spacing:.8px;padding:8px 6px;text-align:center;font-weight:700;border-bottom:1px solid rgba(255,255,255,.06)}
+.mo-table td{padding:8px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.04)}
+.mo-table tr:nth-child(even) td{background:rgba(255,255,255,.015)}
+.mo-table tr.ms td{background:rgba(255,23,68,.05)}
+.mo-table .ms-col{text-align:left;font-size:10px;color:var(--grey-l);font-style:italic}
+/* TOOL ITEMS */
+.tool-item{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;margin-bottom:6px;transition:opacity .2s}
+.tool-item:hover{opacity:.85}
+.tool-badge{min-width:58px;text-align:center;padding:4px 8px;border-radius:20px;font-size:10px;font-weight:800;white-space:nowrap;letter-spacing:.3px}
+.tool-name{font-size:13px;font-weight:700;letter-spacing:-.1px}
+.tool-desc{font-size:11px;color:var(--grey-l);margin-top:2px}
+/* PKG */
+.pkg-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+@media(min-width:560px){.pkg-grid{grid-template-columns:repeat(4,1fr)}}
+.pkg-card{border-radius:14px;padding:16px;border:1px solid rgba(255,255,255,.08);transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden}
+.pkg-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:.4}
+.pkg-card:hover{transform:translateY(-3px);box-shadow:0 10px 40px rgba(0,0,0,.3)}
+.pkg-stage{font-size:13px;font-weight:800;margin-bottom:2px;letter-spacing:-.1px}
+.pkg-period{font-size:10px;color:var(--grey-l);margin-bottom:8px;letter-spacing:.3px;text-transform:uppercase}
+.pkg-cost{font-size:22px;font-weight:900;
+  background:linear-gradient(135deg,#FF1744,#FF6B6B);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:7px}
+.pkg-tools{font-size:10px;color:var(--grey-l);line-height:1.6}
+/* WHY CARDS */
+.why-grid{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:560px){.why-grid{grid-template-columns:repeat(2,1fr)}}
+.why-card{
+  background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:14px;padding:16px;display:flex;gap:13px;align-items:flex-start;
+  transition:border-color .25s,transform .2s,box-shadow .25s}
+.why-card:hover{border-color:rgba(255,23,68,.3);transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,23,68,.07)}
+.why-icon{font-size:22px;flex-shrink:0;line-height:1}
+.why-title{font-size:13px;font-weight:800;margin-bottom:4px;letter-spacing:-.1px}
+.why-desc{font-size:11px;color:var(--grey-l);line-height:1.6}
+/* PLAN */
+.plan-item{
+  background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
+  border-radius:14px;overflow:hidden;margin-bottom:10px;
+  border:1px solid rgba(255,255,255,.07);transition:border-color .25s,box-shadow .25s}
+.plan-item:hover{box-shadow:0 6px 30px rgba(0,0,0,.2)}
+.plan-header{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;border-bottom:1px solid rgba(255,255,255,.05)}
+.plan-week{font-size:10px;font-weight:700;color:var(--cyan);letter-spacing:1px;text-transform:uppercase;margin-bottom:2px}
+.plan-focus{font-size:15px;font-weight:800;letter-spacing:-.2px}
+.plan-goal{font-size:11px;font-weight:700;color:var(--green)}
+.plan-actions{padding:11px 16px;font-size:11px;color:var(--grey-l);line-height:1.8}
+.plan-action::before{content:"→ ";color:var(--cyan)}
+/* ASSESS */
+.assess-item{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.04)}
+.assess-item:last-child{border-bottom:none}
+.assess-factor{font-size:12px;font-weight:700}
+.assess-desc{font-size:10px;color:var(--grey-l);margin-top:2px}
+.assess-verdict{font-size:11px;font-weight:700;white-space:nowrap;margin-left:12px}
+/* SUCCESS */
+.success-banner{
+  background:linear-gradient(135deg,rgba(0,200,83,.06),rgba(0,0,0,0));
+  border:1px solid rgba(0,200,83,.25);
+  border-radius:20px;padding:28px;text-align:center;margin:20px 0;
+  box-shadow:var(--glow-green)}
+.success-pct{font-size:72px;font-weight:900;
+  background:linear-gradient(135deg,#00C853,#69F0AE);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1}
+/* HERO */
+.hero{text-align:center;padding:12px 0 30px}
+.hero-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  background:linear-gradient(90deg,#FF1744,#FF6B6B);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:12px;font-weight:700}
+.hero-title{font-size:34px;font-weight:900;line-height:1.1;margin-bottom:12px;letter-spacing:-1px;
+  background:linear-gradient(135deg,#fff 30%,#FF1744 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:13px;color:var(--grey-l);line-height:1.7;max-width:500px;margin:0 auto 22px}
+.hero-cta{
+  display:inline-block;
+  background:linear-gradient(135deg,#FF1744,#CC0011);
+  color:var(--white);padding:13px 32px;border-radius:30px;
+  font-weight:800;font-size:13px;cursor:pointer;border:none;font-family:inherit;
+  letter-spacing:.3px;
+  box-shadow:0 4px 20px rgba(255,23,68,.4);
+  transition:transform .2s,box-shadow .2s,opacity .2s}
+.hero-cta:hover{transform:scale(1.04);box-shadow:0 6px 30px rgba(255,23,68,.55);opacity:.95}
+/* VS */
+.vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.vs-col{border-radius:14px;overflow:hidden}
+.vs-header{padding:13px 14px;text-align:center;font-size:13px;font-weight:800;letter-spacing:-.1px}
+.vs-item{display:flex;align-items:center;gap:9px;padding:8px 14px;font-size:11px;color:var(--grey-l);border-bottom:1px solid rgba(255,255,255,.04)}
+.vs-item:last-child{border-bottom:none}
+/* ACCORDION */
+.accordion{border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden;margin-bottom:10px;transition:border-color .2s}
+.accordion:hover{border-color:rgba(255,23,68,.2)}
+.acc-header{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;
+  background:rgba(255,255,255,.02);cursor:pointer;transition:background .2s}
+.acc-header:hover{background:rgba(255,23,68,.05)}
+.acc-title{font-size:13px;font-weight:700}
+.acc-icon{color:var(--cyan);font-size:18px;transition:transform .3s;display:inline-block}
+.accordion.open .acc-icon{transform:rotate(45deg)}
+.acc-body{display:none;padding:14px 16px;background:rgba(0,0,0,.3);font-size:12px;color:var(--grey-l);line-height:1.8}
+.accordion.open .acc-body{display:block}
+/* CHART */
+.chart-bars{display:flex;align-items:flex-end;gap:4px;height:150px;padding-bottom:22px;margin:14px 0}
+.bar-group{flex:1;display:flex;flex-direction:column;align-items:center}
+.bar-wrap{width:100%;position:relative;border-radius:4px 4px 0 0;min-height:2px}
+.bar-net{position:absolute;bottom:0;left:15%;width:70%;border-radius:3px 3px 0 0;min-height:2px}
+.bar-lbl{font-size:8px;color:var(--grey-l);margin-top:4px;text-align:center;letter-spacing:.2px}
+.chart-legend{display:flex;gap:14px;justify-content:center;font-size:10px;color:var(--grey-l);margin-top:6px}
+.legend-dot{width:10px;height:10px;border-radius:2px;display:inline-block;margin-right:4px;vertical-align:middle}
+/* OUTREACH */
+.form-row{margin-bottom:13px}
+.form-label{font-size:11px;color:var(--grey-l);margin-bottom:6px;display:block;letter-spacing:.3px;text-transform:uppercase;font-weight:600}
+.form-input,.form-select{
+  width:100%;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;color:var(--white);font-size:13px;
+  padding:11px 14px;font-family:inherit;outline:none;
+  transition:border-color .2s,box-shadow .2s}
+.form-input:focus,.form-select:focus{border-color:#FF1744;box-shadow:0 0 0 3px rgba(255,23,68,.1)}
+.form-select option{background:#1a0808}
+/* ★ PREMIUM GENERATE BUTTON */
+.gen-btn{
+  width:100%;border:none;border-radius:14px;padding:16px;
+  font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;
+  letter-spacing:.5px;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#FF1744,#CC0011,#FF4444);
+  background-size:200% 200%;
+  color:var(--white);
+  box-shadow:0 4px 25px rgba(255,23,68,.4),0 2px 8px rgba(0,0,0,.5);
+  transition:transform .2s,box-shadow .2s;
+  animation:gradShift 4s ease infinite}
+@keyframes gradShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.gen-btn::before{
+  content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
+  transition:left .5s}
+.gen-btn:hover::before{left:100%}
+.gen-btn:hover{transform:translateY(-2px);box-shadow:0 8px 35px rgba(255,23,68,.6),0 4px 15px rgba(0,0,0,.4)}
+.gen-btn:active{transform:translateY(0);box-shadow:0 2px 15px rgba(255,23,68,.3)}
+.email-out{
+  background:rgba(255,23,68,.03);
+  border:1px solid rgba(255,23,68,.15);
+  border-radius:12px;padding:18px;margin-top:16px;
+  font-size:12px;color:var(--grey-l);line-height:1.9;white-space:pre-wrap;display:none;position:relative}
+.copy-btn{
+  position:absolute;top:12px;right:12px;
+  background:linear-gradient(135deg,#FF1744,#CC0011);
+  border:none;color:var(--white);border-radius:8px;padding:5px 12px;
+  font-size:10px;font-weight:800;cursor:pointer;font-family:inherit;letter-spacing:.5px;
+  transition:opacity .2s,transform .1s}
+.copy-btn:hover{opacity:.9;transform:scale(1.03)}
+/* RANGE */
+input[type=range]{width:100%;accent-color:var(--cyan);cursor:pointer}
+/* WORKFLOW */
+.wf-phase{margin-bottom:22px}
+.wf-phase-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.wf-step{display:flex;gap:13px;padding:13px 15px;border-radius:12px;margin-bottom:7px;transition:opacity .2s}
+.wf-step:hover{opacity:.9}
+.wf-num{min-width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:var(--dark);flex-shrink:0}
+.wf-step-title{font-size:13px;font-weight:800;margin-bottom:4px;letter-spacing:-.1px}
+.wf-step-desc{font-size:11px;color:var(--grey-l);line-height:1.7}
+.wf-time{font-size:10px;white-space:nowrap;margin-left:auto;flex-shrink:0;font-weight:600;letter-spacing:.3px}
+.checklist-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.checklist-item:last-child{border-bottom:none}
+.check-box{font-size:18px;cursor:pointer;flex-shrink:0;color:var(--grey-l);transition:color .2s;user-select:none;line-height:1.3}
+.check-box.done{color:var(--green)}
+.check-label{font-size:12px;color:var(--grey-l);line-height:1.6;padding-top:2px}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-thumb{background:rgba(255,23,68,.28);border-radius:2px}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <button id="nav-scroll-left" class="nav-arrow nav-arrow-left" aria-label="Scroll left">‹</button>
+  <div class="nav-inner" id="nav-inner">
+    <div class="nav-brand">📹 AI VIDEO</div>
+    <button class="nav-btn active" data-page="home">Home</button>
+    <button class="nav-btn" data-page="opportunity">Opportunity</button>
+    <button class="nav-btn" data-page="leads">13 Leads</button>
+    <button class="nav-btn" data-page="earnings">Earnings</button>
+    <button class="nav-btn" data-page="monthly">12 Months</button>
+    <button class="nav-btn" data-page="tools">Tools</button>
+    <button class="nav-btn" data-page="plan">Plan</button>
+    <button class="nav-btn" data-page="fast7" style="color:#FFB700;font-weight:700">⚡ 7-Day</button>
+    <button class="nav-btn" data-page="walkthrough" style="color:#00C853;font-weight:700">🎯 Walkthrough</button>
+    <button class="nav-btn" data-page="workflow">Workflow</button>
+    <button class="nav-btn" data-page="outreach">Outreach</button>
+    <button class="nav-btn" data-page="assess">Assessment</button>
+    <button class="nav-btn" data-page="brand" style="color:#FF1744;font-weight:700">🔴 PropShots</button>
+  </div>
+  <button id="nav-scroll-right" class="nav-arrow nav-arrow-right" aria-label="Scroll right">›</button>
+</nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-eyebrow">New Zealand Market · June 2026</div>
+    <div class="hero-title">AI Property Video<br>Side Hustle</div>
+    <div class="hero-sub">Find NZ listings with no video. Generate cinematic AI fly-throughs. Sell them to agents for $150–$300. Takes 2–3 hours per video. Fully remote.</div>
+    <button class="hero-cta" data-goto="opportunity">Explore the Plan →</button>
+  </div>
+  <div class="stat-grid">
+    <div class="stat-box"><div class="stat-num" style="color:var(--cyan)">~$25</div><div class="stat-lbl">Monthly tool cost<br>(Higgsfield Plus)</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--green)">$150–300</div><div class="stat-lbl">What you charge<br>per video</div></div>
+    <div class="stat-box"><div class="stat-num">1 Sale</div><div class="stat-lbl">Breaks even<br>per month</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--orange)">35,000+</div><div class="stat-lbl">NZ listings with<br>no video right now</div></div>
+  </div>
+  <div class="divider"></div>
+  <div class="why-grid" id="home-why"></div>
+</div>
+
+<!-- OPPORTUNITY -->
+<div id="page-opportunity" class="page">
+  <div class="section-title">Market Analysis</div>
+  <div class="page-title">The Opportunity</div>
+  <div class="page-sub">Why this gap exists, how big it actually is, and why the timing works in your favour.</div>
+
+  <!-- Intro narrative -->
+  <div class="card" style="margin-bottom:16px">
+    <div style="font-size:12px;color:var(--grey-l);line-height:1.85">
+      New Zealand's real estate market runs on visual marketing — and right now, most of it is photo-only. Every week, thousands of fresh listings go live on Trade Me Property without a single second of video. Agents know video sells faster and holds buyer attention longer, but the traditional path to getting it — booking a drone operator, waiting for good weather, paying several hundred dollars, and waiting up to a week for delivery — carries enough friction that most agents simply skip it.
+    </div>
+    <div style="font-size:12px;color:var(--grey-l);line-height:1.85;margin-top:10px">
+      That gap is the entire opportunity. You're not trying to convince agents that video matters — the industry already knows that. You're removing the three things stopping them from using it: <strong style="color:var(--white)">cost, speed, and hassle</strong>. AI-generated property video collapses a $600, one-week process into a $180, 48-hour one — no drone licence, no travel, no weather risk. For an agent on a $780,000 listing, that's a marketing decision that costs less than a tank of petrol.
+    </div>
+  </div>
+
+  <!-- Market sizing -->
+  <div class="section-title" style="margin-bottom:10px">The Size of the Opportunity</div>
+  <div class="stat-grid">
+    <div class="stat-box"><div class="stat-num" style="color:var(--cyan)">35,000+</div><div class="stat-lbl">Active NZ listings<br>at any time</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--orange)">~70–80%</div><div class="stat-lbl">Estimated share<br>with no video</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--green)">25,000+</div><div class="stat-lbl">Properties in your<br>addressable market</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:#FF1744">~16,000</div><div class="stat-lbl">Licensed real estate<br>agents across NZ</div></div>
+  </div>
+  <div class="card" style="margin-bottom:16px">
+    <div style="font-size:12px;color:var(--grey-l);line-height:1.85">
+      These numbers refresh constantly. Every week, new listings replace sold ones — Trade Me Property typically sees thousands of new residential listings added across the country on a rolling basis. That means your lead pool isn't a fixed list you'll eventually exhaust; it's a moving river of opportunity. Even if you only ever work with <strong style="color:var(--white)">1% of the agents currently active in New Zealand</strong>, that's still around 160 potential long-term clients — each one capable of bringing you 5 to 10 listings a year.
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Psychology section -->
+  <div class="section-title" style="margin-bottom:6px">The Psychology Behind Every Yes</div>
+  <div style="font-size:12px;color:var(--grey-l);line-height:1.8;margin-bottom:14px">Understanding why an agent says yes — and why they hesitate — is the difference between a generic pitch and one that actually converts.</div>
+  <div class="why-grid" style="margin-bottom:16px">
+    <div class="why-card">
+      <div class="why-icon">💰</div>
+      <div>
+        <div class="why-title">Cost Anchoring</div>
+        <div class="why-desc">Agents already have a mental price tag for property video — usually $400 to $900, based on what drone operators charge. When you quote $150–$280, you're not asking them to spend money on something new; you're offering the same category of service at a third of the expected price. That gap alone does most of the selling for you.</div>
+      </div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">⏱️</div>
+      <div>
+        <div class="why-title">Speed Wins Listings</div>
+        <div class="why-desc">The first 7–10 days a listing is live get the most views and enquiries — momentum sets the tone for the whole campaign. A drone booking that takes a week often arrives after that window has closed. A 48-hour AI video means the property goes to market with full marketing assets from day one, not as an afterthought two weeks in.</div>
+      </div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🎯</div>
+      <div>
+        <div class="why-title">Competitive Differentiation</div>
+        <div class="why-desc">Open any street in a competitive suburb and you'll see five or six listings side by side, all using the same static photo format. The one with a cinematic video stands out instantly in a buyer's scroll. Agents are acutely aware they're competing with the listing next door — video is the cheapest premium upgrade available to them.</div>
+      </div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📲</div>
+      <div>
+        <div class="why-title">The Social Media Push</div>
+        <div class="why-desc">Every agency now expects its agents to post listings to Instagram and Facebook. A static photo carousel performs poorly against video content on every major platform's algorithm. Because your service includes a ready-made vertical cut, you're solving a problem agents already feel pressure to solve — without them having to ask.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Market funnel -->
+  <div class="section-title" style="margin-bottom:10px">From 35,000 Listings to Your First Client</div>
+  <div class="card" style="margin-bottom:16px">
+    <div style="font-size:12px;color:var(--grey-l);line-height:1.85">
+      It helps to think about this opportunity as a funnel rather than a single number. Start with the roughly <strong style="color:var(--white)">35,000 active residential listings</strong> on Trade Me Property at any given time. Strip out the ones that already have video — that still leaves tens of thousands without it. Of those, a meaningful share won't be a fit: very low-value listings where a few hundred dollars genuinely doesn't make sense for the agent's margin, or properties visually unremarkable enough that no amount of cinematic treatment changes the pitch.
+    </div>
+    <div style="font-size:12px;color:var(--grey-l);line-height:1.85;margin-top:10px">
+      What's left is still substantial. Narrow the funnel down to listings priced above $400,000, with reasonable photo quality, listed in the last 30 days, with an identifiable and contactable agent — and conservative estimates still put your realistic weekly pitch pool in the hundreds. You don't need to convert a large percentage of this pool to build meaningful income. At a 10–15% reply rate and a portion of those converting to paid work, consistent daily outreach produces a steady stream of clients without ever running dry on leads.
+    </div>
+  </div>
+
+  <!-- AI vs Drone comparison (existing) -->
+  <div class="section-title" style="margin-bottom:10px">AI Video vs Drone Operator — The Direct Comparison</div>
+  <div style="font-size:12px;color:var(--grey-l);line-height:1.8;margin-bottom:10px">This table is your core sales argument when an agent asks "why should I use this instead of a drone guy?"</div>
+  <div class="vs-grid">
+    <div class="vs-col" style="background:#100505;border:1px solid rgba(229,57,53,.3)">
+      <div class="vs-header" style="background:rgba(229,57,53,.12);color:#ff6b6b">🚁 Drone Operator</div>
+      <div class="vs-item"><span>💸</span><span>$400–$900 per property</span></div>
+      <div class="vs-item"><span>📅</span><span>3–7 days turnaround</span></div>
+      <div class="vs-item"><span>🌧️</span><span>Weather dependent</span></div>
+      <div class="vs-item"><span>📋</span><span>CAA licence required</span></div>
+      <div class="vs-item"><span>✂️</span><span>Social cut = extra cost</span></div>
+      <div class="vs-item"><span>🔁</span><span>Revisions = expensive</span></div>
+      <div class="vs-item"><span>🚗</span><span>Must travel to property</span></div>
+    </div>
+    <div class="vs-col" style="background:#051510;border:1px solid rgba(255,23,68,.4)">
+      <div class="vs-header" style="background:rgba(255,23,68,.08);color:#FF4466">🤖 Your AI Service</div>
+      <div class="vs-item"><span>✅</span><span style="color:var(--green)">$150–$300 per property</span></div>
+      <div class="vs-item"><span>✅</span><span style="color:var(--green)">24–48 hour delivery</span></div>
+      <div class="vs-item"><span>✅</span><span style="color:var(--green)">Zero weather risk</span></div>
+      <div class="vs-item"><span>✅</span><span style="color:var(--green)">No licence needed</span></div>
+      <div class="vs-item"><span>✅</span><span style="color:var(--green)">Vertical cut included</span></div>
+      <div class="vs-item"><span>✅</span><span style="color:var(--green)">Low-cost revisions</span></div>
+      <div class="vs-item"><span>✅</span><span style="color:var(--green)">Fully remote from home</span></div>
+    </div>
+  </div>
+  <div class="card" style="background:linear-gradient(135deg,rgba(255,23,68,.06),rgba(255,23,68,.02));border-color:rgba(255,23,68,.4);text-align:center;padding:20px;margin-bottom:16px">
+    <div style="font-size:13px;color:var(--grey-l);margin-bottom:6px">Average saving for the agent</div>
+    <div style="font-size:36px;font-weight:900;color:var(--green)">$250–$600</div>
+    <div style="font-size:12px;color:var(--grey-l);margin-top:4px">per listing · Same result · Faster delivery</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Who you're competing with -->
+  <div class="section-title" style="margin-bottom:6px">Who You're Really Competing With</div>
+  <div class="card" style="margin-bottom:10px">
+    <div style="font-size:12px;color:var(--grey-l);line-height:1.85">
+      It's tempting to think of drone videographers as your main competitor, but in practice, the agent's true default option is doing nothing at all. The vast majority of NZ listings ship with photos only — no video, no virtual tour, nothing beyond static images and a written description. That's not because agents don't see the value in better marketing; it's because the existing routes to getting video all carry enough friction that most agents simply never get around to it.
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:13px 15px">
+      <div style="font-size:12px;font-weight:800;color:var(--white);margin-bottom:4px">🚁 Drone & videography operators</div>
+      <div style="font-size:11px;color:var(--grey-l);line-height:1.7">Real competitors, but priced and positioned for the top 10–15% of high-value listings. Most regional and mid-market properties are priced out of this option entirely — exactly your space.</div>
+    </div>
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:13px 15px">
+      <div style="font-size:12px;font-weight:800;color:var(--white);margin-bottom:4px">😴 Doing nothing (the true default)</div>
+      <div style="font-size:11px;color:var(--grey-l);line-height:1.7">Your biggest competitor isn't a company, it's inertia. Most agents have simply never been offered a fast, cheap alternative — which is why a single demo video often does more convincing than any sales pitch ever could.</div>
+    </div>
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:13px 15px">
+      <div style="font-size:12px;font-weight:800;color:var(--white);margin-bottom:4px">🤖 Other AI video providers</div>
+      <div style="font-size:11px;color:var(--grey-l);line-height:1.7">As AI property video tools mature, more entrants will appear in this space over time. The advantage goes to whoever builds real relationships and a reputation first — which is exactly what early, consistent outreach is designed to secure.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Why Now -->
+  <div class="section-title" style="margin-bottom:10px">Why Now Is the Right Time</div>
+  <div class="card" style="margin-bottom:16px">
+    <div style="font-size:12px;color:var(--grey-l);line-height:1.85">
+      Markets like this don't stay wide open forever. AI video generation has only become genuinely usable for real estate-grade output in the last year or two — the technology simply wasn't good enough before that to produce something an agent would be comfortable putting in front of a vendor. At the same time, awareness among NZ real estate agents of AI-generated content is still low compared to markets like the US and Australia, where agencies have already begun adopting it more broadly.
+    </div>
+    <div style="font-size:12px;color:var(--grey-l);line-height:1.85;margin-top:10px">
+      This creates a window: the tools are mature enough to produce genuinely impressive results, but the market hasn't caught up yet. The agents you pitch in the next few months are very likely seeing something like this for the first time. That novelty works heavily in your favour — both for getting attention in a crowded inbox, and for being remembered as the person who introduced them to it, rather than just one of several competing options later on.
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Expanded Key Market Facts -->
+  <div class="section-title" style="margin-bottom:10px">Key Market Facts</div>
+  <div class="accordion open">
+    <div class="acc-header"><span class="acc-title">Trade Me flags video listings</span><span class="acc-icon">+</span></div>
+    <div class="acc-body">Trade Me Property explicitly labels listings that have video tours. Listings WITHOUT video are identifiable in under 5 seconds. You have a daily, renewable lead pool of 25,000–28,000 properties at any given time.</div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header"><span class="acc-title">NZ agents are behind the curve</span><span class="acc-icon">+</span></div>
+    <div class="acc-body">AI property video is mainstream in Australia and the US. NZ agents are 2–3 years behind. Early movers face minimal competition and high novelty value — the demo video alone creates curiosity that opens doors.</div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header"><span class="acc-title">Video listings get more engagement</span><span class="acc-icon">+</span></div>
+    <div class="acc-body">Property listings with video content consistently generate higher click-through and longer time-on-listing than photo-only listings. Whether a buyer ultimately purchases the home or not, increased engagement matters to agents because it signals strong marketing performance to the vendor — the homeowner who hired them. Agents aren't just selling houses; they're constantly proving their value to the people who pay their commission. A video that performs well is evidence they can point to.</div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header"><span class="acc-title">Agents already have everything you need</span><span class="acc-icon">+</span></div>
+    <div class="acc-body">Unlike a drone operator who needs to physically attend the property, your raw material — high-quality professional photography — already exists. Every listing on Trade Me comes with a full photo set taken by a photographer the agent has already paid for. You're not asking the agent to organise anything new. You just need photos that are already public and freely available, which means your time-to-delivery is limited only by your own production speed — not by waiting on access, weather, or scheduling.</div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header"><span class="acc-title">The real cost of doing nothing</span><span class="acc-icon">+</span></div>
+    <div class="acc-body">When an agent declines a video, there's rarely an explicit downside they feel immediately — the listing still goes up, photos still get taken, open homes still happen. This is exactly why most agents have never been pushed hard enough to solve the problem; the cost of not having video is invisible rather than painful. Your job in a pitch isn't to manufacture urgency — it's to make the upside visible by showing them, with a real demo of their actual listing, exactly what they're currently leaving on the table.</div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header"><span class="acc-title">Why the first "yes" compounds</span><span class="acc-icon">+</span></div>
+    <div class="acc-body">Real estate is a referral-dense industry. Agents within the same office regularly compare notes on marketing vendors, and principals actively look for ways to give their whole team a competitive edge. A single satisfied agent rarely stays a single client for long — they mention you in the office, forward your details to a colleague with a similar listing, or simply keep coming back every time they sign a new vendor. The economics of this business reward patience with the first few clients far more than they reward volume of cold outreach alone.</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Honest risks -->
+  <div class="section-title" style="margin-bottom:6px">What Could Slow This Down</div>
+  <div style="font-size:12px;color:var(--grey-l);line-height:1.8;margin-bottom:12px">No honest opportunity is risk-free. Here's what's genuinely worth being aware of.</div>
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+    <div style="background:rgba(255,140,0,.05);border:1px solid rgba(255,140,0,.2);border-radius:12px;padding:13px 15px">
+      <div style="font-size:12px;font-weight:800;color:var(--orange);margin-bottom:4px">⚡ AI scepticism</div>
+      <div style="font-size:11px;color:var(--grey-l);line-height:1.7">Some agents will be instinctively wary of anything labelled "AI generated," particularly more senior or traditional operators. The fix is simple: lead with the demo video itself rather than the technology behind it. Most people respond to what they see, not how it was made.</div>
+    </div>
+    <div style="background:rgba(255,140,0,.05);border:1px solid rgba(255,140,0,.2);border-radius:12px;padding:13px 15px">
+      <div style="font-size:12px;font-weight:800;color:var(--orange);margin-bottom:4px">📈 Market awareness will grow</div>
+      <div style="font-size:11px;color:var(--grey-l);line-height:1.7">As more people in NZ realise this is possible, competition will increase over time. This is exactly why building real relationships and reputation now — rather than relying purely on cold volume later — is the highest-leverage use of your early effort.</div>
+    </div>
+    <div style="background:rgba(255,140,0,.05);border:1px solid rgba(255,140,0,.2);border-radius:12px;padding:13px 15px">
+      <div style="font-size:12px;font-weight:800;color:var(--orange);margin-bottom:4px">🖼️ Quality variance</div>
+      <div style="font-size:11px;color:var(--grey-l);line-height:1.7">Not every photo set produces an equally strong result. Listings with poor or very few photos will be harder to turn into compelling video. Part of lead qualification (covered in the Workflow tab) exists specifically to filter for properties where the raw material gives you a real chance of an excellent result.</div>
+    </div>
+  </div>
+
+  <!-- Closing -->
+  <div class="card" style="background:linear-gradient(135deg,rgba(255,23,68,.08),rgba(0,0,0,0));border-color:rgba(255,23,68,.4);text-align:center;padding:22px">
+    <div style="font-size:11px;color:var(--grey-l);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px">The Opportunity in One Sentence</div>
+    <div style="font-size:14px;color:#fff;line-height:1.7;max-width:440px;margin:0 auto;font-weight:600">
+      Thousands of NZ listings go to market every month with no video, agents already understand why video matters, and the only thing standing between them and a polished cinematic clip is cost, speed, and habit. You've already removed two of those barriers — the third only needs one demo video to break.
+    </div>
+  </div>
+</div>
+
+<!-- LEADS -->
+<div id="page-leads" class="page">
+  <div class="section-title">Found Today · Trade Me Property</div>
+  <div class="page-title">13 Live Leads</div>
+  <div class="page-sub">Real active listings with zero video content. Scored, priced and ready to pitch.</div>
+  <div id="leads-container"></div>
+
+  <div class="divider"></div>
+
+  <div class="section-title">Bonus Channel · Holiday Rental Management</div>
+  <div class="page-title" style="font-size:22px">5 Property Management Companies</div>
+  <div class="page-sub">Airbnb and Bookabach don't expose individual host contact info — but the companies managing dozens of those listings publish real business contact details, because they're actively chasing new clients. One yes here unlocks 20–50+ properties instead of one.</div>
+  <div id="companies-container"></div>
+</div>
+
+<!-- EARNINGS -->
+<div id="page-earnings" class="page">
+  <div class="section-title">Revenue Modelling</div>
+  <div class="page-title">Earnings Scenarios</div>
+  <div class="page-sub">Four scenarios from starting out to full scale. All figures NZD per month.</div>
+  <div class="card" style="overflow-x:auto">
+    <table class="earn-table">
+      <thead><tr><th>Scenario</th><th>Agents/wk</th><th>Close %</th><th>Videos/mo</th><th>Avg $</th><th>Gross</th><th>Tools</th><th>NET</th></tr></thead>
+      <tbody>
+        <tr><td>Conservative</td><td>20</td><td>10%</td><td>8</td><td>$150</td><td>$1,200</td><td style="color:var(--grey-l)">~$25</td><td class="net-cell">$1,175</td></tr>
+        <tr class="hl"><td>Realistic ★</td><td>20</td><td>15%</td><td>12</td><td>$200</td><td>$2,400</td><td style="color:var(--grey-l)">~$25</td><td class="net-cell" style="font-size:15px">$2,375</td></tr>
+        <tr><td>Strong</td><td>30</td><td>20%</td><td>24</td><td>$220</td><td>$5,280</td><td style="color:var(--grey-l)">~$25</td><td class="net-cell">$5,255</td></tr>
+        <tr><td>Scale Up</td><td>50</td><td>20%</td><td>40</td><td>$250</td><td>$10,000</td><td style="color:var(--grey-l)">~$50</td><td class="net-cell">$9,950</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="font-size:10px;color:var(--grey-l);text-align:center;margin-bottom:16px">★ Most likely scenario in months 1–2</div>
+  <div class="section-title" style="margin-bottom:10px">Visualised</div>
+  <div class="card">
+    <div class="chart-bars" id="earn-chart"></div>
+    <div class="chart-legend">
+      <span><span class="legend-dot" style="background:rgba(255,23,68,.4)"></span>Gross Revenue</span>
+      <span><span class="legend-dot" style="background:var(--green)"></span>Net Profit</span>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section-title" style="margin-bottom:10px">Break-Even Calculator</div>
+  <div class="card">
+    <div style="font-size:12px;color:var(--grey-l);margin-bottom:12px">Drag to set your price per video:</div>
+    <div class="form-row">
+      <label class="form-label">Price per video: <strong id="price-display" style="color:var(--cyan)">$200</strong></label>
+      <input type="range" id="price-slider" min="100" max="400" value="200" step="10">
+    </div>
+    <div class="stat-grid" style="margin-top:10px">
+      <div class="stat-box"><div class="stat-num" id="be-videos" style="color:var(--orange)">1</div><div class="stat-lbl">Video to break even<br>(cover $25 tool cost)</div></div>
+      <div class="stat-box"><div class="stat-num" id="be-net" style="color:var(--green)">$1,975</div><div class="stat-lbl">Net profit at 10<br>videos per month</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MONTHLY -->
+<div id="page-monthly" class="page">
+  <div class="section-title">12-Month Projection</div>
+  <div class="page-title">Growth Timeline</div>
+  <div class="page-sub">If you scale consistently. Improving close rate and price as reputation builds.</div>
+  <div class="card">
+    <div class="chart-bars" id="mo-chart" style="height:170px"></div>
+    <div class="chart-legend">
+      <span><span class="legend-dot" style="background:rgba(255,23,68,.4)"></span>Gross Revenue</span>
+      <span><span class="legend-dot" style="background:var(--green)"></span>Net Profit</span>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="card" style="overflow-x:auto">
+    <table class="mo-table">
+      <thead><tr><th>Mo.</th><th>Vids</th><th>Avg</th><th>Gross</th><th>Tools</th><th>NET</th><th class="ms-col">Milestone</th></tr></thead>
+      <tbody id="mo-tbody"></tbody>
+    </table>
+  </div>
+  <div class="card" style="margin-top:12px;background:linear-gradient(135deg,#051510,#051510);border-color:var(--green)">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;text-align:center">
+      <div><div style="font-size:10px;color:var(--grey-l);margin-bottom:4px">Year 1 Gross</div><div style="font-size:22px;font-weight:800;color:var(--cyan)">$81,000</div></div>
+      <div><div style="font-size:10px;color:var(--grey-l);margin-bottom:4px">Year 1 Tools</div><div style="font-size:22px;font-weight:800;color:var(--red)">$625</div></div>
+      <div><div style="font-size:10px;color:var(--grey-l);margin-bottom:4px">Year 1 NET</div><div style="font-size:22px;font-weight:800;color:var(--green)">$80,375</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- TOOLS -->
+<div id="page-tools" class="page">
+  <div class="section-title">What You Need</div>
+  <div class="page-title">Tools & Costs</div>
+  <div class="page-sub">Start free. Add paid tools as revenue grows. Never buy everything at once.</div>
+  <div class="section-title" style="color:var(--green);margin-bottom:10px">Free to Start</div>
+  <div id="free-tools"></div>
+  <div class="divider"></div>
+  <div class="section-title" style="color:var(--red);margin-bottom:10px">Paid — Add as Revenue Grows</div>
+  <div id="paid-tools"></div>
+  <div class="divider"></div>
+  <div class="section-title" style="color:var(--purple);margin-bottom:12px">Recommended Packages by Stage</div>
+  <div class="pkg-grid" id="pkg-grid"></div>
+</div>
+
+<!-- PLAN -->
+<div id="page-plan" class="page">
+  <div class="section-title">Getting Started</div>
+  <div class="page-title">30-Day Action Plan</div>
+  <div class="page-sub">A week-by-week breakdown of exactly what to do, why to do it, and how to do it. Follow this and you will have your first client within 30 days.</div>
+
+  <!-- Overview stats -->
+  <div class="stat-grid" style="margin-bottom:22px">
+    <div class="stat-box"><div class="stat-num" style="color:var(--cyan)">4</div><div class="stat-lbl">Weeks to first<br>paying client</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--green)">1–2 hrs</div><div class="stat-lbl">Daily time<br>commitment</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--orange)">20+</div><div class="stat-lbl">Agents pitched<br>by end of week 2</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--red)">$1K+</div><div class="stat-lbl">Target revenue<br>by end of month</div></div>
+  </div>
+
+  <div id="plan-container"></div>
+</div>
+
+<!-- 7-DAY FAST EXECUTION -->
+<div id="page-fast7" class="page">
+  <div class="section-title">Fast Execution Mode</div>
+  <div class="page-title" style="background:linear-gradient(135deg,#FFB700,#FF8C00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">⚡ 7-Day Launch Plan</div>
+  <div class="page-sub">The full 30-day plan compressed into 7 brutal, focused days. Every task has a checkbox, a personal note field, and optimised prompts ready to copy. Follow this exactly and you will have pitched your first agents and produced your first video within one week.</div>
+  <div id="fast7-progress-wrap" style="margin-bottom:20px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+      <span style="font-size:11px;font-weight:700;color:#FFB700;letter-spacing:.5px;text-transform:uppercase">Overall Progress</span>
+      <span id="fast7-pct" style="font-size:13px;font-weight:900;color:#FFB700">0%</span>
+    </div>
+    <div style="height:8px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden">
+      <div id="fast7-bar" style="height:100%;background:linear-gradient(90deg,#FFB700,#FF8C00);border-radius:4px;width:0%;transition:width .4s"></div>
+    </div>
+    <div id="fast7-count" style="font-size:10px;color:var(--grey-l);margin-top:4px">0 of 0 tasks complete</div>
+  </div>
+  <div id="fast7-container"></div>
+</div>
+
+<!-- WALKTHROUGH -->
+<div id="page-walkthrough" class="page">
+  <div class="section-title">Interactive Guide</div>
+  <div class="page-title" style="background:linear-gradient(135deg,#00C853,#00E676);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">🎯 Live Walkthrough</div>
+  <div class="page-sub">One step at a time. You cannot move forward until every action is checked off. Built so it's hard to fail.</div>
+  <!-- Progress bar -->
+  <div style="margin-bottom:20px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+      <span id="wt-step-label" style="font-size:11px;font-weight:700;color:#00C853;letter-spacing:.5px;text-transform:uppercase">Step 1 of 25</span>
+      <span id="wt-pct" style="font-size:13px;font-weight:900;color:#00C853">0%</span>
+    </div>
+    <div style="height:8px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden">
+      <div id="wt-bar" style="height:100%;background:linear-gradient(90deg,#00C853,#00E676);border-radius:4px;width:0%;transition:width .5s"></div>
+    </div>
+    <!-- Step dots -->
+    <div id="wt-dots" style="display:flex;gap:4px;flex-wrap:wrap;margin-top:10px"></div>
+  </div>
+  <!-- Step display -->
+  <div id="wt-card"></div>
+  <!-- Nav buttons -->
+  <div style="display:flex;gap:10px;margin-top:14px">
+    <button id="wt-back" style="flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:13px;font-size:13px;font-weight:700;color:var(--grey-l);cursor:pointer;font-family:inherit">← Back</button>
+    <button id="wt-next" style="flex:2;background:rgba(0,200,83,.15);border:1px solid rgba(0,200,83,.3);border-radius:12px;padding:13px;font-size:14px;font-weight:800;color:#00C853;cursor:pointer;font-family:inherit;opacity:.4;transition:all .2s">Complete All Actions First ↓</button>
+  </div>
+</div>
+
+<!-- WORKFLOW -->
+<div id="page-workflow" class="page">
+  <div class="section-title">Step-by-Step Process</div>
+  <div class="page-title">The Full Workflow</div>
+  <div class="page-sub">Everything from finding a listing to getting paid. Follow this every time.</div>
+  <div class="stat-grid">
+    <div class="stat-box"><div class="stat-num" style="color:var(--cyan)">30 min</div><div class="stat-lbl">Finding &amp; qualifying<br>leads on Trade Me</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--orange)">15 min</div><div class="stat-lbl">Writing &amp; sending<br>the pitch email</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--purple)">2–3 hrs</div><div class="stat-lbl">Generating &amp; editing<br>the video</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--green)">10 min</div><div class="stat-lbl">Delivering &amp;<br>getting paid</div></div>
+  </div>
+  <div id="wf-container"></div>
+  <div class="divider"></div>
+  <div class="section-title" style="margin-bottom:12px">First Video Checklist</div>
+  <div class="card" id="checklist-container"></div>
+</div>
+
+<!-- OUTREACH -->
+<div id="page-outreach" class="page">
+  <div class="section-title">Sales Tool</div>
+  <div class="page-title">Outreach Builder</div>
+  <div class="page-sub">Generate a personalised pitch email, save it to your tracker, and manage every lead from first contact to closed deal.</div>
+
+  <!-- Email builder -->
+  <div class="card">
+    <div class="form-row">
+      <label class="form-label">Select listing</label>
+      <select class="form-select" id="lead-select">
+        <option value="custom">Custom listing</option>
+      </select>
+    </div>
+    <div id="custom-fields" style="display:none">
+      <div class="form-row"><label class="form-label">Property address</label><input class="form-input" id="custom-address" placeholder="e.g. 10 Example Street, Suburb, City"></div>
+      <div class="form-row"><label class="form-label">Listing price</label><input class="form-input" id="custom-price" placeholder="e.g. $850,000 or Auction"></div>
+    </div>
+    <div class="form-row"><label class="form-label">Agent name</label><input class="form-input" id="agent-name" placeholder="e.g. Sarah Johnson"></div>
+    <div class="form-row"><label class="form-label">Agent email</label><input class="form-input" id="agent-email" placeholder="e.g. sarah@harcourts.co.nz"></div>
+    <div class="form-row"><label class="form-label">Your name</label><input class="form-input" id="your-name" placeholder="e.g. Haydn"></div>
+    <div class="form-row">
+      <label class="form-label">Your price</label>
+      <select class="form-select" id="your-price">
+        <option value="$150">$150 — Regional/entry level</option>
+        <option value="$180">$180 — Standard</option>
+        <option value="$200" selected>$200 — Mid range</option>
+        <option value="$220">$220 — Premium suburb</option>
+        <option value="$250">$250 — Auckland/luxury</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label class="form-label">Email tone</label>
+      <select class="form-select" id="email-tone">
+        <option value="direct">Direct &amp; confident</option>
+        <option value="friendly">Friendly &amp; casual</option>
+        <option value="professional">Professional &amp; formal</option>
+      </select>
+    </div>
+    <button class="gen-btn" id="gen-btn">Generate Pitch Email →</button>
+  </div>
+
+  <div class="email-out" id="email-out">
+    <button class="copy-btn" id="copy-btn">Copy</button>
+    <div id="email-text"></div>
+  </div>
+
+  <!-- Save pitch button (shown after generating) -->
+  <div id="save-pitch-wrap" style="display:none;margin-top:12px">
+    <button id="save-pitch-btn" style="
+      width:100%;background:rgba(255,23,68,.12);border:1px solid rgba(255,23,68,.4);
+      border-radius:12px;padding:13px;font-size:14px;font-weight:800;cursor:pointer;
+      font-family:inherit;color:#FF1744;letter-spacing:.3px;
+      transition:background .2s,transform .1s">
+      + Save to Pitch Tracker
+    </button>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PITCH TRACKER -->
+  <div class="section-title" style="margin-bottom:4px">Pitch Tracker</div>
+  <div style="font-size:12px;color:var(--grey-l);margin-bottom:16px">Every agent you pitch — saved, tracked, and updated in one place.</div>
+
+  <!-- Summary stats -->
+  <div id="tracker-summary" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px"></div>
+
+  <!-- Pipeline view -->
+  <div id="pipeline-wrap" style="margin-bottom:16px"></div>
+
+  <!-- Full pitch list -->
+  <div id="pitch-list"></div>
+
+  <!-- Empty state -->
+  <div id="empty-tracker" style="text-align:center;padding:32px 16px;color:var(--grey-l)">
+    <div style="font-size:32px;margin-bottom:10px">📋</div>
+    <div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:6px">No pitches saved yet</div>
+    <div style="font-size:12px;line-height:1.6">Generate an email above and click<br><strong style="color:#FF1744">Save to Pitch Tracker</strong> to start tracking</div>
+  </div>
+</div>
+
+<!-- ASSESS -->
+<div id="page-assess" class="page">
+  <div class="section-title">Honest Analysis</div>
+  <div class="page-title">Will It Work?</div>
+  <div class="page-sub">A factor-by-factor breakdown — no hype, no fluff.</div>
+  <div class="success-banner">
+    <div class="success-pct">72%</div>
+    <div style="font-size:16px;font-weight:800;color:var(--green);margin-top:6px">Overall Success Probability</div>
+    <div style="font-size:12px;color:var(--grey-l);margin-top:4px">Chance of closing first client within 30 days</div>
+  </div>
+  <div class="card" style="padding:0;overflow:hidden" id="assess-container"></div>
+  <div class="divider"></div>
+  <div class="card">
+    <div style="font-size:12px;color:var(--grey-l);margin-bottom:12px;text-align:center">Confidence breakdown</div>
+    <div class="progress-label"><span>Market demand</span><span style="color:var(--green)">High</span></div>
+    <div class="progress-track"><div class="progress-fill" style="width:88%;background:var(--green)"></div></div>
+    <div class="progress-label"><span>Competition level</span><span style="color:var(--green)">Low</span></div>
+    <div class="progress-track"><div class="progress-fill" style="width:82%;background:#FF1744"></div></div>
+    <div class="progress-label"><span>Price accessibility</span><span style="color:var(--green)">High</span></div>
+    <div class="progress-track"><div class="progress-fill" style="width:90%;background:var(--green)"></div></div>
+    <div class="progress-label"><span>Execution difficulty</span><span style="color:var(--orange)">Medium</span></div>
+    <div class="progress-track"><div class="progress-fill" style="width:55%;background:var(--orange)"></div></div>
+    <div class="progress-label"><span>Risk level</span><span style="color:var(--green)">Very Low</span></div>
+    <div class="progress-track" style="margin-bottom:0"><div class="progress-fill" style="width:92%;background:var(--green)"></div></div>
+  </div>
+</div>
+
+<!-- PROPSHOTS BRAND SETUP -->
+<div id="page-brand" class="page">
+  <div class="section-title">Your Brand</div>
+  <div class="page-title" style="background:linear-gradient(135deg,#fff 30%,#FF1744 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">PropShots Setup</div>
+  <div class="page-sub">Everything you need to launch PropShots as a proper brand. Costs, steps, and where to go.</div>
+
+  <!-- Total cost banner -->
+  <div class="card" style="background:linear-gradient(135deg,rgba(255,23,68,.08),rgba(0,0,0,0));border-color:rgba(255,23,68,.4);text-align:center;padding:22px;margin-bottom:20px">
+    <div style="font-size:11px;color:var(--grey-l);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">Total to look fully professional</div>
+    <div style="font-size:48px;font-weight:900;background:linear-gradient(135deg,#FF1744,#FF6B6B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">~$120</div>
+    <div style="font-size:13px;color:var(--grey-l);margin-top:6px">NZD per year · Domain + Email · That's it</div>
+  </div>
+
+  <!-- 4 steps -->
+  <div class="section-title" style="margin-bottom:12px">The 4 Steps</div>
+
+  <!-- Step 1 -->
+  <div class="card" style="border-color:rgba(255,23,68,.3);padding:0;overflow:hidden;margin-bottom:10px">
+    <div style="background:rgba(255,23,68,.08);padding:14px 16px;border-bottom:1px solid rgba(255,23,68,.15);display:flex;align-items:center;gap:12px">
+      <div style="min-width:32px;height:32px;background:#FF1744;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#fff;flex-shrink:0">1</div>
+      <div>
+        <div style="font-size:15px;font-weight:800">Register propshots.co.nz</div>
+        <div style="font-size:11px;color:var(--grey-l);margin-top:2px">Your domain name — the foundation of everything</div>
+      </div>
+      <div style="margin-left:auto;text-align:right">
+        <div style="font-size:18px;font-weight:900;color:#FF1744">~$23</div>
+        <div style="font-size:10px;color:var(--grey-l)">per year</div>
+      </div>
+    </div>
+    <div style="padding:14px 16px">
+      <div style="font-size:12px;color:var(--grey-l);line-height:1.8;margin-bottom:12px">Go to <strong style="color:#fff">domainsdirect.nz</strong>, search "propshots", register propshots.co.nz. Takes about 5 minutes. Pay by card. You'll own it immediately.</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:6px 12px;font-size:11px;color:var(--grey-l)">✅ propshots.co.nz looks available</div>
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:6px 12px;font-size:11px;color:var(--grey-l)">⏱ 5 min to register</div>
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:6px 12px;font-size:11px;color:var(--grey-l)">🔗 domainsdirect.nz</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 2 -->
+  <div class="card" style="border-color:rgba(255,23,68,.3);padding:0;overflow:hidden;margin-bottom:10px">
+    <div style="background:rgba(255,23,68,.08);padding:14px 16px;border-bottom:1px solid rgba(255,23,68,.15);display:flex;align-items:center;gap:12px">
+      <div style="min-width:32px;height:32px;background:#FF1744;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#fff;flex-shrink:0">2</div>
+      <div>
+        <div style="font-size:15px;font-weight:800">Set up haydn@propshots.co.nz</div>
+        <div style="font-size:11px;color:var(--grey-l);margin-top:2px">Professional email — agents take you more seriously instantly</div>
+      </div>
+      <div style="margin-left:auto;text-align:right">
+        <div style="font-size:18px;font-weight:900;color:#FF1744">~$8</div>
+        <div style="font-size:10px;color:var(--grey-l)">per month</div>
+      </div>
+    </div>
+    <div style="padding:14px 16px">
+      <div style="font-size:12px;color:var(--grey-l);line-height:1.8;margin-bottom:12px">Use <strong style="color:#fff">Google Workspace</strong> — it's just Gmail but with your own domain. You send emails as haydn@propshots.co.nz but everything looks and works exactly like normal Gmail. Setup takes about 20 minutes.</div>
+      <div style="background:rgba(255,255,255,.03);border-radius:10px;padding:12px;margin-bottom:12px">
+        <div style="font-size:11px;font-weight:700;color:#FF1744;margin-bottom:8px;letter-spacing:.5px;text-transform:uppercase">How to set it up</div>
+        <div style="font-size:11px;color:var(--grey-l);line-height:1.9">
+          → Go to <strong style="color:#fff">workspace.google.com</strong><br>
+          → Click "Get Started" → choose Business Starter (~$8/mo)<br>
+          → Enter propshots.co.nz as your domain when asked<br>
+          → Google walks you through connecting it to your domain<br>
+          → You'll need to add a DNS record at domainsdirect.nz (they have guides)<br>
+          → Done — you now have haydn@propshots.co.nz
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:6px 12px;font-size:11px;color:var(--grey-l)">⏱ ~20 min setup</div>
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:6px 12px;font-size:11px;color:var(--grey-l)">📧 Works just like Gmail</div>
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:6px 12px;font-size:11px;color:var(--grey-l)">🔗 workspace.google.com</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 3 -->
+  <div class="card" style="border-color:rgba(255,23,68,.3);padding:0;overflow:hidden;margin-bottom:10px">
+    <div style="background:rgba(255,23,68,.08);padding:14px 16px;border-bottom:1px solid rgba(255,23,68,.15);display:flex;align-items:center;gap:12px">
+      <div style="min-width:32px;height:32px;background:#FF1744;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#fff;flex-shrink:0">3</div>
+      <div>
+        <div style="font-size:15px;font-weight:800">Grab social handles</div>
+        <div style="font-size:11px;color:var(--grey-l);margin-top:2px">Lock in @propshots or @propshotsnz before someone else does</div>
+      </div>
+      <div style="margin-left:auto;text-align:right">
+        <div style="font-size:18px;font-weight:900;color:var(--green)">Free</div>
+        <div style="font-size:10px;color:var(--grey-l)">always</div>
+      </div>
+    </div>
+    <div style="padding:14px 16px">
+      <div style="font-size:12px;color:var(--grey-l);line-height:1.8;margin-bottom:12px">Do this today — handles get taken fast. You don't need to post anything yet, just reserve the name.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px;text-align:center">
+          <div style="font-size:20px;margin-bottom:4px">📸</div>
+          <div style="font-size:12px;font-weight:700">Instagram</div>
+          <div style="font-size:11px;color:var(--grey-l);margin-top:2px">@propshotsnz</div>
+          <div style="font-size:10px;color:var(--grey-l);margin-top:4px">Post video clips here — agents browse Instagram</div>
+        </div>
+        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px;text-align:center">
+          <div style="font-size:20px;margin-bottom:4px">🎵</div>
+          <div style="font-size:12px;font-weight:700">TikTok</div>
+          <div style="font-size:11px;color:var(--grey-l);margin-top:2px">@propshotsnz</div>
+          <div style="font-size:10px;color:var(--grey-l);margin-top:4px">Vertical cuts of your property videos</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 4 -->
+  <div class="card" style="border-color:rgba(255,23,68,.3);padding:0;overflow:hidden;margin-bottom:20px">
+    <div style="background:rgba(255,23,68,.08);padding:14px 16px;border-bottom:1px solid rgba(255,23,68,.15);display:flex;align-items:center;gap:12px">
+      <div style="min-width:32px;height:32px;background:#FF1744;border-radius:50%;display:flex;align-items:center;justify-content:circle;font-size:14px;font-weight:900;color:#fff;flex-shrink:0;justify-content:center">4</div>
+      <div>
+        <div style="font-size:15px;font-weight:800">Update this app to PropShots branding</div>
+        <div style="font-size:11px;color:var(--grey-l);margin-top:2px">Rebrand the live site at wsking1.github.io/property-video</div>
+      </div>
+      <div style="margin-left:auto;text-align:right">
+        <div style="font-size:18px;font-weight:900;color:var(--green)">Free</div>
+        <div style="font-size:10px;color:var(--grey-l)">ask Claude</div>
+      </div>
+    </div>
+    <div style="padding:14px 16px">
+      <div style="font-size:12px;color:var(--grey-l);line-height:1.8">Come back to Claude and say <strong style="color:#fff">"update the app with PropShots branding"</strong> — takes about 2 minutes. The nav, title, outreach emails, and footer will all say PropShots. The GitHub site updates automatically.</div>
+    </div>
+  </div>
+
+  <!-- Cost summary table -->
+  <div class="section-title" style="margin-bottom:12px">Full Cost Breakdown</div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <table style="width:100%;border-collapse:collapse;font-size:12px">
+      <thead>
+        <tr style="background:rgba(0,0,0,.4)">
+          <th style="text-align:left;padding:10px 14px;color:var(--grey-l);font-size:9px;text-transform:uppercase;letter-spacing:.8px;font-weight:700">Item</th>
+          <th style="text-align:center;padding:10px 8px;color:var(--grey-l);font-size:9px;text-transform:uppercase;letter-spacing:.8px;font-weight:700">Cost</th>
+          <th style="text-align:center;padding:10px 8px;color:var(--grey-l);font-size:9px;text-transform:uppercase;letter-spacing:.8px;font-weight:700">Frequency</th>
+          <th style="text-align:left;padding:10px 14px;color:var(--grey-l);font-size:9px;text-transform:uppercase;letter-spacing:.8px;font-weight:700">Where</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04)">
+          <td style="padding:11px 14px;font-weight:600">propshots.co.nz domain</td>
+          <td style="padding:11px 8px;text-align:center;color:#FF1744;font-weight:800">~$23</td>
+          <td style="padding:11px 8px;text-align:center;color:var(--grey-l)">Per year</td>
+          <td style="padding:11px 14px;color:var(--grey-l)">domainsdirect.nz</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);background:rgba(255,255,255,.02)">
+          <td style="padding:11px 14px;font-weight:600">Google Workspace email</td>
+          <td style="padding:11px 8px;text-align:center;color:#FF1744;font-weight:800">~$96</td>
+          <td style="padding:11px 8px;text-align:center;color:var(--grey-l)">Per year</td>
+          <td style="padding:11px 14px;color:var(--grey-l)">workspace.google.com</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04)">
+          <td style="padding:11px 14px;font-weight:600">Instagram / TikTok</td>
+          <td style="padding:11px 8px;text-align:center;color:var(--green);font-weight:800">Free</td>
+          <td style="padding:11px 8px;text-align:center;color:var(--grey-l)">Always</td>
+          <td style="padding:11px 14px;color:var(--grey-l)">Instagram / TikTok apps</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);background:rgba(255,255,255,.02)">
+          <td style="padding:11px 14px;font-weight:600">GitHub Pages site</td>
+          <td style="padding:11px 8px;text-align:center;color:var(--green);font-weight:800">Free</td>
+          <td style="padding:11px 8px;text-align:center;color:var(--grey-l)">Always</td>
+          <td style="padding:11px 14px;color:var(--grey-l)">Already live</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04)">
+          <td style="padding:11px 14px;font-weight:600">Higgsfield Plus (videos)</td>
+          <td style="padding:11px 8px;text-align:center;color:#FF1744;font-weight:800">~$300</td>
+          <td style="padding:11px 8px;text-align:center;color:var(--grey-l)">Per year</td>
+          <td style="padding:11px 14px;color:var(--grey-l)">higgsfield.ai</td>
+        </tr>
+        <tr style="background:rgba(255,23,68,.08)">
+          <td style="padding:12px 14px;font-weight:900;color:#fff">TOTAL (Year 1)</td>
+          <td style="padding:12px 8px;text-align:center;color:#FF1744;font-weight:900;font-size:16px">~$420</td>
+          <td style="padding:12px 8px;text-align:center;color:var(--grey-l)">Per year</td>
+          <td style="padding:12px 14px;color:var(--grey-l);font-style:italic">One video sale covers this</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- What you already have -->
+  <div class="section-title" style="margin-bottom:12px">What You Already Have</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px">
+    <div style="background:rgba(0,200,83,.06);border:1px solid rgba(0,200,83,.2);border-radius:12px;padding:14px;text-align:center">
+      <div style="font-size:20px;margin-bottom:6px">✅</div>
+      <div style="font-size:12px;font-weight:700;color:var(--white)">Live shareable app</div>
+      <div style="font-size:10px;color:var(--grey-l);margin-top:3px">wsking1.github.io/property-video</div>
+    </div>
+    <div style="background:rgba(0,200,83,.06);border:1px solid rgba(0,200,83,.2);border-radius:12px;padding:14px;text-align:center">
+      <div style="font-size:20px;margin-bottom:6px">✅</div>
+      <div style="font-size:12px;font-weight:700;color:var(--white)">13 real leads identified</div>
+      <div style="font-size:10px;color:var(--grey-l);margin-top:3px">Ready to pitch today</div>
+    </div>
+    <div style="background:rgba(0,200,83,.06);border:1px solid rgba(0,200,83,.2);border-radius:12px;padding:14px;text-align:center">
+      <div style="font-size:20px;margin-bottom:6px">✅</div>
+      <div style="font-size:12px;font-weight:700;color:var(--white)">Outreach email builder</div>
+      <div style="font-size:10px;color:var(--grey-l);margin-top:3px">Personalised per agent</div>
+    </div>
+    <div style="background:rgba(0,200,83,.06);border:1px solid rgba(0,200,83,.2);border-radius:12px;padding:14px;text-align:center">
+      <div style="font-size:20px;margin-bottom:6px">✅</div>
+      <div style="font-size:12px;font-weight:700;color:var(--white)">Full business plan</div>
+      <div style="font-size:10px;color:var(--grey-l);margin-top:3px">PDFs + interactive app</div>
+    </div>
+    <div style="background:rgba(0,200,83,.06);border:1px solid rgba(0,200,83,.2);border-radius:12px;padding:14px;text-align:center">
+      <div style="font-size:20px;margin-bottom:6px">✅</div>
+      <div style="font-size:12px;font-weight:700;color:var(--white)">Brand name locked</div>
+      <div style="font-size:10px;color:var(--grey-l);margin-top:3px">PropShots — ready to go</div>
+    </div>
+    <div style="background:rgba(0,200,83,.06);border:1px solid rgba(0,200,83,.2);border-radius:12px;padding:14px;text-align:center">
+      <div style="font-size:20px;margin-bottom:6px">✅</div>
+      <div style="font-size:12px;font-weight:700;color:var(--white)">Higgsfield connected</div>
+      <div style="font-size:10px;color:var(--grey-l);margin-top:3px">Video generation ready</div>
+    </div>
+  </div>
+
+  <!-- Next action -->
+  <div class="card" style="background:linear-gradient(135deg,rgba(255,23,68,.08),rgba(0,0,0,0));border-color:rgba(255,23,68,.4);text-align:center;padding:20px">
+    <div style="font-size:22px;margin-bottom:8px">🎯</div>
+    <div style="font-size:16px;font-weight:800;color:#fff;margin-bottom:6px">Your Next Move</div>
+    <div style="font-size:12px;color:var(--grey-l);line-height:1.8;max-width:420px;margin:0 auto">
+      Register propshots.co.nz today (~$23), grab the Instagram handle, then pitch the Tinopai coastal bach listing. <strong style="color:#fff">One sale pays for the entire year of PropShots.</strong>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────────
+var LEADS = [
+  {name:"30 Ngatoto Rd, Tinopai",suburb:"Tinopai, Northland",type:"Coastal Bach",price:"$355K",days:"20",score:65,yours:"$180",drone:"$550+",close:72,why:"3,207 views on Trade Me. Harbour aerial drone shot. Classic Kiwi lifestyle — the story sells itself on video.",agent:"Holley Harkins-Jones",agency:"Schultz Realty Ltd"},
+  {name:"23 Swan Rd, Te Kauwhata",suburb:"Te Kauwhata, Waikato",type:"Modern Brick Home",price:"$780K",days:"13",score:74,yours:"$220",drone:"$600+",close:68,why:"Fresh listing at 13 days. Modern photogenic home with solar panels and double internal garage.",agent:"Kirsten Anderson",agency:"Fusion Real Estate"},
+  {name:"33 Trias Rd, Totara Vale",suburb:"Totara Vale, Auckland",type:"North Shore Auction",price:"~$900K+",days:"20",score:70,yours:"$250",drone:"$750+",close:65,why:"Auckland agents expect premium marketing. Auction format means motivated agent.",agent:"Lauren Lee",agency:""},
+  {name:"18 Vogel St, Hawera",suburb:"Hawera, South Taranaki",type:"Character Home",price:"$399K+",days:"20",score:61,yours:"$150",drone:"$450+",close:55,why:"Character 1910s home with a large 1,012m² section. Regional agent means less competition.",agent:"Scott Roberts",agency:"Metcalfe Real Estate"},
+  {name:"2 Nikau Pl, Whangarei",suburb:"Parahaki, Whangarei",type:"Family Home",price:"Deadline Sale",days:"33",score:58,yours:"$150",drone:"$400+",close:60,why:"33 days listed. Motivated agent needs a circuit breaker. Video refresh re-ignites buyer interest.",agent:"Huia Dunn",agency:""},
+  {name:"3/57 Margan Ave, New Lynn",suburb:"New Lynn, Waitakere City",type:"Downsizer Unit",price:"~$660K",days:"15",score:58,yours:"$150",drone:"$450+",close:58,why:"2,725 views, 104 watchlisted. Downsizer/retirement buyers respond strongly to a calm walkthrough showing easy single-level flow.",agent:"Craig Castle",agency:"Barfoot & Thompson Glen Eden",phone:"(021) 856412"},
+  {name:"54A Heron Ave East, Matua",suburb:"Matua, Tauranga",type:"Premium Suburb Home",price:"~$900K",days:"22",score:70,yours:"$200",drone:"$600+",close:70,why:"3,783 views. One of Tauranga's most sought-after suburbs, vendor explicitly motivated — auction urgency pairs perfectly with a video pitch.",agent:"Nick Drysdale",agency:"Bower Real Estate Bay Of Plenty",phone:"(027) 8226550"},
+  {name:"93 Birchs Rd, Prebbleton",suburb:"Prebbleton, Selwyn",type:"Brand New Townhouse",price:"$755K",days:"22",score:60,yours:"$180",drone:"$500+",close:60,why:"Brand new turnkey townhouse — fresh modern interiors are made for motion. Popular Christchurch commuter suburb.",agent:"Urszula Bedggood",agency:"Bayleys Rolleston",phone:"(027) 3387889"},
+  {name:"7 Tuke Lane, Wanaka",suburb:"Wanaka, Otago",type:"Luxury Architectural Build",price:"~$2M+",days:"22",score:80,yours:"$280",drone:"$800+",close:75,why:"Architecturally designed new-build, Mt Roy views, 15kW solar + Tesla Powerwall. Strongest lead in the batch — premium Wanaka buyers expect premium marketing.",agent:"Hannah Randall",agency:"Colliers Queenstown, Otago Realty",phone:"(027) 4266240"},
+  {name:"86 Botany Rd, Botany Downs",suburb:"Botany Downs, Auckland",type:"Development Opportunity",price:"CV $1.45M",days:"22",score:64,yours:"$220",drone:"$650+",close:62,why:"726m² freehold section with active redevelopment nearby. Video can show section scale and surrounding activity far better than photos.",agent:"Yang Wang",agency:"Barfoot & Thompson Howick",phone:"(027) 6688698"},
+  {name:"54 Gloucester St, Greenmeadows",suburb:"Greenmeadows, Napier",type:"Family Home with Pool",price:"$865K+",days:"23",score:67,yours:"$200",drone:"$550+",close:65,why:"Pool + entertaining area is exactly the lifestyle story that performs on video. Hawke's Bay market with low AI-video competition.",agent:"Ronnie Turner",agency:"Property Brokers Napier"},
+  {name:"106 Whitaker St, Whataupoko",suburb:"Whataupoko, Gisborne",type:"Character Villa",price:"$675K",days:"36",score:66,yours:"$150",drone:"$450+",close:68,why:"4,246 page views — exceptional engagement for this price point. 36 days on market means the agent is likely receptive to a fresh marketing angle.",agent:"Kerry Low",agency:"Bousfield Macpherson T/A Bayleys",phone:"(027) 5145979"},
+  {name:"10 Charlotte Way, Raumati South",suburb:"Raumati South, Kapiti Coast",type:"Sunset View Home",price:"$1.1M+",days:"29",score:73,yours:"$220",drone:"$650+",close:70,why:"Kapiti Island sunset views plus spa and plunge pool — a textbook golden-hour video brief. 3,972 views already on the listing.",agent:"Hayden & Georgie",agency:"H&G Real Estate",phone:"(021) 590815"}
+];
+
+var COMPANIES = [
+  {name:"Lake & Peak Property Management",region:"Queenstown",owners:"Janno & Carmen",email:"stay@lakeandpeak.co.nz",phone:"(021) 421 538",why:"Owner-operated, already photography-led — their own marketing copy says \"visual storytelling\" and one review specifically praises their \"photography, video and all other components.\" This is the easiest yes in the batch: they already believe in video, you're just the production arm they don't have in-house."},
+  {name:"Stayhub",region:"Auckland, Taupō, Tauranga",owners:"",email:"sales@thestayhub.co.nz",phone:"(09) 303 0302",why:"One of NZ's largest Airbnb management companies, 140+ marketing channels, partnered with Homes & Villas by Marriott. Manages a large enough portfolio that even a small trial could turn into a recurring monthly contract."},
+  {name:"Aotearoa Escapes",region:"Auckland (nationwide — Tauranga, Taupō, Rotorua, Hastings, Christchurch, Dunedin, Te Anau)",owners:"Hannah & Iliya",email:"info@aotearoaescapes.com",phone:"0211 555 777",why:"Family-run but operating nationwide — services properties in 8+ regions. A single relationship here could supply leads across the whole country, not just one city."},
+  {name:"Element Escapes",region:"Queenstown",owners:"",email:"info@elementescapes.co.nz",phone:"(03) 441 0370",why:"Manages 3 apartment complexes directly (Kent Street, Marina, Panorama Terrace) — meaning one yes could mean multiple properties immediately, not just a future pipeline."},
+  {name:"Hosting Queenstown",region:"Queenstown",owners:"Tim & Bron",email:"contact@hostingqueenstown.co.nz",phone:"(027) 303 9876",why:"Small family business, early Airbnb adopters since 2017. Markets across Airbnb, Booking.com, VRBO and Bookabach — exactly the kind of operator who'd want a vertical cut for socials too."}
+];
+
+var MONTHLY = [
+  ["M1",8,175,1400,25,1375,"First clients. Refine the pitch."],
+  ["M2",12,185,2220,25,2195,"Word of mouth begins."],
+  ["M3",16,195,3120,25,3095,"Workflow systemised."],
+  ["M4",20,200,4000,25,3975,"Referral network forming."],
+  ["M5",24,210,5040,50,4990,"Upgrade Higgsfield plan."],
+  ["M6",28,215,6020,50,5970,"6-month milestone."],
+  ["M7",32,220,7040,50,6990,"Consistent deal flow."],
+  ["M8",36,225,8100,75,8025,"Premium package introduced."],
+  ["M9",40,230,9200,75,9125,"Scale to 30+ pitches/week."],
+  ["M10",44,235,10340,75,10265,"Agency retainer talks."],
+  ["M11",48,240,11520,100,11420,"White-label potential."],
+  ["M12",52,250,13000,100,12900,"Year 1 complete."]
+];
+
+var FREE_TOOLS = [
+  {name:"Higgsfield AI",cost:"Free tier",desc:"Core image-to-video generation tool."},
+  {name:"CapCut",cost:"Free",desc:"Edit clips, add music, text overlays, export vertical cuts."},
+  {name:"DaVinci Resolve",cost:"Free",desc:"Professional colour grading and editing."},
+  {name:"Canva",cost:"Free tier",desc:"Thumbnails, agent proposals, social graphics."},
+  {name:"Claude AI",cost:"Free tier",desc:"Lead research, outreach writing, scoring."},
+  {name:"Trade Me Property",cost:"Free",desc:"Source no-video listings every day."},
+  {name:"Gmail / Google",cost:"Free",desc:"Email outreach, tracking, calendar."}
+];
+
+var PAID_TOOLS = [
+  {name:"Higgsfield Plus",cost:"~$25/mo",desc:"1,000 credits. Unlocks Kling 3.0 and Seedance 2.0."},
+  {name:"Higgsfield Ultra",cost:"~$75/mo",desc:"3,000 credits. For 40+ videos per month."},
+  {name:"CapCut Pro",cost:"~$10/mo",desc:"No watermark, advanced effects, auto captions."},
+  {name:"Canva Pro",cost:"~$25/mo",desc:"Unlimited exports, branded agent proposals."},
+  {name:"Claude Pro",cost:"~$30/mo",desc:"5x more usage. Faster research and outreach."},
+  {name:"Mailchimp",cost:"~$20/mo",desc:"Send 100s of personalised pitch emails per week."},
+  {name:"Loom",cost:"~$15/mo",desc:"Record screen showing demo video to agents."}
+];
+
+var PACKAGES = [
+  {stage:"Starter",period:"Month 1–2",cost:"~$25/mo",tools:"Higgsfield Plus + CapCut Free + Claude Free + Trade Me",bg:"rgba(255,23,68,.06)",border:"var(--cyan)"},
+  {stage:"Growth",period:"Month 3–5",cost:"~$65/mo",tools:"Higgsfield Plus + CapCut Pro + Claude Pro + Canva Free",bg:"rgba(29,185,84,.08)",border:"var(--green)"},
+  {stage:"Scale",period:"Month 6–12",cost:"~$165/mo",tools:"Higgsfield Ultra + CapCut Pro + Claude Pro + Canva Pro + Mailchimp",bg:"rgba(255,140,0,.08)",border:"var(--orange)"},
+  {stage:"Agency",period:"Month 12+",cost:"~$300/mo",tools:"All above + Loom + VA assistant for outreach ($5–10/hr)",bg:"rgba(255,23,68,.06)",border:"var(--purple)"}
+];
+
+var WHY = [
+  {icon:"📈",title:"Clear Gap in Market",desc:"35,000+ active NZ listings. Trade Me flags listings WITH video — making no-video listings instantly identifiable every day."},
+  {icon:"💰",title:"Agents Already Spend",desc:"NZ agents pay $400–$900 for drone video. You offer the same result at half the price in half the time."},
+  {icon:"⚡",title:"Speed is Your Edge",desc:"Drone operators take 3–7 days. You deliver in 24–48 hours. Urgency alone closes deals."},
+  {icon:"🌏",title:"NZ is Underserved",desc:"AI property video is mainstream in Australia and the US. NZ agents are behind — early movers win."},
+  {icon:"🏠",title:"No Travel or Licence",desc:"No CAA drone licence, no fuel, no weather delays. Run this from home in 1–2 hours per video."},
+  {icon:"🔄",title:"Repeat Business Built In",desc:"One happy agent has multiple listings per year. One relationship = 5–10 videos annually."}
+];
+
+var PLAN = [
+  {
+    week:"Week 1",
+    focus:"Setup & First Demo",
+    goal:"1 polished demo video ready to send to agents",
+    color:"#FF1744",
+    bg:"rgba(255,23,68,.06)",
+    border:"rgba(255,23,68,.3)",
+    why:"You can't pitch without a product to show. The first week is about getting your tools ready and producing one genuinely impressive demo video. This is your proof of concept — if you can make a great video for the Tinopai listing, you can sell it to any agent in NZ.",
+    days:[
+      {
+        day:"Day 1",
+        title:"Get set up on Higgsfield",
+        tasks:[
+          "Go to higgsfield.ai and sign up for the Plus plan (~$25/mo)",
+          "Explore the interface — click around, understand where media upload is",
+          "Download the 5–6 Tinopai listing photos from the Leads tab (the coastal bach with the harbour view)",
+          "Save them to a folder on your phone or desktop called 'Tinopai Demo'"
+        ],
+        tip:"Don't overthink the plan yet. Day 1 is purely about getting access to the tool and the photos. That's it."
+      },
+      {
+        day:"Day 2",
+        title:"Generate your first video clips",
+        tasks:[
+          "Upload the Tinopai photos to Higgsfield via the media upload widget",
+          "Start with the aerial harbour shot — generate a 5–8 second clip using Seedance 2.0 or Kling 3.0",
+          "Prompt to use: 'Slow cinematic drone fly-over, warm golden light, Kaipara Harbour glistening, lush green lawn, classic NZ coastal bach, smooth camera movement'",
+          "Generate clips for 3–4 more photos — living area, deck, section",
+          "Don't aim for perfect yet — just get familiar with the output"
+        ],
+        tip:"Generate at least 2–3 versions of each clip. Pick the best one. Higgsfield gives you options."
+      },
+      {
+        day:"Day 3",
+        title:"Edit your demo video in CapCut",
+        tasks:[
+          "Install CapCut on your phone or desktop (free)",
+          "Import your best clips in this order: aerial harbour → front exterior → deck → living area → section → aerial again to close",
+          "Add a subtle cinematic music track (CapCut has free ones — search 'cinematic real estate')",
+          "Add a text overlay on the first frame: '30 Ngatoto Road, Tinopai'",
+          "Add your contact details on the last frame: 'PropShots — haydn@propshots.co.nz'",
+          "Export at 1080p landscape"
+        ],
+        tip:"Keep it under 90 seconds. Agents won't watch more than that. The goal is to make them feel the property in the first 10 seconds."
+      },
+      {
+        day:"Day 4",
+        title:"Create the vertical social cut",
+        tasks:[
+          "In CapCut, duplicate your project",
+          "Change the aspect ratio to 9:16 (vertical)",
+          "Trim it down to 30 seconds — use only the best 3–4 shots",
+          "Add captions if you want (CapCut auto-captions)",
+          "Export as a separate file — this is your Instagram/TikTok version",
+          "Label both files clearly: 'Tinopai_Landscape.mp4' and 'Tinopai_Vertical.mp4'"
+        ],
+        tip:"This vertical cut is included free with every video you sell. Agents love it — it's something drone operators charge extra for."
+      },
+      {
+        day:"Day 5",
+        title:"Review and set up your pitch email",
+        tasks:[
+          "Watch your demo video critically — does it make the property look desirable?",
+          "If yes, it's ready. If not, re-generate the weakest clip and re-export",
+          "Go to the Outreach tab in this app and generate a pitch email for the Tinopai listing",
+          "Use 'Direct & Confident' tone — agents respect directness",
+          "Save the email as a template in your notes or drafts",
+          "Set up a Google Sheet with columns: Property, Agent, Email, Phone, Pitched Date, Response, Status"
+        ],
+        tip:"The lead tracker spreadsheet will become your most important business tool. Start it now even if you only have one lead."
+      },
+      {
+        day:"Days 6–7",
+        title:"Find 10 more no-video listings",
+        tasks:[
+          "Go to trademe.co.nz/property — browse Residential For Sale",
+          "Look for listings WITHOUT a 'Video' badge",
+          "Focus on: listed in last 30 days, price $350K+, good photos, photogenic property",
+          "Add 10 leads to your spreadsheet with agent name and email",
+          "Score each one 1–10 based on: photo quality, price bracket, days listed, visual appeal",
+          "Do NOT pitch yet — Week 2 is for pitching"
+        ],
+        tip:"Aim to have at least 15 leads in your tracker before you start pitching. The more you have, the more confident your outreach will feel."
+      }
+    ]
+  },
+  {
+    week:"Week 2",
+    focus:"First Outreach Batch",
+    goal:"At least 1 agent replies with interest — ideally your first paid sale",
+    color:"#FF8C00",
+    bg:"rgba(255,140,0,.06)",
+    border:"rgba(255,140,0,.3)",
+    why:"Most people overthink the pitch. The truth is: if you attach a free demo video of their actual listing, the email almost sells itself. Agents are busy — make it visual, make it short, make it easy to say yes. This week is about sending volume and learning what works.",
+    days:[
+      {
+        day:"Day 8",
+        title:"Send your first 5 pitches",
+        tasks:[
+          "Start with the 13 leads from this app (Tinopai, Te Kauwhata, Auckland, Hawera, Whangarei, New Lynn, Matua, Prebbleton, Wanaka, Botany Downs, Napier, Gisborne, Kapiti Coast)",
+          "Use the Outreach Builder to generate personalised emails for each",
+          "Attach the Tinopai demo video as proof of quality — even if the listing is different",
+          "Send from your professional email (or Gmail for now if PropShots email isn't set up yet)",
+          "Log each send in your spreadsheet with today's date",
+          "Do NOT follow up yet — give them 3 days"
+        ],
+        tip:"Send between 9am–11am on a Tuesday, Wednesday or Thursday. These are peak email open times for NZ real estate agents."
+      },
+      {
+        day:"Days 9–10",
+        title:"Find and pitch 10 more listings",
+        tasks:[
+          "Browse Trade Me again — find 10 fresh listings with no video",
+          "Generate a demo video for the strongest one (best visuals, highest price)",
+          "Personalise each email — mention ONE specific thing from their listing in the first sentence",
+          "Example: 'I noticed the harbour view in photo 4 of your Tinopai listing — that would look incredible in motion'",
+          "Send 10 more pitches — 15 total by end of day 10",
+          "Add all to your spreadsheet"
+        ],
+        tip:"The personalised first line is the difference between a delete and a reply. Takes 30 extra seconds and doubles your response rate."
+      },
+      {
+        day:"Day 11",
+        title:"Follow up on your first 5 pitches",
+        tasks:[
+          "3 days have passed since Day 8 — time to follow up",
+          "Send one short, confident follow-up to each of the 5 original pitches",
+          "Message: 'Hey [name], just checking you got this — the demo video is attached again if it got buried. Happy to chat if easier.'",
+          "Keep it under 3 sentences",
+          "Do not apologise or sound desperate — you have a product they need",
+          "Log the follow-up date in your spreadsheet"
+        ],
+        tip:"Most sales happen on the follow-up, not the first email. If they didn't reply to the first email, they probably just got busy. One follow-up is professional. Two starts to feel pushy."
+      },
+      {
+        day:"Days 12–13",
+        title:"Handle replies and close your first sale",
+        tasks:[
+          "Check email morning and evening for replies",
+          "If an agent replies with interest: respond same day, confirm their details, confirm your price, send invoice",
+          "If they ask about price: your response is 'I charge $[price] for the full landscape video plus a vertical social media cut — delivered within 48 hours. Happy to send a proper version of your listing once you're ready.'",
+          "If they ask for a discount: offer 10% off the first video only, frame it as a first-client rate",
+          "If no replies yet: don't panic — 15 pitches in 5 days is a strong start. Some agents take a week to reply.",
+          "Find 5 more listings and pitch them today"
+        ],
+        tip:"When an agent says yes, respond within the hour if possible. Speed signals professionalism and locks in the commitment before they change their mind."
+      },
+      {
+        day:"Day 14",
+        title:"Week 2 review",
+        tasks:[
+          "Count: How many pitches sent? How many replies? How many interested?",
+          "If you closed a sale: produce the video this week using the workflow in the Workflow tab",
+          "If no replies yet: review your subject lines and first sentences — these are the two things that determine whether an email gets opened",
+          "Strong subject line formula: '[Property address] — free demo video inside'",
+          "Make note of which listings got the most engagement and why",
+          "Set a target: 20 pitches next week"
+        ],
+        tip:"A 10–15% reply rate on cold emails is considered good. So out of 15 pitches, 1–2 replies is completely normal. Don't measure success by sales yet — measure it by conversations started."
+      }
+    ]
+  },
+  {
+    week:"Week 3",
+    focus:"Systemise & Deliver",
+    goal:"First invoice paid, repeat process locked in, 3 pricing packages live",
+    color:"#00C853",
+    bg:"rgba(0,200,83,.06)",
+    border:"rgba(0,200,83,.3)",
+    why:"By now you have real conversations happening. Week 3 is about turning this from a hustle into a repeatable system. You shouldn't have to reinvent the process every time. The goal is to get to a point where finding a lead, pitching, producing and delivering a video takes less than 4 hours total — and feels effortless.",
+    days:[
+      {
+        day:"Days 15–16",
+        title:"Deliver your first paid video",
+        tasks:[
+          "If you have a paid client: produce their video using exactly the workflow in the Workflow tab",
+          "Upload both landscape and vertical cuts to a Google Drive folder named after the agent",
+          "Set sharing to 'Anyone with the link can view and download'",
+          "Send the delivery email: 'Hi [name], here are your files — [link]. Landscape for portals, vertical for social. Let me know if you'd like any tweaks. Invoice attached. Thanks, Haydn — PropShots'",
+          "Send the invoice via Wave (free) or Hnry — include your bank account number",
+          "If no paid client yet: produce a second demo video for a different listing type (e.g. Te Kauwhata modern home) to expand your portfolio"
+        ],
+        tip:"The delivery email should always include both files, the drive link, and the invoice in one email. Don't make agents chase you for anything."
+      },
+      {
+        day:"Day 17",
+        title:"Create your 3 pricing packages",
+        tasks:[
+          "Basic — $150: 60-second landscape video only. Good for regional or entry-level listings.",
+          "Standard — $200: 90-second landscape + 30-second vertical social cut. Best seller.",
+          "Premium — $280: 90-second cinematic landscape + vertical cut + 3 still thumbnail images extracted from the video. Best for luxury or auction listings.",
+          "Write these up clearly in a document or note — you'll reference this every time someone asks about price",
+          "Add a 'first client discount' note: 10% off the first video for new agents",
+          "Update your pitch email template to mention packages briefly"
+        ],
+        tip:"Having three packages makes the conversation easier. Instead of 'how much does it cost?' the agent chooses between options. People find it easier to say yes when they're picking, not just approving."
+      },
+      {
+        day:"Days 18–19",
+        title:"Build your weekly system",
+        tasks:[
+          "Set a recurring daily alarm: 'PropShots — 30 min lead sweep'",
+          "Every morning: open Trade Me, scan for 5–10 new no-video listings, add best ones to spreadsheet",
+          "Every afternoon: send 3–5 pitch emails from that morning's sweep",
+          "Every 3 days: follow up on pitches that haven't replied",
+          "Every Friday: review the week — pitches sent, replies, sales, revenue",
+          "Template this into a weekly checklist you repeat every single week"
+        ],
+        tip:"Consistency beats intensity every time. 5 pitches a day for 30 days beats 150 pitches in one day and nothing after. Agents need to see your name multiple times before they trust you."
+      },
+      {
+        day:"Day 20",
+        title:"Ask for your first testimonial",
+        tasks:[
+          "If you've delivered a video: send this message to the agent — 'Hi [name], really glad you're happy with the video! Would you mind leaving a quick Google review for PropShots, or letting me use a sentence from your feedback on my website? It helps a lot when I'm reaching out to new agents.'",
+          "Even one testimonial changes everything — it's social proof that you're real and your work is good",
+          "Screenshot any positive reply and save it — even a 'looks great thanks!' counts",
+          "If no delivery yet: follow up with your top 3 most promising leads from Week 2"
+        ],
+        tip:"A testimonial from one agent opens the door to their entire office. Real estate offices talk to each other constantly. One happy client can become 5–10 clients through word of mouth alone."
+      },
+      {
+        day:"Days 21–22",
+        title:"Pitch 20+ agents this week",
+        tasks:[
+          "Your target this week is 20 pitch emails minimum",
+          "Vary your approach — try different subject lines and compare open/reply rates",
+          "Subject line A: '[Address] — free demo video inside'",
+          "Subject line B: 'Your [suburb] listing could look like this'",
+          "Subject line C: 'I made a video of your listing at [address]'",
+          "Track which one gets the most replies — double down on it next week",
+          "Continue adding to your lead spreadsheet — aim for 50 total leads in the tracker by end of week 3"
+        ],
+        tip:"Subject line C is often the strongest because it creates curiosity. The agent HAS to open it to find out what video you made of their listing."
+      }
+    ]
+  },
+  {
+    week:"Week 4",
+    focus:"Scale & Referrals",
+    goal:"$1,000+ revenue, referral system live, consistent weekly rhythm",
+    color:"#A855F7",
+    bg:"rgba(168,85,247,.06)",
+    border:"rgba(168,85,247,.3)",
+    why:"By week 4 you should have at least one sale under your belt and a clear sense of what's working. This week is about turning a hustle into a business. You'll set up a referral system, approach real estate offices directly, and lock in a rhythm that keeps generating income without starting from scratch every week.",
+    days:[
+      {
+        day:"Days 23–24",
+        title:"Launch your referral system",
+        tasks:[
+          "Message every agent you've worked with or had a positive conversation with:",
+          "'Hey [name], if you know any other agents who might want a video for their listings, I'd love an intro. I'll give you both 20% off your next video as a thank you.'",
+          "This costs you nothing upfront and can multiply your client base fast",
+          "Real estate agents work in offices of 5–20 people — one referral can unlock the whole team",
+          "Add a referral note to your email signature: 'Refer a colleague and you both get 20% off your next video'"
+        ],
+        tip:"Real estate is a word-of-mouth industry. Agents trust recommendations from colleagues more than cold emails. One referral from a happy client is worth 20 cold pitches."
+      },
+      {
+        day:"Day 25",
+        title:"Approach a real estate office directly",
+        tasks:[
+          "Pick one local office — Harcourts, Ray White, or Bayleys in your area",
+          "Find the office manager or principal's email (usually on the agency website)",
+          "Send this email: 'Hi [name], I run PropShots — we produce cinematic AI property videos for NZ agents at $150–$280 per listing, delivered in 48 hours. I'd love to offer one free video to any agent in your office so they can see the quality firsthand. Happy to chat if this sounds useful — [your number].'",
+          "This is the highest-leverage pitch you can make — one yes here can mean 10–20 clients",
+          "Follow up after 4 days if no reply"
+        ],
+        tip:"Office managers are always looking for ways to give their agents a competitive edge. A free trial removes all risk for them. Even if only 2 out of 10 agents in the office use you, that's recurring business every month."
+      },
+      {
+        day:"Days 26–27",
+        title:"Track, review and double down",
+        tasks:[
+          "Open your lead spreadsheet and review everything:",
+          "Which listing types converted best? (price range, suburb, days listed)",
+          "Which subject lines got the most opens?",
+          "Which email tones got the most replies? (direct, friendly, professional)",
+          "Which time of day got the fastest responses?",
+          "Cut what isn't working. Do more of what is.",
+          "Set a pitch target for next month: 100 total pitches in month 2"
+        ],
+        tip:"Data is your competitive advantage. Most people run businesses on gut feel. You'll run PropShots on evidence. After 30 days you'll know exactly what works — most people never get that clarity because they quit before they get there."
+      },
+      {
+        day:"Days 28–30",
+        title:"Month 1 wrap up and Month 2 plan",
+        tasks:[
+          "Total up your numbers: pitches sent, replies, sales, revenue",
+          "Calculate your actual close rate: (sales ÷ pitches) × 100",
+          "If close rate is below 5%: your pitch needs work — try a different subject line or tone",
+          "If close rate is above 10%: scale the outreach — send more pitches, same formula",
+          "Write down your Month 2 target: more pitches, higher average price, first retainer deal",
+          "Post your best video clip to Instagram @propshotsnz — even without followers, it starts building the account",
+          "Most importantly: recognise that you built a real business in 30 days from nothing"
+        ],
+        tip:"Month 1 is the hardest. Everything after this gets easier because you have proof, testimonials, a process, and momentum. The agents who said no in week 1 might say yes in month 3 when they see you're still around and the quality is consistent."
+      }
+    ]
+  }
+];
+
+var WORKFLOW = [
+  {phase:"PHASE 1 — FIND",icon:"🔍",title:"Find No-Video Listings",time:"~30 min",color:"#00C2CB",bg:"rgba(255,23,68,.04)",border:"rgba(255,23,68,.22)",steps:[
+    {n:"1",title:"Open Trade Me Property",time:"2 min",desc:"Go to trademe.co.nz/property. Set Residential → For Sale. Sort by Latest Listings."},
+    {n:"2",title:"Scan for no-video listings",time:"10 min",desc:"Listings with video show a 'Video' badge. Listings without one are your targets. Focus on the last 7–30 days."},
+    {n:"3",title:"Qualify the listing",time:"5 min",desc:"Is it $350K+? Good photos? Photogenic property? Still active? Yes to 3+ = it's a lead."},
+    {n:"4",title:"Get agent contact details",time:"3 min",desc:"Note the agent's name, email, and phone from the listing. Copy the listing URL."},
+    {n:"5",title:"Log it in your lead tracker",time:"2 min",desc:"Spreadsheet columns: address, agent name, email, price, days listed, pitch date."}
+  ]},
+  {phase:"PHASE 2 — PITCH",icon:"📧",title:"Pitch the Agent",time:"~15 min",color:"#FF8C00",bg:"rgba(255,140,0,.06)",border:"rgba(255,140,0,.25)",steps:[
+    {n:"6",title:"Generate a demo video (powerful)",time:"2–3 hrs",desc:"Generate a short fly-through from the listing photos in Higgsfield. Agents who see their own listing in video almost always respond."},
+    {n:"7",title:"Write the pitch email",time:"5 min",desc:"Use the Outreach Builder tab. Enter the agent name, listing, your price, and tone. Personalise the first line with one specific detail from their listing."},
+    {n:"8",title:"Send the email",time:"2 min",desc:"Send from your professional email. Subject line includes the property address. Keep it under 150 words. Attach the demo video."},
+    {n:"9",title:"Follow up after 3 days",time:"3 min",desc:"One short follow-up if no reply: 'Hey [name], just checking you got this.' No more than 2 follow-ups total."}
+  ]},
+  {phase:"PHASE 3 — PRODUCE",icon:"🎬",title:"Produce the Video",time:"~2–3 hrs",color:"#FF1744",bg:"rgba(255,23,68,.06)",border:"rgba(255,23,68,.25)",steps:[
+    {n:"10",title:"Collect the best photos",time:"15 min",desc:"Download 4–8 photos: exterior, aerial/elevated view, living area, kitchen, outdoor space, unique feature. Save to a named folder."},
+    {n:"11",title:"Upload to Higgsfield",time:"5 min",desc:"Go to higgsfield.ai. Upload photos via the media upload widget. Start with the best exterior or aerial shot."},
+    {n:"12",title:"Generate video clips",time:"30–60 min",desc:"Use Seedance 2.0 or Kling 3.0. For each key photo, generate a 5–8 second cinematic clip. Prompt: 'Slow cinematic dolly, warm golden light, smooth camera movement, real estate lifestyle feel.'"},
+    {n:"13",title:"Edit in CapCut",time:"30–45 min",desc:"Arrange: aerial → living → kitchen → outdoor → final exterior. Add background music. Add text overlay with address on first frame and contact details on last. Export 1080p."},
+    {n:"14",title:"Create the vertical cut",time:"15 min",desc:"Crop to 9:16 in CapCut. Trim to 30 seconds for Instagram/TikTok. This is included free — agents love the social media cut."},
+    {n:"15",title:"Review before sending",time:"10 min",desc:"Watch it fully. Does it flow? Is the music right? Are overlays readable? Does it make the property look desirable? If you'd be proud showing it, it's ready."}
+  ]},
+  {phase:"PHASE 4 — DELIVER & GET PAID",icon:"💰",title:"Deliver & Get Paid",time:"~10 min",color:"#1DB954",bg:"rgba(29,185,84,.06)",border:"rgba(29,185,84,.25)",steps:[
+    {n:"16",title:"Upload the video",time:"5 min",desc:"Upload to Google Drive. Create a shared folder named after the agent and property. Drop landscape and vertical 9:16 versions inside. Set sharing to 'Anyone with link can view and download'."},
+    {n:"17",title:"Send the delivery email",time:"3 min",desc:"'Hi [name], here are your files — [link]. Landscape (for portals) and vertical (for social). Let me know if you'd like any tweaks. Payment: [bank account]. Thanks, [your name].'"},
+    {n:"18",title:"Invoice them",time:"2 min",desc:"Use Wave or Hnry (free). Include: your name, property address, video description, amount, bank account. Due on receipt. Most agents pay within 1–3 days."},
+    {n:"19",title:"Follow up if unpaid after 5 days",time:"2 min",desc:"One polite nudge: 'Hi [name], just checking the invoice came through — happy to resend.' If still nothing after 10 days, call the agency directly."},
+    {n:"20",title:"Ask for a testimonial",time:"2 min",desc:"Once paid: 'Would you mind leaving a quick Google review? It helps a lot.' A testimonial from one agent leads to referrals from three more."}
+  ]},
+  {phase:"PHASE 5 — SCALE",icon:"🚀",title:"Scale & Systemise",time:"Ongoing",color:"#F59E0B",bg:"rgba(245,158,11,.06)",border:"rgba(245,158,11,.25)",steps:[
+    {n:"21",title:"Build your lead tracker",time:"30 min once",desc:"Spreadsheet: Date Found, Address, Agent, Email, Price, Days Listed, Score, Pitched Y/N, Response, Sale Status, Notes. Review daily."},
+    {n:"22",title:"Create 3 pricing packages",time:"1 hr once",desc:"Basic $150: 60-sec landscape only. Standard $200: 90-sec + vertical cut. Premium $280: 90-sec cinematic + vertical + 3 still thumbnails."},
+    {n:"23",title:"Build a referral system",time:"15 min",desc:"After each happy client: 'Refer me to another agent in your office and you both get 20% off your next video.' Word spreads fast in real estate offices."},
+    {n:"24",title:"Approach agencies directly",time:"1 hr/week",desc:"Email office managers of Harcourts, Ray White, Bayleys branches. Offer a 'try one free' deal. One agent in the office = the whole office."},
+    {n:"25",title:"Track what's working",time:"10 min/week",desc:"Every Friday: pitches sent, replies, sales, close rate, best listing type. Double down on what works. Cut what doesn't."}
+  ]}
+];
+
+var CHECKLIST = [
+  "Higgsfield Plus plan is active",
+  "CapCut installed on phone or desktop",
+  "Gmail set up with a professional email address",
+  "Google Drive folder structure created (one folder per client)",
+  "Lead tracker spreadsheet is set up",
+  "At least one demo video generated",
+  "Pitch email template written and ready to personalise",
+  "Pricing decided ($150 / $200 / $280 packages)",
+  "Bank account details ready to include in invoices",
+  "Invoice template created in Wave or Hnry"
+];
+
+var ASSESS = [
+  {factor:"Market Demand",assessment:"High — agents actively seek affordable video solutions",verdict:"✅ Strong"},
+  {factor:"Competition",assessment:"Low — AI video is new to most NZ agents in 2026",verdict:"✅ Strong"},
+  {factor:"Price Point",assessment:"$150–$250 is an easy yes for an agent on a $780K listing",verdict:"✅ Strong"},
+  {factor:"Your Execution",assessment:"1–2 hrs to find leads, 2–3 hrs per video. Self-managed.",verdict:"⚡ Manageable"},
+  {factor:"Video Quality",assessment:"AI video is good enough now and improving every month",verdict:"✅ Good"},
+  {factor:"Agent Scepticism",assessment:"Some unfamiliar with AI — a free demo video resolves this",verdict:"⚡ Manageable"},
+  {factor:"Repeat Business",assessment:"High once trust is established after first delivery",verdict:"✅ Strong"},
+  {factor:"Scalability",assessment:"Batch processing and email templates make this systematic",verdict:"✅ Strong"},
+  {factor:"Risk Level",assessment:"~$25/mo tool cost only. No physical assets. Near zero risk.",verdict:"✅ Very Low"},
+  {factor:"Overall Probability",assessment:"Conservative estimate of landing first client within 30 days",verdict:"70–75% ✅"}
+];
+
+// ── NAVIGATION ────────────────────────────────────────────────────────────────
+document.querySelectorAll('.nav-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    showPage(this.getAttribute('data-page'));
+  });
+});
+
+document.querySelectorAll('[data-goto]').forEach(function(el) {
+  el.addEventListener('click', function() {
+    showPage(this.getAttribute('data-goto'));
+  });
+});
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.nav-btn').forEach(function(b) { b.classList.remove('active'); });
+  var page = document.getElementById('page-' + id);
+  if (page) page.classList.add('active');
+  var activeBtn = null;
+  document.querySelectorAll('.nav-btn').forEach(function(b) {
+    if (b.getAttribute('data-page') === id) { b.classList.add('active'); activeBtn = b; }
+  });
+  if (activeBtn) { activeBtn.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}); }
+  window.scrollTo(0, 0);
+}
+
+// ── NAV SCROLL ARROWS ─────────────────────────────────────────────────────────
+var navInner = document.getElementById('nav-inner');
+var navLeftBtn = document.getElementById('nav-scroll-left');
+var navRightBtn = document.getElementById('nav-scroll-right');
+
+function updateNavArrows() {
+  if (!navInner) return;
+  var maxScroll = navInner.scrollWidth - navInner.clientWidth;
+  navLeftBtn.classList.toggle('hidden', navInner.scrollLeft <= 4);
+  navRightBtn.classList.toggle('hidden', navInner.scrollLeft >= maxScroll - 4);
+}
+
+if (navLeftBtn) {
+  navLeftBtn.addEventListener('click', function() {
+    navInner.scrollBy({left: -180, behavior: 'smooth'});
+  });
+}
+if (navRightBtn) {
+  navRightBtn.addEventListener('click', function() {
+    navInner.scrollBy({left: 180, behavior: 'smooth'});
+  });
+}
+if (navInner) {
+  navInner.addEventListener('scroll', updateNavArrows);
+  window.addEventListener('resize', updateNavArrows);
+  setTimeout(updateNavArrows, 100);
+}
+
+// ── ACCORDIONS ────────────────────────────────────────────────────────────────
+document.querySelectorAll('.acc-header').forEach(function(header) {
+  header.addEventListener('click', function() {
+    this.parentElement.classList.toggle('open');
+  });
+});
+
+// ── RENDER FUNCTIONS ──────────────────────────────────────────────────────────
+function renderHomeWhy() {
+  var c = document.getElementById('home-why');
+  c.innerHTML = WHY.map(function(w) {
+    return '<div class="why-card"><div class="why-icon">'+w.icon+'</div><div><div class="why-title">'+w.title+'</div><div class="why-desc">'+w.desc+'</div></div></div>';
+  }).join('');
+}
+
+function renderLeads() {
+  var c = document.getElementById('leads-container');
+  c.innerHTML = LEADS.map(function(l) {
+    var sc = l.score >= 65 ? 'var(--green)' : 'var(--orange)';
+    var cc = l.close >= 65 ? 'var(--green)' : 'var(--orange)';
+    var agentLine = '';
+    if (l.agent) {
+      agentLine = '<div style="font-size:10px;color:var(--grey-l);margin-top:6px">👤 '+l.agent+(l.agency?' · '+l.agency:'')+(l.phone?' · '+l.phone:'')+'</div>';
+    }
+    return '<div class="lead-card">'+
+      '<div class="lead-header">'+
+        '<div><div class="lead-name">'+l.name+'</div><div class="lead-type">'+l.type+' · '+l.price+' · '+l.days+' days listed</div></div>'+
+        '<div class="lead-close"><div class="lead-close-num" style="color:'+cc+'">'+l.close+'%</div><div class="lead-close-lbl">close chance</div></div>'+
+      '</div>'+
+      '<div class="lead-body">'+
+        '<div class="lead-stats">'+
+          '<div class="lead-stat"><div class="lead-stat-val" style="color:'+sc+'">'+l.score+'/100</div><div class="lead-stat-lbl">Score</div></div>'+
+          '<div class="lead-stat"><div class="lead-stat-val" style="color:var(--green)">'+l.yours+'</div><div class="lead-stat-lbl">Your Price</div></div>'+
+          '<div class="lead-stat"><div class="lead-stat-val" style="color:var(--red)">'+l.drone+'</div><div class="lead-stat-lbl">Drone Equiv.</div></div>'+
+        '</div>'+
+        '<div class="progress-label"><span>Score</span><span style="color:'+sc+'">'+l.score+'/100</span></div>'+
+        '<div class="progress-track"><div class="progress-fill" style="width:'+l.score+'%;background:'+sc+'"></div></div>'+
+        '<div class="lead-why">💡 '+l.why+'</div>'+
+        agentLine+
+      '</div>'+
+    '</div>';
+  }).join('');
+
+  // Populate the Outreach Builder dropdown dynamically
+  var sel = document.getElementById('lead-select');
+  if (sel) {
+    var opts = LEADS.map(function(l, i) {
+      return '<option value="'+i+'">'+l.name+' — '+l.type+' — '+l.price+'</option>';
+    }).join('');
+    sel.innerHTML = opts + '<option value="custom">Custom listing</option>';
+  }
+}
+
+function renderCompanies() {
+  var c = document.getElementById('companies-container');
+  if (!c) return;
+  c.innerHTML = COMPANIES.map(function(co) {
+    return '<div class="lead-card" style="border-color:rgba(255,183,0,.25)">'+
+      '<div class="lead-header" style="background:rgba(255,183,0,.05)">'+
+        '<div>'+
+          '<div class="lead-name">'+co.name+'</div>'+
+          '<div class="lead-type">'+co.region+(co.owners?' · '+co.owners:'')+'</div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="lead-body">'+
+        '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px">'+
+          '<span style="font-size:11px;background:rgba(255,255,255,.05);border-radius:8px;padding:5px 10px;color:var(--white)">✉️ '+co.email+'</span>'+
+          '<span style="font-size:11px;background:rgba(255,255,255,.05);border-radius:8px;padding:5px 10px;color:var(--white)">📞 '+co.phone+'</span>'+
+        '</div>'+
+        '<div class="lead-why" style="border-top:none;padding-top:0">💡 '+co.why+'</div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+
+function renderEarnChart() {
+  var data = [{l:'Conservative',g:1200,n:1175},{l:'Realistic',g:2400,n:2375},{l:'Strong',g:5280,n:5255},{l:'Scale Up',g:10000,n:9950}];
+  var max = 10000;
+  var c = document.getElementById('earn-chart');
+  c.innerHTML = data.map(function(d) {
+    var gh = Math.round((d.g/max)*120);
+    var nh = Math.round((d.n/max)*120);
+    return '<div class="bar-group"><div class="bar-wrap" style="height:'+gh+'px;background:rgba(255,23,68,.35)"><div class="bar-net" style="height:'+nh+'px;background:var(--green)"></div></div><div class="bar-lbl">'+d.l+'</div></div>';
+  }).join('');
+}
+
+function renderMonthlyChart() {
+  var max = 13000;
+  var c = document.getElementById('mo-chart');
+  c.innerHTML = MONTHLY.map(function(m) {
+    var gh = Math.round((m[3]/max)*155);
+    var nh = Math.round((m[5]/max)*155);
+    return '<div class="bar-group"><div class="bar-wrap" style="height:'+gh+'px;background:rgba(255,23,68,.28)"><div class="bar-net" style="height:'+nh+'px;background:var(--green)"></div></div><div class="bar-lbl">'+m[0]+'</div></div>';
+  }).join('');
+}
+
+function renderMonthlyTable() {
+  var tb = document.getElementById('mo-tbody');
+  tb.innerHTML = MONTHLY.map(function(m, i) {
+    var nc = m[5]>=10000?'var(--green-d)':m[5]>=5000?'var(--green)':m[5]>=3000?'var(--cyan)':'var(--grey-l)';
+    var ms = (i===5||i===11)?'ms':'';
+    return '<tr class="'+ms+'"><td style="font-weight:700;color:var(--cyan)">'+m[0]+'</td><td>'+m[1]+'</td><td>$'+m[2]+'</td><td>$'+m[3].toLocaleString()+'</td><td style="color:var(--grey-l)">~$'+m[4]+'</td><td style="font-weight:700;color:'+nc+'">$'+m[5].toLocaleString()+'</td><td class="ms-col">'+m[6]+'</td></tr>';
+  }).join('');
+}
+
+function renderFreeTools() {
+  var c = document.getElementById('free-tools');
+  c.innerHTML = FREE_TOOLS.map(function(t) {
+    return '<div class="tool-item" style="background:rgba(29,185,84,.06);border:1px solid rgba(29,185,84,.2)"><div class="tool-badge" style="background:var(--green-l);color:var(--green-d)">FREE</div><div><div class="tool-name">'+t.name+'</div><div class="tool-desc">'+t.desc+'</div></div></div>';
+  }).join('');
+}
+
+function renderPaidTools() {
+  var c = document.getElementById('paid-tools');
+  c.innerHTML = PAID_TOOLS.map(function(t) {
+    return '<div class="tool-item" style="background:rgba(229,57,53,.04);border:1px solid rgba(229,57,53,.15)"><div class="tool-badge" style="background:var(--red-l);color:var(--red)">'+t.cost+'</div><div><div class="tool-name">'+t.name+'</div><div class="tool-desc">'+t.desc+'</div></div></div>';
+  }).join('');
+}
+
+function renderPackages() {
+  var c = document.getElementById('pkg-grid');
+  c.innerHTML = PACKAGES.map(function(p) {
+    return '<div class="pkg-card" style="background:'+p.bg+';border-color:'+p.border+'"><div class="pkg-stage">'+p.stage+'</div><div class="pkg-period">'+p.period+'</div><div class="pkg-cost">'+p.cost+'</div><div class="pkg-tools">'+p.tools+'</div></div>';
+  }).join('');
+}
+
+function renderPlan() {
+  var c = document.getElementById('plan-container');
+  c.innerHTML = PLAN.map(function(p) {
+    var days = p.days.map(function(d) {
+      return '<div style="margin-bottom:10px">'+
+        '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">'+
+          '<div style="background:'+p.color+';color:#0a0a0a;font-size:9px;font-weight:800;padding:2px 8px;border-radius:20px;letter-spacing:.5px;white-space:nowrap">'+d.day+'</div>'+
+          '<div style="font-size:13px;font-weight:800;color:var(--white)">'+d.title+'</div>'+
+        '</div>'+
+        '<div style="padding-left:4px">'+
+          d.tasks.map(function(t) {
+            return '<div style="display:flex;gap:7px;margin-bottom:5px;align-items:flex-start">'+
+              '<span style="color:'+p.color+';flex-shrink:0;margin-top:1px;font-size:11px">→</span>'+
+              '<span style="font-size:11px;color:var(--grey-l);line-height:1.6">'+t+'</span>'+
+            '</div>';
+          }).join('')+
+          '<div style="background:rgba(255,255,255,.04);border-left:2px solid '+p.color+';border-radius:0 6px 6px 0;padding:8px 10px;margin-top:8px">'+
+            '<span style="font-size:10px;font-weight:700;color:'+p.color+'">💡 TIP  </span>'+
+            '<span style="font-size:10px;color:var(--grey-l);line-height:1.5">'+d.tip+'</span>'+
+          '</div>'+
+        '</div>'+
+      '</div>';
+    }).join('<div style="height:1px;background:rgba(255,255,255,.05);margin:12px 0"></div>');
+
+    return '<div style="border:1px solid '+p.border+';border-radius:16px;overflow:hidden;margin-bottom:16px">'+
+      // Header
+      '<div style="background:'+p.bg+';padding:16px;border-bottom:1px solid rgba(255,255,255,.06)">'+
+        '<div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">'+
+          '<div>'+
+            '<div style="font-size:10px;font-weight:700;color:'+p.color+';letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px">'+p.week+'</div>'+
+            '<div style="font-size:20px;font-weight:900;color:var(--white);letter-spacing:-.3px">'+p.focus+'</div>'+
+          '</div>'+
+          '<div style="background:rgba(0,200,83,.12);border:1px solid rgba(0,200,83,.25);border-radius:10px;padding:8px 12px;text-align:right">'+
+            '<div style="font-size:9px;color:var(--grey-l);letter-spacing:.5px;text-transform:uppercase;margin-bottom:2px">Week Goal</div>'+
+            '<div style="font-size:12px;font-weight:800;color:var(--green)">'+p.goal+'</div>'+
+          '</div>'+
+        '</div>'+
+        '<div style="margin-top:12px;padding:10px 12px;background:rgba(0,0,0,.2);border-radius:8px">'+
+          '<div style="font-size:10px;font-weight:700;color:'+p.color+';margin-bottom:4px;letter-spacing:.5px;text-transform:uppercase">Why this week matters</div>'+
+          '<div style="font-size:11px;color:var(--grey-l);line-height:1.7">'+p.why+'</div>'+
+        '</div>'+
+      '</div>'+
+      // Days
+      '<div style="padding:16px">'+days+'</div>'+
+    '</div>';
+  }).join('');
+}
+
+function renderWorkflow() {
+  var c = document.getElementById('wf-container');
+  c.innerHTML = WORKFLOW.map(function(ph) {
+    return '<div class="wf-phase">'+
+      '<div class="wf-phase-header">'+
+        '<div style="font-size:22px">'+ph.icon+'</div>'+
+        '<div>'+
+          '<div style="font-size:10px;font-weight:700;letter-spacing:1px;color:'+ph.color+';text-transform:uppercase">'+ph.phase+'</div>'+
+          '<div style="font-size:16px;font-weight:800">'+ph.title+'</div>'+
+        '</div>'+
+        '<span class="tag" style="margin-left:auto;background:'+ph.bg+';color:'+ph.color+';border:1px solid '+ph.border+'">'+ph.time+'</span>'+
+      '</div>'+
+      ph.steps.map(function(s) {
+        return '<div class="wf-step" style="background:'+ph.bg+';border:1px solid '+ph.border+'">'+
+          '<div class="wf-num" style="background:'+ph.color+'">'+s.n+'</div>'+
+          '<div style="flex:1">'+
+            '<div style="display:flex;justify-content:space-between;align-items:baseline">'+
+              '<div class="wf-step-title">'+s.title+'</div>'+
+              '<div class="wf-time" style="color:'+ph.color+'">⏱ '+s.time+'</div>'+
+            '</div>'+
+            '<div class="wf-step-desc">'+s.desc+'</div>'+
+          '</div>'+
+        '</div>';
+      }).join('')+
+    '</div>';
+  }).join('');
+}
+
+function renderChecklist() {
+  var c = document.getElementById('checklist-container');
+  c.innerHTML = '<div style="font-size:12px;color:var(--grey-l);margin-bottom:12px">Tick these off before you send your first video:</div>'+
+    CHECKLIST.map(function(item, i) {
+      return '<div class="checklist-item"><div class="check-box" data-idx="'+i+'">☐</div><div class="check-label">'+item+'</div></div>';
+    }).join('');
+  c.querySelectorAll('.check-box').forEach(function(box) {
+    box.addEventListener('click', function() {
+      if (this.classList.contains('done')) {
+        this.classList.remove('done');
+        this.textContent = '☐';
+      } else {
+        this.classList.add('done');
+        this.textContent = '✅';
+      }
+    });
+  });
+}
+
+function renderAssess() {
+  var c = document.getElementById('assess-container');
+  c.innerHTML = ASSESS.map(function(a, i) {
+    var vc = a.verdict.includes('✅') ? 'var(--green)' : a.verdict.includes('⚡') ? 'var(--orange)' : 'var(--cyan)';
+    return '<div class="assess-item" style="background:'+(i%2===0?'rgba(255,255,255,.02)':'transparent')+'">'+
+      '<div><div class="assess-factor">'+a.factor+'</div><div class="assess-desc">'+a.assessment+'</div></div>'+
+      '<div class="assess-verdict" style="color:'+vc+'">'+a.verdict+'</div>'+
+    '</div>';
+  }).join('');
+}
+
+// ── CALCULATOR ────────────────────────────────────────────────────────────────
+document.getElementById('price-slider').addEventListener('input', function() {
+  var price = parseInt(this.value);
+  document.getElementById('price-display').textContent = '$' + price;
+  document.getElementById('be-videos').textContent = Math.ceil(25 / price);
+  document.getElementById('be-net').textContent = '$' + ((price * 10) - 25).toLocaleString();
+});
+
+// ── OUTREACH ──────────────────────────────────────────────────────────────────
+document.getElementById('lead-select').addEventListener('change', function() {
+  document.getElementById('custom-fields').style.display = this.value === 'custom' ? 'block' : 'none';
+});
+
+document.getElementById('gen-btn').addEventListener('click', function() {
+  var idx = document.getElementById('lead-select').value;
+  var agent = document.getElementById('agent-name').value || 'there';
+  var agentEmail = document.getElementById('agent-email').value || '';
+  var me = document.getElementById('your-name').value || 'Haydn';
+  var price = document.getElementById('your-price').value;
+  var tone = document.getElementById('email-tone').value;
+  var address, listPrice;
+  if (idx === 'custom') {
+    address = document.getElementById('custom-address').value || '[Property address]';
+    listPrice = document.getElementById('custom-price').value || '[Price]';
+  } else {
+    var l = LEADS[parseInt(idx)];
+    address = l.name + ', ' + l.suburb;
+    listPrice = l.price;
+  }
+  var subject, body;
+  if (tone === 'direct') {
+    subject = 'Free demo video for ' + address;
+    body = 'Hi ' + agent + ',\n\nI noticed your listing at ' + address + ' (' + listPrice + ') doesn\'t have a video tour yet — so I made one.\n\nAttached is a free demo fly-through I put together using the listing photos. Takes about 30 seconds to watch.\n\nI create cinematic AI property videos for NZ agents at ' + price + ' per video, delivered in 24–48 hours. That\'s a fraction of what a drone operator charges, with faster turnaround and no weather delays.\n\nIf you like what you see, I can have the full version ready before your next open home.\n\nWorth a quick call?\n\n' + me;
+  } else if (tone === 'friendly') {
+    subject = 'Hey — made a quick video for your ' + address.split(',')[0] + ' listing';
+    body = 'Hey ' + agent + ',\n\nSpotted your listing at ' + address + ' and put together a quick AI fly-through demo — thought you might get a kick out of seeing your own listing in video form!\n\nVideo is attached. Took me about an hour to make.\n\nI do these for NZ agents at ' + price + ' a pop — way cheaper than hiring a drone operator, and I turn them around in 24–48 hours.\n\nWould love to make a proper one for you if you\'re keen!\n\n' + me;
+  } else {
+    subject = 'Cinematic property video for ' + address + ' — Demo enclosed';
+    body = 'Dear ' + agent + ',\n\nI am writing regarding your current listing at ' + address + ', listed at ' + listPrice + '.\n\nI have produced a complimentary demonstration video for the property using AI video generation technology. Please find this attached for your review.\n\nMy service offers:\n• Professional cinematic quality at ' + price + ' per video\n• 24–48 hour turnaround\n• Significantly lower cost than traditional drone videography\n• Vertical social media cut included at no extra charge\n\nShould you wish to proceed, I would be pleased to discuss further.\n\nKind regards,\n' + me;
+  }
+  var out = document.getElementById('email-out');
+  document.getElementById('email-text').textContent = 'Subject: ' + subject + '\n\n' + body;
+  out.style.display = 'block';
+  document.getElementById('save-pitch-wrap').style.display = 'block';
+  // Store pending pitch data for save button
+  window._pendingPitch = {
+    address: address,
+    agent: agent,
+    agentEmail: agentEmail,
+    price: price,
+    listPrice: listPrice,
+    subject: subject,
+    body: body
+  };
+});
+
+document.getElementById('copy-btn').addEventListener('click', function() {
+  var txt = document.getElementById('email-text').textContent;
+  var self = this;
+  navigator.clipboard.writeText(txt).then(function() {
+    self.textContent = 'Copied!';
+    setTimeout(function() { self.textContent = 'Copy'; }, 2000);
+  });
+});
+
+// ── PITCH TRACKER ─────────────────────────────────────────────────────────────
+var STATUS_CONFIG = {
+  'not_sent':    {label:'Not Sent',    color:'#555',     bg:'rgba(85,85,85,.15)'},
+  'sent':        {label:'Sent',        color:'#00C2CB',  bg:'rgba(0,194,203,.12)'},
+  'follow_up':   {label:'Followed Up', color:'#FF8C00',  bg:'rgba(255,140,0,.12)'},
+  'replied':     {label:'Replied ✉️',  color:'#A855F7',  bg:'rgba(168,85,247,.12)'},
+  'interested':  {label:'Interested 🔥',color:'#FFB700', bg:'rgba(255,183,0,.12)'},
+  'video_sent':  {label:'Video Sent',  color:'#00C2CB',  bg:'rgba(0,194,203,.12)'},
+  'invoiced':    {label:'Invoiced 💸', color:'#FF8C00',  bg:'rgba(255,140,0,.12)'},
+  'closed':      {label:'Closed ✅',   color:'#00C853',  bg:'rgba(0,200,83,.15)'},
+  'no_response': {label:'No Response', color:'#555',     bg:'rgba(85,85,85,.1)'},
+  'not_interested':{label:'Not Interested ✗',color:'#FF4444',bg:'rgba(255,68,68,.1)'}
+};
+
+function loadPitches() {
+  try { return JSON.parse(localStorage.getItem('propshots_pitches') || '[]'); }
+  catch(e) { return []; }
+}
+
+function savePitches(pitches) {
+  localStorage.setItem('propshots_pitches', JSON.stringify(pitches));
+}
+
+function addPitch(data) {
+  var pitches = loadPitches();
+  pitches.unshift({
+    id: Date.now(),
+    address: data.address,
+    agent: data.agent,
+    agentEmail: data.agentEmail,
+    price: data.price,
+    listPrice: data.listPrice,
+    status: 'sent',
+    notes: '',
+    datePitched: new Date().toLocaleDateString('en-NZ'),
+    dateUpdated: new Date().toLocaleDateString('en-NZ')
+  });
+  savePitches(pitches);
+  renderTracker();
+}
+
+function updatePitchStatus(id, status) {
+  var pitches = loadPitches();
+  pitches = pitches.map(function(p) {
+    if (p.id === id) { p.status = status; p.dateUpdated = new Date().toLocaleDateString('en-NZ'); }
+    return p;
+  });
+  savePitches(pitches);
+  renderTracker();
+}
+
+function updatePitchNotes(id, notes) {
+  var pitches = loadPitches();
+  pitches = pitches.map(function(p) {
+    if (p.id === id) { p.notes = notes; }
+    return p;
+  });
+  savePitches(pitches);
+}
+
+function deletePitch(id) {
+  var pitches = loadPitches().filter(function(p) { return p.id !== id; });
+  savePitches(pitches);
+  renderTracker();
+}
+
+function renderTracker() {
+  var pitches = loadPitches();
+  var empty = document.getElementById('empty-tracker');
+  var summary = document.getElementById('tracker-summary');
+  var pipeline = document.getElementById('pipeline-wrap');
+  var list = document.getElementById('pitch-list');
+
+  if (pitches.length === 0) {
+    empty.style.display = 'block';
+    summary.innerHTML = '';
+    pipeline.innerHTML = '';
+    list.innerHTML = '';
+    return;
+  }
+  empty.style.display = 'none';
+
+  // ── Summary stats ──────────────────────────────────────────────────────────
+  var total = pitches.length;
+  var replied = pitches.filter(function(p) { return ['replied','interested','video_sent','invoiced','closed'].indexOf(p.status) >= 0; }).length;
+  var interested = pitches.filter(function(p) { return ['interested','video_sent','invoiced','closed'].indexOf(p.status) >= 0; }).length;
+  var closed = pitches.filter(function(p) { return p.status === 'closed'; }).length;
+  var invoiced = pitches.filter(function(p) { return p.status === 'invoiced'; }).length;
+  var revenue = pitches.filter(function(p) { return p.status === 'closed'; })
+    .reduce(function(sum, p) { return sum + parseInt((p.price || '$0').replace('$','')); }, 0);
+  var closeRate = total > 0 ? Math.round((closed/total)*100) : 0;
+
+  summary.innerHTML = [
+    {n:total,    l:'Total Pitched', c:'var(--cyan)'},
+    {n:replied,  l:'Replied',       c:'#A855F7'},
+    {n:interested,l:'Interested',   c:'#FFB700'},
+    {n:closed,   l:'Closed',        c:'var(--green)'},
+    {n:closeRate+'%', l:'Close Rate', c:closeRate>=10?'var(--green)':'var(--orange)'},
+    {n:'$'+revenue, l:'Revenue',    c:'var(--green)'}
+  ].map(function(s) {
+    return '<div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:12px 8px;text-align:center">'+
+      '<div style="font-size:20px;font-weight:900;color:'+s.c+';line-height:1.1">'+s.n+'</div>'+
+      '<div style="font-size:9px;color:var(--grey-l);margin-top:4px;letter-spacing:.3px;text-transform:uppercase">'+s.l+'</div>'+
+    '</div>';
+  }).join('');
+  summary.style.gridTemplateColumns = 'repeat(3,1fr)';
+
+  // ── Pipeline bar ───────────────────────────────────────────────────────────
+  var stages = ['not_sent','sent','follow_up','replied','interested','video_sent','invoiced','closed'];
+  var stageCounts = {};
+  stages.forEach(function(s) {
+    stageCounts[s] = pitches.filter(function(p) { return p.status === s; }).length;
+  });
+  pipeline.innerHTML = '<div style="font-size:10px;font-weight:700;color:var(--grey-l);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">Pipeline</div>'+
+    '<div style="display:flex;gap:4px;flex-wrap:wrap">'+
+    stages.filter(function(s) { return stageCounts[s] > 0; }).map(function(s) {
+      var cfg = STATUS_CONFIG[s];
+      return '<div style="background:'+cfg.bg+';border:1px solid '+cfg.color+'33;border-radius:20px;padding:4px 10px;font-size:10px;font-weight:700;color:'+cfg.color+'">'+
+        cfg.label+' ('+stageCounts[s]+')'+
+      '</div>';
+    }).join('')+
+    '</div>';
+
+  // ── Pitch list ─────────────────────────────────────────────────────────────
+  list.innerHTML = pitches.map(function(p) {
+    var cfg = STATUS_CONFIG[p.status] || STATUS_CONFIG['sent'];
+    var statusOpts = Object.keys(STATUS_CONFIG).map(function(k) {
+      return '<option value="'+k+'"'+(p.status===k?' selected':'')+'>'+STATUS_CONFIG[k].label+'</option>';
+    }).join('');
+
+    return '<div id="pitch-'+p.id+'" style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden;margin-bottom:10px;transition:border-color .2s">'+
+      // Header row
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start;padding:13px 14px;gap:10px;flex-wrap:wrap">'+
+        '<div style="flex:1;min-width:0">'+
+          '<div style="font-size:13px;font-weight:800;color:var(--white);margin-bottom:2px">'+p.address+'</div>'+
+          '<div style="font-size:11px;color:var(--grey-l)">'+p.agent+(p.agentEmail?' · '+p.agentEmail:'')+'</div>'+
+        '</div>'+
+        '<div style="display:flex;align-items:center;gap:8px;flex-shrink:0">'+
+          '<div style="background:'+cfg.bg+';border:1px solid '+cfg.color+'44;border-radius:20px;padding:3px 10px;font-size:10px;font-weight:800;color:'+cfg.color+'">'+cfg.label+'</div>'+
+          '<button onclick="deletePitch('+p.id+')" style="background:rgba(255,68,68,.1);border:1px solid rgba(255,68,68,.2);border-radius:8px;padding:3px 8px;font-size:10px;color:#FF4444;cursor:pointer;font-family:inherit">✕</button>'+
+        '</div>'+
+      '</div>'+
+      // Details row
+      '<div style="padding:0 14px 10px;display:flex;gap:8px;flex-wrap:wrap">'+
+        '<span style="font-size:10px;background:rgba(255,255,255,.04);border-radius:6px;padding:3px 8px;color:var(--grey-l)">💰 '+p.price+'</span>'+
+        '<span style="font-size:10px;background:rgba(255,255,255,.04);border-radius:6px;padding:3px 8px;color:var(--grey-l)">📅 Pitched '+p.datePitched+'</span>'+
+        (p.dateUpdated !== p.datePitched ? '<span style="font-size:10px;background:rgba(255,255,255,.04);border-radius:6px;padding:3px 8px;color:var(--grey-l)">🔄 Updated '+p.dateUpdated+'</span>' : '')+
+      '</div>'+
+      // Status + notes
+      '<div style="border-top:1px solid rgba(255,255,255,.05);padding:10px 14px;display:flex;flex-direction:column;gap:8px">'+
+        '<div style="display:flex;gap:8px;align-items:center">'+
+          '<label style="font-size:10px;color:var(--grey-l);white-space:nowrap;font-weight:600;letter-spacing:.3px;text-transform:uppercase">Status</label>'+
+          '<select onchange="updatePitchStatus('+p.id+', this.value)" style="flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:var(--white);font-size:12px;padding:6px 10px;font-family:inherit;outline:none">'+statusOpts+'</select>'+
+        '</div>'+
+        '<div style="display:flex;gap:8px;align-items:flex-start">'+
+          '<label style="font-size:10px;color:var(--grey-l);white-space:nowrap;font-weight:600;letter-spacing:.3px;text-transform:uppercase;padding-top:7px">Notes</label>'+
+          '<textarea onchange="updatePitchNotes('+p.id+', this.value)" onblur="updatePitchNotes('+p.id+', this.value)" placeholder="e.g. Replied asking for pricing, follow up Friday..." style="flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:var(--grey-l);font-size:11px;padding:7px 10px;font-family:inherit;outline:none;resize:none;min-height:48px;line-height:1.5">'+p.notes+'</textarea>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+
+// Save pitch button
+document.getElementById('save-pitch-btn').addEventListener('click', function() {
+  if (!window._pendingPitch) return;
+  addPitch(window._pendingPitch);
+  this.textContent = '✅ Saved!';
+  this.style.color = 'var(--green)';
+  this.style.borderColor = 'rgba(0,200,83,.4)';
+  this.style.background = 'rgba(0,200,83,.08)';
+  var self = this;
+  setTimeout(function() {
+    self.textContent = '+ Save to Pitch Tracker';
+    self.style.color = '#FF1744';
+    self.style.borderColor = 'rgba(255,23,68,.4)';
+    self.style.background = 'rgba(255,23,68,.12)';
+  }, 2000);
+  window._pendingPitch = null;
+});
+
+// Init tracker on load
+renderTracker();
+
+// ── UPDATE PLAN CHECKBOXES ────────────────────────────────────────────────────
+function getPlanChecks() { try { return JSON.parse(localStorage.getItem('ps_plan_checks') || '{}'); } catch(e) { return {}; } }
+function setPlanCheck(id, v) { var d = getPlanChecks(); d[id] = v; localStorage.setItem('ps_plan_checks', JSON.stringify(d)); }
+
+// ── 7-DAY FAST EXECUTION DATA ────────────────────────────────────────────────
+var FAST7 = [
+  {
+    day:1, title:"Foundation — Get Everything Ready",
+    subtitle:"Today you set up every tool, find your first leads, and end the day ready to generate video tomorrow.",
+    time:"3–4 hours", color:"#FF1744",
+    tasks:[
+      {id:"d1_1", title:"Sign up for Higgsfield Plus at higgsfield.ai",
+       detail:"Go to higgsfield.ai → Sign Up → Choose Plus plan (~$25/mo). This unlocks Kling 3.0 and Seedance 2.0 — the two models you need for cinematic property video. Do this first — everything else depends on it.",
+       prompt:null},
+      {id:"d1_2", title:"Install CapCut on your phone or laptop",
+       detail:"Download CapCut free from capcut.com or your app store. This is your editing tool. You don't need to learn it today — just have it installed and open it once to confirm it works.",
+       prompt:null},
+      {id:"d1_3", title:"Create your Lead Tracker spreadsheet",
+       detail:"Open Google Sheets (sheets.google.com). Create a new sheet. Add these column headers: Property Address | Agent Name | Agent Email | Agent Phone | Price | Days Listed | Pitched Date | Status | Notes. This is your business dashboard — everything goes here.",
+       prompt:null},
+      {id:"d1_4", title:"Browse Trade Me Property — find your first 10 leads",
+       detail:"Go to trademe.co.nz/property → Residential → For Sale → Sort: Latest. Scroll and look for listings WITHOUT a 'Video' badge. Focus on: listed in last 30 days, price $350K+, at least 10 good photos, photogenic property (views, section, character, modern build). Add 10 to your tracker.",
+       prompt:null},
+      {id:"d1_5", title:"Download the Tinopai listing photos (your first demo)",
+       detail:"Open this listing: trademe.co.nz/a/property/residential/sale/northland/kaipara/tinopai/listing/5975741782 — download the 6 best photos: the aerial harbour shot, the front exterior, the lawn section, the deck, the kitchen, and one interior shot. Save to a folder called 'Tinopai Demo'. These are your raw material for Day 2.",
+       prompt:null},
+      {id:"d1_6", title:"Set up your pitch email template in Gmail drafts",
+       detail:"Open Gmail. Create a new draft. Subject: '[Property address] — free demo video inside'. Body: copy the Direct & Confident template from the Outreach tab. Save as a draft. You'll personalise and send from this template starting Day 4.",
+       prompt:null}
+    ]
+  },
+  {
+    day:2, title:"Create Your First Video",
+    subtitle:"Today you produce a full cinematic demo video of the Tinopai coastal bach. This becomes your proof of quality for every pitch.",
+    time:"4–5 hours", color:"#FF8C00",
+    tasks:[
+      {id:"d2_1", title:"Upload Tinopai photos to Higgsfield",
+       detail:"Go to higgsfield.ai. Click the upload widget. Upload all 6 Tinopai photos. Note the media ID for each one — you'll need them for generation. Start with the aerial harbour shot.",
+       prompt:null},
+      {id:"d2_2", title:"Generate Clip 1 — Aerial harbour approach",
+       detail:"In Higgsfield, select Seedance 2.0 or Kling 3.0. Upload the aerial harbour photo. Use this exact prompt optimised for NZ coastal property:",
+       prompt:"Slow cinematic drone approach descending toward Kaipara Harbour, golden afternoon light reflecting off the water, lush green New Zealand coastal village below, smooth dolly forward motion, native bush on hillsides, lifestyle real estate feel, teal cinematic grade, no camera shake"},
+      {id:"d2_3", title:"Generate Clip 2 — Front exterior",
+       detail:"Upload the front exterior photo. Use this prompt:",
+       prompt:"Slow push-in toward classic New Zealand weatherboard bach, warm golden hour light, manicured green lawn in foreground, blue sky with soft clouds, smooth dolly forward, lifestyle property video, cinematic colour grade, no shake"},
+      {id:"d2_4", title:"Generate Clip 3 — Covered deck",
+       detail:"Upload the deck photo. Use this prompt:",
+       prompt:"Steady cinematic track through covered timber deck, morning light filtering through rafters, green lawn visible beyond, relaxed coastal lifestyle feel, smooth camera movement left to right, real estate property video, warm grade"},
+      {id:"d2_5", title:"Generate Clip 4 — Section and lawn",
+       detail:"Upload the section/lawn shot. Use this prompt:",
+       prompt:"Wide establishing shot of large green section, New Zealand coastal setting, soft breeze movement in trees, slow cinematic crane-down motion, lifestyle real estate, warm afternoon light, smooth motion, no camera shake"},
+      {id:"d2_6", title:"Generate Clip 5 — Interior or kitchen",
+       detail:"Upload the best interior photo. Use this prompt:",
+       prompt:"Smooth slow tracking shot through bright interior room, warm natural light from windows, clean and inviting, lifestyle real estate feel, steady camera movement, cinematic grade, no shake"},
+      {id:"d2_7", title:"Download your 5 best clips",
+       detail:"Review each clip. Download the best version of each. Rename them: 01_aerial.mp4, 02_exterior.mp4, 03_deck.mp4, 04_section.mp4, 05_interior.mp4. Put them in your Tinopai Demo folder.",
+       prompt:null},
+      {id:"d2_8", title:"Edit in CapCut — landscape version",
+       detail:"Open CapCut. Start new project. Import clips in order: 01 → 02 → 03 → 04 → 05 → 01 again to close. Add music: search 'cinematic real estate' in CapCut's free music library — pick something warm and smooth. Add text overlay on first frame: '30 Ngatoto Road, Tinopai, Northland'. Add on last frame: 'PropShots — haydn@propshots.co.nz'. Total length: 60–80 seconds. Export 1080p.",
+       prompt:null},
+      {id:"d2_9", title:"Create vertical 9:16 social cut",
+       detail:"In CapCut, duplicate the project. Change aspect ratio to 9:16. Keep only 3 best clips. Trim to 25–35 seconds. Export separately as Tinopai_Vertical.mp4. Label both files clearly.",
+       prompt:null},
+      {id:"d2_10", title:"Watch the final video critically",
+       detail:"Watch both versions. Ask: Does it make me WANT to visit this property? Does the music feel right? Are text overlays readable? Is it under 90 seconds? If yes to all — it's ready. If the weakest clip kills the vibe, regenerate just that one.",
+       prompt:null}
+    ]
+  },
+  {
+    day:3, title:"Build Your Pitch System",
+    subtitle:"Today you set up your pricing, write your templates, and generate a second demo so you have two listing types to show.",
+    time:"2–3 hours", color:"#FFB700",
+    tasks:[
+      {id:"d3_1", title:"Lock in your 3 pricing packages",
+       detail:"Write these down somewhere permanent — your notes, a doc, or your phone:\n\n• Basic — $150: 60-sec landscape video only. For regional or entry-level listings.\n• Standard — $200: 90-sec landscape + 30-sec vertical social cut. Your best seller.\n• Premium — $280: 90-sec cinematic landscape + vertical cut + 3 still thumbnails extracted from the video. For luxury or auction listings.\n\nHave these ready to quote instantly when agents ask.",
+       prompt:null},
+      {id:"d3_2", title:"Set up Google Drive for delivery",
+       detail:"Go to drive.google.com. Create a folder called 'PropShots Deliveries'. Inside it, create a sub-folder called 'Tinopai — Demo'. Upload your Tinopai_Landscape.mp4 and Tinopai_Vertical.mp4 here. Right-click the folder → Share → Change to 'Anyone with the link can view'. Copy the link. This is what you send to the first agent who says yes.",
+       prompt:null},
+      {id:"d3_3", title:"Find 15 more no-video listings on Trade Me",
+       detail:"Same process as Day 1 — browse Trade Me, find listings without the Video badge. This time target variety: one Auckland auction, one character home, one modern build, a few regional listings. Add all 15 to your lead tracker. You now have 25 total leads. This is your launch pipeline.",
+       prompt:null},
+      {id:"d3_4", title:"Generate a second demo for a different listing type",
+       detail:"Pick the best-looking listing from your 25 leads — ideally a modern home or Auckland property. Download its best 4–5 photos. Generate clips using the same process as Day 2. You don't need to edit this one fully — just have 3–4 clips ready. Having two demo types means you can pitch 'here's what your style of listing could look like'.",
+       prompt:"Cinematic slow push toward modern New Zealand residential home, blue sky, warm afternoon light, manicured garden, smooth dolly forward, premium real estate lifestyle, clean contemporary grade, no camera shake"},
+      {id:"d3_5", title:"Upload your Tinopai demo to YouTube or Vimeo (unlisted)",
+       detail:"Upload Tinopai_Landscape.mp4 to YouTube as 'Unlisted' — not public, not private. This gives you a streaming link you can embed in emails instead of attaching a large file. Agents can click and watch instantly. Copy the link and save it.",
+       prompt:null}
+    ]
+  },
+  {
+    day:4, title:"First Outreach — Send 15 Pitches",
+    subtitle:"Today you start pitching. Send personalised emails to your 15 best leads. This is where PropShots becomes real.",
+    time:"2–3 hours", color:"#A855F7",
+    tasks:[
+      {id:"d4_1", title:"Personalise and send your first 5 pitches (morning)",
+       detail:"Open your lead tracker. Pick your top 5 leads — highest price bracket, best photos, most days listed. For each: open the Outreach Builder in this app, enter the details, generate the email. Personalise the first sentence with ONE specific thing from their listing (a view, a feature, a suburb detail). Add the YouTube link to your Tinopai demo. Send between 9am–11am. Log send date in your tracker.",
+       prompt:null},
+      {id:"d4_2", title:"Personalise and send 10 more pitches (afternoon)",
+       detail:"Same process for the next 10 leads. Move faster — you've done the first 5, you know the rhythm. Aim for one email every 5–6 minutes. Log every send. 15 pitches today is your non-negotiable minimum.",
+       prompt:null},
+      {id:"d4_3", title:"Check email at 5pm for any fast replies",
+       detail:"Some agents check email constantly. You might get a reply same day. If you do: respond within the hour. Be warm, be confident, confirm your price, and ask when they'd like the full version done. Log the reply status in your tracker.",
+       prompt:null},
+      {id:"d4_4", title:"Log all 15 pitches in tracker with status 'Sent'",
+       detail:"Every single pitch needs to be in your spreadsheet with: property address, agent name, email, pitch date, status = Sent. Don't skip this — the tracker is how you turn a hustle into a system.",
+       prompt:null}
+    ]
+  },
+  {
+    day:5, title:"Scale Outreach + First Follow-Ups",
+    subtitle:"Send another 10 pitches, follow up on yesterday's batch, and generate your third demo video.",
+    time:"3–4 hours", color:"#00C2CB",
+    tasks:[
+      {id:"d5_1", title:"Follow up on Day 4 pitches (if 3 days have passed — do this on Day 7)",
+       detail:"Day 5 is too early to follow up on Day 4 pitches — wait until Day 7 for those. But if you sent any earlier test pitches, follow up on those now. Keep it to one sentence: 'Hey [name], just checking you got this — happy to chat if easier than email.'",
+       prompt:null},
+      {id:"d5_2", title:"Find 10 fresh listings on Trade Me",
+       detail:"Browse Trade Me again. Look for listings that went live in the last 48 hours — they'll be at the top when sorted by Latest. Fresh listings are your strongest pitch because the agent is in active marketing mode. Add 10 to your tracker.",
+       prompt:null},
+      {id:"d5_3", title:"Send 10 new pitches for the fresh listings",
+       detail:"Same process as Day 4. Focus on fresh listings — use this subject line: 'Just saw your listing go up — made you a demo video.' This works because it signals you act fast and you're paying attention to their specific campaign.",
+       prompt:null},
+      {id:"d5_4", title:"Generate your third demo — coastal or lifestyle property",
+       detail:"Pick a property from your leads with strong outdoor/lifestyle appeal. Generate 4 clips. This gives you three demo types: coastal bach, modern home, and lifestyle/outdoor. Together these cover most of the NZ market.",
+       prompt:"Wide cinematic establishing shot of New Zealand lifestyle property, rolling green hills, native trees, golden hour light, slow push forward, premium real estate feel, warm cinematic grade, smooth motion"},
+      {id:"d5_5", title:"Update all pitch statuses in tracker",
+       detail:"Review your tracker. Update any statuses that have changed. Move any replies to 'Replied'. Note anything interesting agents said. At this point you should have 25 pitches logged.",
+       prompt:null}
+    ]
+  },
+  {
+    day:6, title:"Close Your First Sale",
+    subtitle:"Today you handle replies, follow up hard, approach one office directly, and set up your invoicing.",
+    time:"2–3 hours", color:"#00C853",
+    tasks:[
+      {id:"d6_1", title:"Reply to any interested agents within the hour",
+       detail:"If an agent replied with interest: respond immediately. Confirm the price (use your packages), confirm their property address, and say: 'I can have the full video ready within 48 hours from when you confirm. Happy to send an invoice now or after delivery — your call.' Speed signals professionalism.",
+       prompt:null},
+      {id:"d6_2", title:"Set up Wave invoicing (free) at waveapps.com",
+       detail:"Go to waveapps.com — free invoicing tool. Create an account. Add your business name (PropShots), your bank account details. Create one invoice template with your pricing. You want to be able to send an invoice in under 2 minutes when an agent says yes.",
+       prompt:null},
+      {id:"d6_3", title:"Approach one real estate office directly",
+       detail:"Go to a local Ray White, Harcourts, or Bayleys website. Find the office manager or principal's email. Send this message:\n\n'Hi [name], I run PropShots — we produce cinematic AI property videos for NZ agents at $150–$280 per listing, delivered in 48 hours. I'd love to offer one free video to any agent in your office to show the quality. Happy to send an example. Would this be useful?'\n\nOne yes here can unlock 5–20 clients.",
+       prompt:null},
+      {id:"d6_4", title:"Follow up on your Day 4 pitches that haven't replied",
+       detail:"It's been 2 days since Day 4. Send a follow-up to anyone who hasn't replied. Keep it short: 'Hey [name], just making sure this didn't get buried — the demo video is in the link below. Let me know if you'd like to chat.' Log follow-up date in tracker.",
+       prompt:null},
+      {id:"d6_5", title:"If you have a paid client — produce their video today",
+       detail:"If someone has said yes and paid (or agreed to pay on delivery) — produce their video today using the Day 2 process. Deliver by tonight or tomorrow morning. Speed is your biggest competitive advantage.",
+       prompt:null}
+    ]
+  },
+  {
+    day:7, title:"Review, Lock In & Launch Week 2",
+    subtitle:"Measure what happened, fix what isn't working, deliver any outstanding videos, and set your week 2 targets.",
+    time:"2 hours", color:"#FFB700",
+    tasks:[
+      {id:"d7_1", title:"Count your week 1 numbers",
+       detail:"Open your tracker. Count: total pitches sent, total replies, total interested, total sales, total revenue. Write these down. This is your baseline. Every week from now you're trying to improve at least one of these numbers.",
+       prompt:null},
+      {id:"d7_2", title:"Follow up on ALL Day 4–5 pitches that haven't replied",
+       detail:"Send one final follow-up to every agent who hasn't replied. After this you leave them alone unless they reach out. Message: 'Hey [name], last one from me — the demo link is below if you missed it. Happy to make a proper version of your listing anytime.' Mark them as 'Followed Up' in tracker.",
+       prompt:null},
+      {id:"d7_3", title:"Analyse your subject lines",
+       detail:"Look at your tracker. Which pitches got the most replies? What subject line did you use? If you haven't tracked subject lines yet, start now. The three to test:\n\nA: '[Address] — free demo video inside'\nB: 'Your [suburb] listing could look like this'\nC: 'I made a video of your listing at [address]'\n\nPick the one with most replies for Week 2.",
+       prompt:null},
+      {id:"d7_4", title:"Post your Tinopai video on Instagram @propshotsnz",
+       detail:"Even with zero followers — post it now. Caption: 'Coastal living at its finest 🏡 30 Ngatoto Road, Tinopai — AI cinematic property video by PropShots. #nzrealestate #propshots #propertyfilm #nzproperty #realestate'. This starts building the account. Agents will look you up — give them something to find.",
+       prompt:null},
+      {id:"d7_5", title:"Set your Week 2 targets",
+       detail:"Write down your Week 2 commitments:\n• Pitches per day: minimum 5\n• Total pitches by end of week 2: 50\n• Follow-up rate: 100% of unreplied pitches after 3 days\n• Demo videos generated: at least 1 more\n• Target: first paid invoice sent\n\nPut these somewhere you'll see them every morning.",
+       prompt:null},
+      {id:"d7_6", title:"Deliver any outstanding videos",
+       detail:"If any agent has confirmed and you haven't delivered yet — this is your priority. Upload to Google Drive → share link → send delivery email → send invoice. Don't let a sale sit undelivered.",
+       prompt:null},
+      {id:"d7_7", title:"Ask your first happy agent for a testimonial",
+       detail:"If you've delivered a video and they responded positively, send this: 'Really glad you're happy with it! Would you mind leaving a quick Google review for PropShots, or letting me use a sentence from your feedback? It helps a lot when I reach out to new agents.' Even one testimonial changes everything.",
+       prompt:null}
+    ]
+  }
+];
+
+// ── WALKTHROUGH DATA ──────────────────────────────────────────────────────────
+var WT_STEPS = [
+  {phase:"SETUP",title:"Sign up for Higgsfield Plus",time:"5 min",
+   why:"Without Higgsfield Plus you cannot generate the cinematic video models (Kling 3.0, Seedance 2.0). This is the only paid tool you need to start. Everything else is free.",
+   actions:["Open higgsfield.ai in your browser","Click Sign Up and create an account","Go to Plans and select Plus (~$25/month)","Complete payment","Confirm you can see Kling 3.0 and Seedance 2.0 in the model list"],
+   prompt:null, note:true},
+  {phase:"SETUP",title:"Install CapCut",time:"3 min",
+   why:"CapCut is your free editing tool. You'll use it to combine your Higgsfield clips into a finished video and create the vertical social cut.",
+   actions:["Go to capcut.com or your device app store","Download and install CapCut (free)","Open it once to confirm it loads","Create a test project so you know where everything is"],
+   prompt:null, note:false},
+  {phase:"SETUP",title:"Create your Lead Tracker in Google Sheets",time:"5 min",
+   why:"The tracker is your business. Without it you'll lose leads, miss follow-ups, and have no idea what's working. Set it up now before you have any leads to put in it.",
+   actions:["Go to sheets.google.com","Create a new spreadsheet","Add headers: Property Address | Agent Name | Agent Email | Phone | Price | Days Listed | Pitched Date | Status | Notes","Name the sheet 'PropShots Leads'","Bookmark it — you'll open this every day"],
+   prompt:null, note:false},
+  {phase:"FIND LEADS",title:"Find your first 10 leads on Trade Me",time:"25 min",
+   why:"You need leads before you can pitch. The goal isn't to find perfect leads — it's to build your pipeline. 10 leads today means 10 chances to close this week.",
+   actions:["Go to trademe.co.nz/property → Residential → For Sale","Sort by 'Latest Listings'","Look for listings WITHOUT a Video badge","Qualify each: price $350K+? Good photos? Photogenic property? Still active?","Find and log 10 leads in your tracker"],
+   prompt:null, note:true},
+  {phase:"FIND LEADS",title:"Download the Tinopai listing photos",time:"5 min",
+   why:"Tinopai is your first demo property. It has a harbour view, a large section, and lifestyle appeal — perfect for a cinematic fly-through. These photos are your raw material for the first video.",
+   actions:["Open the Tinopai listing from the Leads tab in this app","Download the aerial harbour shot","Download the front exterior photo","Download the deck/covered area photo","Download the section/lawn photo","Download one interior shot","Save all to a folder called 'Tinopai Demo'"],
+   prompt:null, note:false},
+  {phase:"CREATE VIDEO",title:"Upload Tinopai photos to Higgsfield",time:"5 min",
+   why:"Higgsfield needs the photos uploaded before you can generate video from them. Upload all 6 now so they're ready.",
+   actions:["Log in to higgsfield.ai","Go to the media upload section","Upload all 6 Tinopai photos","Wait for upload confirmation","Note the media ID for the aerial harbour shot — start with this one"],
+   prompt:null, note:false},
+  {phase:"CREATE VIDEO",title:"Generate Clip 1 — Aerial harbour approach",time:"15 min",
+   why:"The aerial harbour shot is your hero clip — it's the one that will stop an agent scrolling and make them watch the whole video. Get this one right.",
+   actions:["In Higgsfield, select Seedance 2.0 or Kling 3.0","Select the aerial harbour photo as your input","Copy the optimised prompt below into the prompt field","Generate — wait for output","If result is weak, regenerate with slight variation","Download the best version as 01_aerial.mp4"],
+   prompt:"Slow cinematic drone approach descending toward Kaipara Harbour, golden afternoon light reflecting off the water, lush green New Zealand coastal village below, smooth dolly forward motion, native bush on hillsides, lifestyle real estate feel, teal cinematic grade, no camera shake", note:false},
+  {phase:"CREATE VIDEO",title:"Generate Clip 2 — Front exterior",time:"10 min",
+   why:"The exterior shot establishes the property. It needs to feel aspirational — the viewer should want to walk through that front door.",
+   actions:["Select the front exterior photo in Higgsfield","Use the prompt below","Generate and download the best version as 02_exterior.mp4"],
+   prompt:"Slow push-in toward classic New Zealand weatherboard bach, warm golden hour light, manicured green lawn in foreground, blue sky with soft clouds, smooth dolly forward, lifestyle property video, cinematic colour grade, no shake", note:false},
+  {phase:"CREATE VIDEO",title:"Generate Clip 3 — Deck and outdoor",time:"10 min",
+   why:"The deck shot sells the lifestyle — outdoor living is huge in NZ real estate. This clip should feel relaxed and aspirational.",
+   actions:["Select the deck photo in Higgsfield","Use the prompt below","Generate and download best version as 03_deck.mp4"],
+   prompt:"Steady cinematic track through covered timber deck, morning light filtering through rafters, green lawn visible beyond, relaxed coastal lifestyle feel, smooth camera movement left to right, real estate property video, warm grade", note:false},
+  {phase:"CREATE VIDEO",title:"Generate Clips 4 & 5 — Section and interior",time:"15 min",
+   why:"These clips fill out the story of the property. Section shows scale. Interior shows liveability. Together they complete the narrative.",
+   actions:["Generate Clip 4 using the section/lawn photo — use the prompt below","Download as 04_section.mp4","Generate Clip 5 using the best interior photo — use the second prompt below","Download as 05_interior.mp4"],
+   prompt:"Wide establishing shot of large green section, New Zealand coastal setting, soft breeze movement in trees, slow cinematic crane-down motion, lifestyle real estate, warm afternoon light, smooth motion || Smooth slow tracking shot through bright interior room, warm natural light from windows, clean and inviting, lifestyle real estate feel, steady camera movement, cinematic grade, no shake", note:false},
+  {phase:"EDIT VIDEO",title:"Edit the landscape version in CapCut",time:"35 min",
+   why:"Raw clips don't sell properties — a finished, edited video does. The edit is what turns 5 separate clips into a story that makes an agent think 'my buyers need to see this'.",
+   actions:["Open CapCut and start a new project","Import clips in order: 01_aerial → 02_exterior → 03_deck → 04_section → 05_interior → 01_aerial (to close)","Add a cinematic music track (search 'cinematic real estate' in CapCut's free library)","Set music volume lower than default — subtle, not dominant","Add text on first frame: '30 Ngatoto Road, Tinopai, Northland'","Add text on last frame: 'PropShots — haydn@propshots.co.nz'","Trim to 60–80 seconds total","Export at 1080p and save as Tinopai_Landscape.mp4"],
+   prompt:null, note:true},
+  {phase:"EDIT VIDEO",title:"Create the vertical 9:16 social cut",time:"15 min",
+   why:"The vertical cut is your Instagram/TikTok version. It's included free with every video — agents love this because drone operators charge extra for it. It also gives you content for the PropShots social accounts.",
+   actions:["In CapCut, duplicate the project","Change aspect ratio to 9:16","Keep only the 3 strongest clips","Trim to 25–35 seconds","Export as Tinopai_Vertical.mp4"],
+   prompt:null, note:false},
+  {phase:"PITCH SYSTEM",title:"Set up Google Drive delivery folder",time:"5 min",
+   why:"When an agent says yes, you need to be able to deliver instantly. Having Drive pre-configured means you can go from 'yes' to 'delivered' in under 10 minutes.",
+   actions:["Go to drive.google.com","Create folder: 'PropShots Deliveries'","Inside it, create sub-folder: 'Tinopai — Demo'","Upload Tinopai_Landscape.mp4 and Tinopai_Vertical.mp4","Right-click folder → Share → Anyone with link → Viewer","Copy the share link and save it in your notes"],
+   prompt:null, note:false},
+  {phase:"PITCH SYSTEM",title:"Upload demo video to YouTube (unlisted)",time:"5 min",
+   why:"A streaming link is better than a file attachment in email. Agents can click and watch instantly instead of downloading a large file. Unlisted means only people with the link can see it.",
+   actions:["Go to youtube.com and sign in (or create a free account)","Click Upload → select Tinopai_Landscape.mp4","Set visibility to 'Unlisted' (not Public, not Private)","Add title: 'PropShots — Tinopai Coastal Bach Demo'","Once uploaded, copy the video URL","Save this URL — it goes in every pitch email you send this week"],
+   prompt:null, note:true},
+  {phase:"FIRST PITCHES",title:"Send your first 5 pitch emails",time:"30 min",
+   why:"This is the moment PropShots becomes real. Every business starts with the first pitch. Some of these 5 will ignore you. One might reply today. That's all it takes.",
+   actions:["Open the Outreach tab in this app","Pick your 5 highest-scored leads from your tracker","For each: enter details, generate email, personalise the first sentence with ONE specific detail from their listing","Add your YouTube demo link inside every email","Send between 9am–11am Tuesday–Thursday for best open rates","Log each send in your tracker with status 'Sent'","Mark them in the Pitch Tracker in this app"],
+   prompt:null, note:true},
+  {phase:"FIRST PITCHES",title:"Send 10 more pitches",time:"45 min",
+   why:"Volume matters in cold outreach. 5 pitches is a start. 15 pitches is a launch. The more you send with a strong demo, the faster you get your first yes.",
+   actions:["Continue with your remaining 10 leads from the tracker","Same process — personalise, add YouTube link, send","Log every send","Aim to have 15 total pitches sent today","Check email at 5pm — some agents reply fast"],
+   prompt:null, note:false},
+  {phase:"FOLLOW UP",title:"Follow up on any unreplied pitches at Day 3",time:"15 min",
+   why:"Most sales happen on the follow-up. Many agents see your email but get distracted. One short, confident follow-up is professional and expected. More than two becomes pushy.",
+   actions:["Open your tracker — find all pitches sent 3 days ago with no reply","Draft one short follow-up: 'Hey [name], just checking this didn't get buried — the demo link is below. Happy to chat if easier than email.'","Send to each unreplied pitch","Update status to 'Followed Up' in your tracker","Do NOT apologise for following up — you have a product they need"],
+   prompt:null, note:false},
+  {phase:"SCALE",title:"Find 15 more leads and send 10 more pitches",time:"60 min",
+   why:"PropShots is a numbers game at the start. 10% close rate on cold outreach is good. That means you need 10 pitches for every sale. More pitches = more chances = more revenue.",
+   actions:["Browse Trade Me again — look for listings added in the last 48 hours","Add 15 new leads to your tracker","Pitch your 10 strongest new leads","Try this subject line: 'Just saw your listing go up — made you a demo'","Log all sends","You now have 25+ pitches in your pipeline"],
+   prompt:null, note:false},
+  {phase:"CLOSE",title:"Handle replies and close your first sale",time:"Varies",
+   why:"This is the most important step. How you handle the first 'yes' determines whether you get a second one. Be fast, be professional, be clear.",
+   actions:["Check email morning and evening every day","When an agent replies with interest — respond within the hour","Confirm their property address and which package they want","Confirm price and delivery timeline (48 hours from confirmation)","Send the invoice via Wave (waveapps.com — free)","Once payment is confirmed or agreed — produce their video that day"],
+   prompt:null, note:true},
+  {phase:"CLOSE",title:"Produce and deliver the paid video",time:"3–4 hours",
+   why:"Speed is your edge. While drone operators take a week, you deliver in 48 hours. Use this reputation to build trust fast.",
+   actions:["Download the paid listing's best 5–6 photos","Upload to Higgsfield and generate 5 clips using the prompts from Steps 7–10","Edit in CapCut using the same process from Steps 11–12","Upload both files to a new Google Drive folder named after the agent","Share the folder link","Send the delivery email: 'Hi [name], here are your files — [link]. Landscape for portals, vertical for social. Let me know if you'd like any tweaks. Invoice attached.'","Send the invoice if not already sent"],
+   prompt:null, note:true},
+  {phase:"GROW",title:"Ask for a testimonial",time:"3 min",
+   why:"A testimonial from one agent is worth 20 cold pitches. Real estate offices talk. One happy agent can send you to their entire team.",
+   actions:["Once the client is happy with their video, send this message:","'Really glad you're happy with it! Would you mind leaving a quick Google review for PropShots, or letting me use a line from your feedback? It helps a lot when I reach out to new agents.'","Screenshot any positive reply","Save testimonials to use in future pitch emails"],
+   prompt:null, note:false},
+  {phase:"GROW",title:"Post your Tinopai video on Instagram",time:"10 min",
+   why:"Agents will look you up after you pitch them. Having active social media with real property content makes you look credible and established — even if you're brand new.",
+   actions:["Open Instagram and go to @propshotsnz (set this up first if you haven't)","Upload the Tinopai vertical cut","Caption: 'Coastal living at its finest 🏡 30 Ngatoto Road, Tinopai — AI cinematic property video by PropShots. #nzrealestate #propshots #propertyfilm #nzproperty #realestate'","Post at 12pm or 6pm for best reach","Repeat with every new video you produce"],
+   prompt:null, note:false},
+  {phase:"GROW",title:"Approach one real estate office directly",time:"10 min",
+   why:"Cold email to individual agents is effective. Cold email to an office manager is even more effective — one yes unlocks the whole team.",
+   actions:["Find a local Ray White, Harcourts, or Bayleys office website","Find the office manager or principal's email","Send this: 'Hi [name], I run PropShots — we produce cinematic AI property videos for NZ agents at $150–$280 per listing, delivered in 48 hours. I'd love to offer one free video to any agent in your office to show the quality. Would this be useful?'","Log this in your tracker as a separate lead","Follow up after 4 days if no reply"],
+   prompt:null, note:true},
+  {phase:"GROW",title:"Set up your referral system",time:"5 min",
+   why:"Referrals are the fastest growth channel in real estate. Agents trust colleagues more than cold emails. One referral can multiply your client base without any extra outreach effort.",
+   actions:["Message every agent you've had a positive interaction with:","'Hey [name], if you know any other agents who might want a video for their listings, I'd love an intro. I'll give you both 20% off your next video as a thank you.'","Add a referral note to your email signature","Add it to your Wave invoice footer too"],
+   prompt:null, note:false},
+  {phase:"SYSTEM",title:"Review your numbers and set Week 2 targets",time:"20 min",
+   why:"You can't improve what you don't measure. After one week you have real data — use it. Even 0 sales this week is useful data if you know why.",
+   actions:["Count total pitches sent this week","Count total replies","Count total interested","Count sales and revenue","Calculate your close rate: (sales ÷ pitches) × 100","If close rate is below 5% — your pitch needs work (try a different subject line or demo)","If close rate is above 10% — scale the volume immediately","Write your Week 2 targets: 50 total pitches, first invoice paid, first testimonial, first social post"],
+   prompt:null, note:true}
+];
+
+// ── 7-DAY PLAN FUNCTIONS ──────────────────────────────────────────────────────
+function getFast7Checks() { try { return JSON.parse(localStorage.getItem('ps_fast7_checks') || '{}'); } catch(e) { return {}; } }
+function setFast7Check(id, v) { var d = getFast7Checks(); d[id] = v; localStorage.setItem('ps_fast7_checks', JSON.stringify(d)); updateFast7Progress(); }
+function getFast7Notes() { try { return JSON.parse(localStorage.getItem('ps_fast7_notes') || '{}'); } catch(e) { return {}; } }
+function setFast7Note(id, v) { var d = getFast7Notes(); d[id] = v; localStorage.setItem('ps_fast7_notes', JSON.stringify(d)); }
+
+function updateFast7Progress() {
+  var checks = getFast7Checks();
+  var total = 0, done = 0;
+  FAST7.forEach(function(day) { day.tasks.forEach(function(t) { total++; if (checks[t.id]) done++; }); });
+  var pct = total > 0 ? Math.round((done/total)*100) : 0;
+  var bar = document.getElementById('fast7-bar');
+  var pctEl = document.getElementById('fast7-pct');
+  var countEl = document.getElementById('fast7-count');
+  if (bar) bar.style.width = pct + '%';
+  if (pctEl) pctEl.textContent = pct + '%';
+  if (countEl) countEl.textContent = done + ' of ' + total + ' tasks complete';
+}
+
+function renderFast7() {
+  var c = document.getElementById('fast7-container');
+  if (!c) return;
+  var checks = getFast7Checks();
+  var notes = getFast7Notes();
+
+  c.innerHTML = FAST7.map(function(day) {
+    var dayDone = day.tasks.filter(function(t) { return checks[t.id]; }).length;
+    var dayTotal = day.tasks.length;
+    var dayPct = Math.round((dayDone/dayTotal)*100);
+
+    var tasksHtml = day.tasks.map(function(t) {
+      var checked = checks[t.id] ? 'checked' : '';
+      var noteVal = notes[t.id] || '';
+      return '<div style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:12px 14px;margin-bottom:8px'+(checks[t.id]?';opacity:.6':'')+'">' +
+        '<label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer;margin-bottom:8px">'+
+          '<input type="checkbox" data-id="'+t.id+'" '+checked+' style="margin-top:3px;accent-color:'+day.color+';width:16px;height:16px;flex-shrink:0;cursor:pointer">'+
+          '<div style="flex:1">'+
+            '<div style="font-size:12px;font-weight:700;color:var(--white);line-height:1.4'+(checks[t.id]?';text-decoration:line-through;color:var(--grey-l)':'')+'">'+ t.title +'</div>'+
+            '<div style="font-size:11px;color:var(--grey-l);line-height:1.6;margin-top:4px">'+t.detail.replace(/\n/g,'<br>')+'</div>'+
+          '</div>'+
+        '</label>'+
+        (t.prompt ? '<div style="background:rgba(255,255,255,.04);border-left:3px solid '+day.color+';border-radius:0 8px 8px 0;padding:8px 10px;margin:6px 0 8px">'+
+          '<div style="font-size:9px;font-weight:700;color:'+day.color+';letter-spacing:.8px;text-transform:uppercase;margin-bottom:4px">📋 OPTIMISED HIGGSFIELD PROMPT — Copy this exactly:</div>'+
+          '<div style="font-size:11px;color:var(--white);line-height:1.5;font-family:monospace">'+t.prompt+'</div>'+
+          '<button data-prompt="'+t.prompt.replace(/"/g,'&quot;')+'" class="copy-prompt-btn" style="margin-top:6px;background:'+day.color+'22;border:1px solid '+day.color+'44;border-radius:6px;padding:3px 10px;font-size:10px;font-weight:700;color:'+day.color+';cursor:pointer;font-family:inherit">Copy Prompt</button>'+
+        '</div>' : '') +
+        '<div style="margin-top:6px">'+
+          '<textarea data-note-id="'+t.id+'" placeholder="Personal notes for this task..." style="width:100%;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:7px;color:var(--grey-l);font-size:10px;padding:7px 9px;font-family:inherit;resize:none;min-height:36px;outline:none;transition:border-color .2s;line-height:1.5">'+noteVal+'</textarea>'+
+        '</div>'+
+      '</div>';
+    }).join('');
+
+    return '<div style="border:1px solid '+day.color+'44;border-radius:16px;overflow:hidden;margin-bottom:16px">'+
+      '<div style="background:linear-gradient(135deg,'+day.color+'15,rgba(0,0,0,0));padding:16px;border-bottom:1px solid '+day.color+'22">'+
+        '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap">'+
+          '<div>'+
+            '<div style="font-size:10px;font-weight:700;color:'+day.color+';letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px">Day '+day.day+' · '+day.time+'</div>'+
+            '<div style="font-size:18px;font-weight:900;color:var(--white)">'+day.title+'</div>'+
+            '<div style="font-size:11px;color:var(--grey-l);margin-top:4px;line-height:1.5">'+day.subtitle+'</div>'+
+          '</div>'+
+          '<div style="text-align:center;flex-shrink:0">'+
+            '<div style="font-size:18px;font-weight:900;color:'+(dayPct===100?'var(--green)':day.color)+'">'+dayPct+'%</div>'+
+            '<div style="font-size:9px;color:var(--grey-l)">'+dayDone+'/'+dayTotal+'</div>'+
+          '</div>'+
+        '</div>'+
+        '<div style="height:4px;background:rgba(255,255,255,.06);border-radius:2px;margin-top:10px;overflow:hidden">'+
+          '<div style="height:100%;background:'+day.color+';border-radius:2px;width:'+dayPct+'%;transition:width .4s"></div>'+
+        '</div>'+
+      '</div>'+
+      '<div style="padding:14px">'+tasksHtml+'</div>'+
+    '</div>';
+  }).join('');
+
+  // Bind checkboxes
+  c.querySelectorAll('input[type=checkbox]').forEach(function(cb) {
+    cb.addEventListener('change', function() {
+      setFast7Check(this.getAttribute('data-id'), this.checked);
+      renderFast7();
+    });
+  });
+
+  // Bind note areas
+  c.querySelectorAll('textarea[data-note-id]').forEach(function(ta) {
+    ta.addEventListener('blur', function() { setFast7Note(this.getAttribute('data-note-id'), this.value); });
+  });
+
+  // Bind copy prompt buttons
+  c.querySelectorAll('.copy-prompt-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var text = this.getAttribute('data-prompt');
+      navigator.clipboard.writeText(text).then(function() {});
+      btn.textContent = 'Copied!';
+      setTimeout(function() { btn.textContent = 'Copy Prompt'; }, 1500);
+    });
+  });
+
+  updateFast7Progress();
+}
+
+// ── WALKTHROUGH FUNCTIONS ─────────────────────────────────────────────────────
+var wtStep = 0;
+function getWtChecks() { try { return JSON.parse(localStorage.getItem('ps_wt_checks') || '{}'); } catch(e) { return {}; } }
+function setWtChecks(data) { localStorage.setItem('ps_wt_checks', JSON.stringify(data)); }
+function getWtNote(idx) { try { var d = JSON.parse(localStorage.getItem('ps_wt_notes') || '{}'); return d[idx] || ''; } catch(e) { return ''; } }
+function setWtNote(idx, v) { try { var d = JSON.parse(localStorage.getItem('ps_wt_notes') || '{}'); d[idx] = v; localStorage.setItem('ps_wt_notes', JSON.stringify(d)); } catch(e) {} }
+
+function renderWalkthrough() {
+  var step = WT_STEPS[wtStep];
+  var checks = getWtChecks();
+  var stepKey = 'step_' + wtStep + '_';
+  var allChecked = step.actions.every(function(_, i) { return checks[stepKey + i]; });
+  var total = WT_STEPS.length;
+  var completedSteps = WT_STEPS.filter(function(_, i) {
+    return WT_STEPS[i].actions.every(function(_, j) { return checks['step_'+i+'_'+j]; });
+  }).length;
+  var pct = Math.round((completedSteps / total) * 100);
+
+  // Progress
+  document.getElementById('wt-step-label').textContent = 'Step ' + (wtStep+1) + ' of ' + total;
+  document.getElementById('wt-pct').textContent = pct + '%';
+  document.getElementById('wt-bar').style.width = pct + '%';
+
+  // Dots
+  var dots = document.getElementById('wt-dots');
+  dots.innerHTML = WT_STEPS.map(function(s, i) {
+    var isDone = s.actions.every(function(_, j) { return checks['step_'+i+'_'+j]; });
+    var isCurrent = i === wtStep;
+    var color = isDone ? '#00C853' : isCurrent ? '#00C853' : 'rgba(255,255,255,.15)';
+    var size = isCurrent ? '12px' : '8px';
+    return '<div style="width:'+size+';height:'+size+';border-radius:50%;background:'+color+';flex-shrink:0;transition:all .3s;cursor:pointer;border:'+(isCurrent?'2px solid #00E676':'none')+'" data-dot="'+i+'"></div>';
+  }).join('');
+  dots.querySelectorAll('[data-dot]').forEach(function(dot) {
+    dot.addEventListener('click', function() { wtStep = parseInt(this.getAttribute('data-dot')); renderWalkthrough(); });
+  });
+
+  // Phase colour
+  var phaseColors = {SETUP:'#FF1744','FIND LEADS':'#FF8C00','CREATE VIDEO':'#FFB700','EDIT VIDEO':'#A855F7','PITCH SYSTEM':'#00C2CB','FIRST PITCHES':'#FF1744','FOLLOW UP':'#FF8C00','SCALE':'#FFB700',CLOSE:'#00C853',GROW:'#00C2CB',SYSTEM:'#A855F7'};
+  var col = phaseColors[step.phase] || '#FF1744';
+
+  // Build card
+  var actionsHtml = step.actions.map(function(action, i) {
+    var key = stepKey + i;
+    var done = checks[key];
+    return '<label style="display:flex;gap:10px;align-items:flex-start;padding:10px 14px;border-radius:10px;cursor:pointer;background:'+(done?'rgba(0,200,83,.07)':'rgba(255,255,255,.02)')+';border:1px solid '+(done?'rgba(0,200,83,.25)':'rgba(255,255,255,.06)')+';margin-bottom:6px;transition:all .2s">'+
+      '<input type="checkbox" data-key="'+key+'" '+(done?'checked':'')+' style="margin-top:2px;accent-color:#00C853;width:17px;height:17px;flex-shrink:0;cursor:pointer">'+
+      '<span style="font-size:12px;color:'+(done?'var(--grey-l)':'var(--white)')+';line-height:1.6;'+(done?'text-decoration:line-through':'')+'">'+action+'</span>'+
+    '</label>';
+  }).join('');
+
+  var isComplete = completedSteps === total;
+  var card = document.getElementById('wt-card');
+
+  if (isComplete) {
+    card.innerHTML = '<div style="text-align:center;padding:32px 16px;background:linear-gradient(135deg,rgba(0,200,83,.1),rgba(0,0,0,0));border:1px solid rgba(0,200,83,.3);border-radius:16px">'+
+      '<div style="font-size:48px;margin-bottom:12px">🎉</div>'+
+      '<div style="font-size:24px;font-weight:900;color:#00E676;margin-bottom:8px">Walkthrough Complete!</div>'+
+      '<div style="font-size:13px;color:var(--grey-l);line-height:1.7;max-width:380px;margin:0 auto">You\'ve completed every step of the PropShots launch process. You have a product, a pitch system, a tracker, and leads in your pipeline. Now it\'s time to execute — the rest is just repetition and scale.</div>'+
+      '<div style="margin-top:20px;font-size:14px;font-weight:800;color:#00C853">PropShots is live. Go close your first sale. 🔴</div>'+
+    '</div>';
+    document.getElementById('wt-next').style.opacity = '0.3';
+    document.getElementById('wt-next').textContent = 'All Done ✅';
+    return;
+  }
+
+  card.innerHTML = '<div style="background:linear-gradient(135deg,'+col+'12,rgba(0,0,0,0));border:1px solid '+col+'33;border-radius:16px;overflow:hidden">'+
+    // Phase + step header
+    '<div style="padding:16px;border-bottom:1px solid rgba(255,255,255,.06)">'+
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">'+
+        '<span style="font-size:10px;font-weight:700;color:'+col+';letter-spacing:1.5px;text-transform:uppercase;background:'+col+'18;padding:3px 9px;border-radius:20px">'+step.phase+'</span>'+
+        '<span style="font-size:10px;color:var(--grey-l)">⏱ '+step.time+'</span>'+
+      '</div>'+
+      '<div style="font-size:20px;font-weight:900;color:var(--white);margin-bottom:6px;line-height:1.2">'+step.title+'</div>'+
+      '<div style="font-size:12px;color:var(--grey-l);line-height:1.6;background:rgba(0,0,0,.2);padding:10px 12px;border-radius:8px">'+
+        '<strong style="color:'+col+'">Why this matters: </strong>'+step.why+
+      '</div>'+
+    '</div>'+
+    // Actions checklist
+    '<div style="padding:14px">'+
+      '<div style="font-size:10px;font-weight:700;color:var(--grey-l);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">✅ Check off every action to continue:</div>'+
+      actionsHtml+
+      // Prompt if exists
+      (step.prompt ? '<div style="background:rgba(255,255,255,.04);border-left:3px solid '+col+';border-radius:0 10px 10px 0;padding:10px 12px;margin:10px 0">'+
+        '<div style="font-size:9px;font-weight:700;color:'+col+';letter-spacing:.8px;text-transform:uppercase;margin-bottom:6px">📋 OPTIMISED PROMPT — Copy and use this:</div>'+
+        '<div style="font-size:11px;color:var(--white);line-height:1.6;font-family:monospace">'+step.prompt+'</div>'+
+        '<button id="wt-copy-prompt" data-p="'+step.prompt.replace(/"/g,'&quot;')+'" style="margin-top:8px;background:'+col+'22;border:1px solid '+col+'44;border-radius:6px;padding:4px 12px;font-size:10px;font-weight:700;color:'+col+';cursor:pointer;font-family:inherit">Copy Prompt</button>'+
+      '</div>' : '')+
+      // Notes
+      (step.note ? '<div style="margin-top:10px">'+
+        '<div style="font-size:10px;font-weight:700;color:var(--grey-l);letter-spacing:.5px;text-transform:uppercase;margin-bottom:5px">📝 Your notes for this step:</div>'+
+        '<textarea id="wt-note-area" placeholder="Add personal notes, observations, what happened..." style="width:100%;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:var(--grey-l);font-size:11px;padding:9px 12px;font-family:inherit;resize:none;min-height:60px;outline:none;line-height:1.6">'+getWtNote(wtStep)+'</textarea>'+
+      '</div>' : '')+
+    '</div>'+
+  '</div>';
+
+  // Bind checkboxes
+  card.querySelectorAll('input[type=checkbox]').forEach(function(cb) {
+    cb.addEventListener('change', function() {
+      var c2 = getWtChecks();
+      c2[this.getAttribute('data-key')] = this.checked;
+      setWtChecks(c2);
+      renderWalkthrough();
+    });
+  });
+
+  // Bind prompt copy
+  var cpBtn = document.getElementById('wt-copy-prompt');
+  if (cpBtn) {
+    cpBtn.addEventListener('click', function() {
+      navigator.clipboard.writeText(this.getAttribute('data-p')).then(function(){});
+      cpBtn.textContent = 'Copied!';
+      setTimeout(function() { if (cpBtn) cpBtn.textContent = 'Copy Prompt'; }, 1500);
+    });
+  }
+
+  // Bind note
+  var noteArea = document.getElementById('wt-note-area');
+  if (noteArea) { noteArea.addEventListener('blur', function() { setWtNote(wtStep, this.value); }); }
+
+  // Update next button
+  var nextBtn = document.getElementById('wt-next');
+  if (allChecked) {
+    nextBtn.style.opacity = '1';
+    nextBtn.textContent = wtStep < WT_STEPS.length - 1 ? 'Next Step →' : 'Complete Walkthrough ✅';
+    nextBtn.style.background = 'rgba(0,200,83,.2)';
+    nextBtn.style.borderColor = 'rgba(0,200,83,.5)';
+    nextBtn.style.color = '#00E676';
+  } else {
+    var remaining = step.actions.filter(function(_, i) { return !checks[stepKey + i]; }).length;
+    nextBtn.style.opacity = '0.35';
+    nextBtn.textContent = remaining + ' action' + (remaining !== 1 ? 's' : '') + ' left to check off';
+    nextBtn.style.background = 'rgba(0,200,83,.08)';
+    nextBtn.style.borderColor = 'rgba(0,200,83,.2)';
+    nextBtn.style.color = '#00C853';
+  }
+}
+
+document.getElementById('wt-next').addEventListener('click', function() {
+  var step = WT_STEPS[wtStep];
+  var checks = getWtChecks();
+  var allChecked = step.actions.every(function(_, i) { return checks['step_'+wtStep+'_'+i]; });
+  if (!allChecked) return;
+  if (wtStep < WT_STEPS.length - 1) { wtStep++; renderWalkthrough(); window.scrollTo(0,120); }
+});
+
+document.getElementById('wt-back').addEventListener('click', function() {
+  if (wtStep > 0) { wtStep--; renderWalkthrough(); window.scrollTo(0,120); }
+});
+renderHomeWhy();
+renderLeads();
+renderCompanies();
+renderEarnChart();
+renderMonthlyChart();
+renderMonthlyTable();
+renderFreeTools();
+renderPaidTools();
+renderPackages();
+renderPlan();
+renderFast7();
+renderWalkthrough();
+renderWorkflow();
+renderChecklist();
+renderAssess();
+renderTracker();
+</script>
+</body>
+</html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">

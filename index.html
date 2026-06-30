@@ -1097,6 +1097,7 @@ var AIRBNB_PROPERTIES = [
     host:"Anna", hostType:"Individual host (co-hosts Holly & Nic)",
     rating:"4.96★", reviews:"93 reviews", badge:"Guest Favourite",
     image:"https://a0.muscache.com/im/pictures/033549b8-da13-4598-98bd-3296a9a718ca.jpg",
+    screenshot:"https://i.imgur.com/Mx9WQNa_d.webp",
     url:"https://www.airbnb.co.nz/rooms/43959968",
     summary:"Architect-designed lakefront home — described by the host as one of \"the most stunning Airbnbs in Queenstown.\" Spa pool overlooking Lake Wakatipu, private courtyard, vintage-farmhouse-meets-designer interior styling.",
     whySelected:"Highest overall score of all 10 listings. The architect pedigree, lakefront position, and the host's own confident self-description give this the strongest storytelling potential — this is the property a cinematic walkthrough was built for.",
@@ -1120,6 +1121,7 @@ var AIRBNB_PROPERTIES = [
     host:"Hello Queenstown", hostType:"Property Management Company — physical guest lounge at 19 Shotover St",
     rating:"5.0★", reviews:"11 reviews (new listing)", badge:"New & Unestablished",
     image:"https://a0.muscache.com/im/pictures/prohost-api/Hosting-1440255310196733949/original/4aba1923-e788-4314-a82f-4bd5aeda5d92.jpeg",
+    screenshot:"https://i.imgur.com/UpTC2Wc_d.webp",
     url:"https://www.airbnb.co.nz/rooms/1440255310196733949",
     summary:"Five-bedroom alpine residence with a private Onsen-style outdoor bath, media lounge with pool table, and panoramic Lake Wakatipu + Remarkables views. Managed by Hello Queenstown, a PMC with a real guest-facing office in town.",
     whySelected:"Second-highest score and the single highest 'opportunity through marketing' score of all 10 — this listing only has 11 reviews. A new, beautifully designed property hasn't yet built the review volume to win on reputation alone; video is exactly the lever that helps a new listing compete with established 200+ review competitors immediately.",
@@ -1143,6 +1145,7 @@ var AIRBNB_PROPERTIES = [
     host:"Bridget (Aaron & Bridget Murphy)", hostType:"Luxury Stays Queenstown — manages 65 villas",
     rating:"4.98★", reviews:"60 reviews", badge:"Airbnb Luxe · Top 10%",
     image:"https://a0.muscache.com/im/pictures/prohost-api/Hosting-1305271650025377413/original/74745820-303f-408b-b907-174fb168a334.jpeg",
+    screenshot:"https://i.imgur.com/iJAYZ1Y_d.webp",
     url:"https://www.airbnb.co.nz/rooms/1305271650025377413",
     summary:"Newly built four-bedroom villa, Airbnb Luxe certified, with panoramic Lake Wakatipu and Remarkables views, private hot tub on the deck. Run by Luxury Stays Queenstown, a husband-and-wife operation managing 65 villas across the region.",
     whySelected:"Airbnb Luxe certification is a quality bar very few listings clear — it signals the property and the management company both meet a premium standard. Combined with a 65-villa portfolio, this is the single biggest long-term business opportunity on the list.",
@@ -1166,6 +1169,7 @@ var AIRBNB_PROPERTIES = [
     host:"Relax It's Done Ltd", hostType:"Registered company — named 6-person team (Sarah, Margaret, Abi, Michaela, Dayna, Erica)",
     rating:"4.89★", reviews:"37 reviews", badge:"363 sqm · Hot Spring Spa",
     image:"https://a0.muscache.com/im/pictures/hosting/Hosting-46491210/original/233fe4cc-82bf-47b1-887c-06cd99813006.jpeg",
+    screenshot:"https://i.imgur.com/izFBc0U_d.webp",
     url:"https://www.airbnb.co.nz/rooms/46491210",
     summary:"363 sqm modern home on Queenstown Hill where literally every room has a view of Lake Wakatipu, the Remarkables, Cecil Peak and Walter Peak. 'Hot Spring' style spa pool, six-and-a-half bathrooms, run by registered company Relax It's Done Ltd.",
     whySelected:"The single cleanest outreach target of all 10 — a registered Ltd company almost always means a discoverable business website and a real decision-maker on the other end, not a guessing game through Airbnb's inbox. The 'every room has a view' positioning is also inherently video-friendly — it's a tagline built for motion, not stills.",
@@ -1189,6 +1193,7 @@ var AIRBNB_PROPERTIES = [
     host:"Juliet", hostType:"Director, Hot Property Queenstown (co-host Ashar)",
     rating:"4.98★", reviews:"231 reviews", badge:"Top 1% of Homes",
     image:"https://a0.muscache.com/im/pictures/2768981d-7401-4551-a157-8729d1d4387c.jpg",
+    screenshot:"https://i.imgur.com/uK2FU6G_d.webp",
     url:"https://www.airbnb.co.nz/rooms/23931560",
     summary:"Architecturally designed modern home with epic mountain and lake views, built on a quiet cul-de-sac. Hosted by Juliet, Director of Hot Property Queenstown, with 231 reviews and a Top 1% ranking — one of the highest-ranked homes in the area.",
     whySelected:"Top 1% is Airbnb's rarest quality badge, and 231 reviews represents a genuinely proven, long-running earner. The host's title — Director — signals a real decision-maker rather than a casual host, and the business name gives a clean path to outreach.",
@@ -1783,6 +1788,11 @@ function renderAirbnb() {
           '<div style="font-size:11px;color:rgba(255,255,255,.85);margin-top:2px">'+p.location+'</div>'+
         '</div>'+
       '</div>'+
+      // Second photo — actual listing screenshot
+      (p.screenshot ? '<div style="position:relative;height:130px;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.06)">'+
+        '<img src="'+p.screenshot+'" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block" loading="lazy">'+
+        '<div style="position:absolute;bottom:6px;right:8px;background:rgba(0,0,0,.65);backdrop-filter:blur(3px);color:rgba(255,255,255,.85);font-size:9px;font-weight:600;padding:3px 8px;border-radius:12px">📸 Listing photo</div>'+
+      '</div>' : '')+
       // Body
       '<div style="padding:16px">'+
         // Host info

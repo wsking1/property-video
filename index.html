@@ -150,6 +150,8 @@ body{
   border-radius:14px;padding:16px;display:flex;gap:13px;align-items:flex-start;
   transition:border-color .25s,transform .2s,box-shadow .25s}
 .why-card:hover{border-color:rgba(255,23,68,.3);transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,23,68,.07)}
+.summary-card{transition:transform .15s,box-shadow .15s}
+.summary-card:hover,.summary-card:active{transform:translateX(2px);box-shadow:0 4px 20px rgba(0,0,0,.25)}
 .why-icon{font-size:22px;flex-shrink:0;line-height:1}
 .why-title{font-size:13px;font-weight:800;margin-bottom:4px;letter-spacing:-.1px}
 .why-desc{font-size:11px;color:var(--grey-l);line-height:1.6}
@@ -295,6 +297,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);cursor:pointer}
   <div class="nav-inner" id="nav-inner">
     <div class="nav-brand">📹 AI VIDEO</div>
     <button class="nav-btn active" data-page="home">Home</button>
+    <button class="nav-btn" data-page="summary" style="color:#FFB700;font-weight:700">📋 Summary</button>
     <button class="nav-btn" data-page="today" style="color:#00E676;font-weight:700">🎯 Today</button>
     <button class="nav-btn" data-page="opportunity">Opportunity</button>
     <button class="nav-btn" data-page="leads">13 Leads</button>
@@ -331,6 +334,126 @@ input[type=range]{width:100%;accent-color:var(--cyan);cursor:pointer}
   </div>
   <div class="divider"></div>
   <div class="why-grid" id="home-why"></div>
+</div>
+
+<!-- SUMMARY / OVERVIEW -->
+<div id="page-summary" class="page">
+  <div class="section-title">Everything In One Place</div>
+  <div class="page-title" style="background:linear-gradient(135deg,#FFB700,#FF8C00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Summary</div>
+  <div class="page-sub">16 sections, organised so you can see the whole business at a glance. Tap any card to jump straight there.</div>
+
+  <!-- Headline stats -->
+  <div class="stat-grid" style="margin-bottom:20px">
+    <div class="stat-box"><div class="stat-num" style="color:var(--cyan)">18</div><div class="stat-lbl">Real leads found<br>(13 real estate + 5 Airbnb)</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--green)">$61,314</div><div class="stat-lbl">Year 1 true<br>distributable cash</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:#FFB700">72%</div><div class="stat-lbl">Estimated success<br>probability</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:#FF1744">M1</div><div class="stat-lbl">Cash flow<br>turns positive</div></div>
+  </div>
+
+  <!-- DAILY USE -->
+  <div class="section-title" style="margin-bottom:10px">🎯 Daily Use</div>
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+    <div class="summary-card" data-goto="today" style="display:flex;gap:12px;align-items:center;background:rgba(0,230,118,.05);border:1px solid rgba(0,230,118,.25);border-radius:12px;padding:13px 14px;cursor:pointer">
+      <div style="font-size:22px;flex-shrink:0">🎯</div>
+      <div style="flex:1"><div style="font-size:13px;font-weight:800;color:#fff">Today</div><div style="font-size:11px;color:var(--grey-l);margin-top:1px">Your daily action dashboard — follow-ups due, replies waiting, deliveries pending. Open this first every day.</div></div>
+      <div style="color:var(--green);font-size:16px">→</div>
+    </div>
+    <div class="summary-card" data-goto="outreach" style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:13px 14px;cursor:pointer">
+      <div style="font-size:22px;flex-shrink:0">✉️</div>
+      <div style="flex:1"><div style="font-size:13px;font-weight:800;color:#fff">Outreach</div><div style="font-size:11px;color:var(--grey-l);margin-top:1px">Pitch email builder, video length/price calculator, Pitch Tracker with live funnel, win/loss analytics, call scripts.</div></div>
+      <div style="color:var(--grey-l);font-size:16px">→</div>
+    </div>
+  </div>
+
+  <!-- BUSINESS CASE -->
+  <div class="section-title" style="margin-bottom:10px">📊 The Business Case</div>
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+    <div class="summary-card" data-goto="opportunity" style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:13px 14px;cursor:pointer">
+      <div style="font-size:22px;flex-shrink:0">📈</div>
+      <div style="flex:1"><div style="font-size:13px;font-weight:800;color:#fff">Opportunity</div><div style="font-size:11px;color:var(--grey-l);margin-top:1px">Why the gap exists, market sizing, AI vs drone comparison, why now is the right time.</div></div>
+      <div style="color:var(--grey-l);font-size:16px">→</div>
+    </div>
+    <div class="summary-card" data-goto="leads" style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:13px 14px;cursor:pointer">
+      <div style="font-size:22px;flex-shrink:0">🏠</div>
+      <div style="flex:1"><div style="font-size:13px;font-weight:800;color:#fff">13 Leads</div><div style="font-size:11px;color:var(--grey-l);margin-top:1px">Real, verified Trade Me listings with no video — scored, priced, agent contact details included.</div></div>
+      <div style="color:var(--grey-l);font-size:16px">→</div>
+    </div>
+    <div class="summary-card" data-goto="airbnb" style="display:flex;gap:12px;align-items:center;background:rgba(255,183,0,.05);border:1px solid rgba(255,183,0,.2);border-radius:12px;padding:13px 14px;cursor:pointer">
+      <div style="font-size:22px;flex-shrink:0">🏡</div>
+      <div style="flex:1"><div style="font-size:13px;font-weight:800;color:#fff">Airbnb</div><div style="font-size:11px;color:var(--grey-l);margin-top:1px">Top 5 luxury Queenstown Airbnb opportunities, ranked with AI video prompts and outreach emails ready to send.</div></div>
+      <div style="color:#FFB700;font-size:16px">→</div>
+    </div>
+    <div class="summary-card" data-goto="assess" style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:13px 14px;cursor:pointer">
+      <div style="font-size:22px;flex-shrink:0">✅</div>
+      <div style="flex:1"><div style="font-size:13px;font-weight:800;color:#fff">Assessment</div><div style="font-size:11px;color:var(--grey-l);margin-top:1px">The honest factor-by-factor breakdown of whether this actually works — no hype.</div></div>
+      <div style="color:var(--grey-l);font-size:16px">→</div>
+    </div>
+  </div>
+
+  <!-- MONEY -->
+  <div class="section-title" style="margin-bottom:10px">💰 The Money</div>
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+    <div class="summary-card" data-goto="earnings" style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:13px 14px;cursor:pointer">
+      <div style="font-size:22px;flex-shrink:0">📊</div>
+      <div style="flex:1"><div style="font-size:13px;font-weight:800;color:#fff">Earnings</div><div style="font-size:11px;color:var(--grey-l);margin-top:1px">Conservative, Realistic, Strong and Scale Up monthly earnings scenarios side by side.</div></div>
+      <div style="color:var(--grey-l);font-size:16px">→</div>
+    </div>
+    <div class="summary-card" data-goto="monthly" style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:13px 14px;cursor:pointer">
+      <div style="font-size:22px;flex-shrink:0">📅</div>
+      <div style="flex:1"><div style="font-size:13px;font-weight:800;color:#fff">12 Months</div><div style="font-size:11px;color:var(--grey-l);margin-top:1px">Month-by-month growth projection from your first video to Year 1's end.</div></div>
+      <div style="color:var(--grey-l);font-size:16px">→</div>
+    </div>
+    <div class="summary-card" data-goto="cashflow" style="display:flex;gap:12px;align-items:center;background:rgba(0,230,118,.05);border:1px solid rgba(0,230,118,.25);border-radius:12px;padding:13px 14px;cursor:pointer">
+      <div style="font-size:22px;flex-shrink:0">💵</div>
+      <div style="flex:1"><div style="font-size:13px;font-weight:800;color:#fff">Cash Flow</div><div style="font-size:11px;color:var(--grey-l);margin-top:1px">The full professional forecast — real income tax, ACC levy, GST threshold, Year 2, deductions tracker, startup benchmarks.</div></div>
+      <div style="color:var(--green);font-size:16px">→</div>
+    </div>
+  </div>
+
+  <!-- EXECUTION -->
+  <div class="section-title" style="margin-bottom:10px">🛠️ Execution</div>
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+    <div class="summary-card" data-goto="tools" style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:13px 14px;cursor:pointer">
+      <div style="font-size:22px;flex-shrink:0">🧰</div>
+      <div style="flex:1"><div style="font-size:13px;font-weight:800;color:#fff">Tools</div><div style="font-size:11px;color:var(--grey-l);margin-top:1px">Every tool you need — free and paid — with recommended packages by growth stage.</div></div>
+      <div style="color:var(--grey-l);font-size:16px">→</div>
+    </div>
+    <div class="summary-card" data-goto="plan" style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:13px 14px;cursor:pointer">
+      <div style="font-size:22px;flex-shrink:0">📋</div>
+      <div style="flex:1"><div style="font-size:13px;font-weight:800;color:#fff">Plan</div><div style="font-size:11px;color:var(--grey-l);margin-top:1px">The full 30-day plan, week by week, with daily detail and reasoning behind each step.</div></div>
+      <div style="color:var(--grey-l);font-size:16px">→</div>
+    </div>
+    <div class="summary-card" data-goto="fast7" style="display:flex;gap:12px;align-items:center;background:rgba(255,183,0,.05);border:1px solid rgba(255,183,0,.2);border-radius:12px;padding:13px 14px;cursor:pointer">
+      <div style="font-size:22px;flex-shrink:0">⚡</div>
+      <div style="flex:1"><div style="font-size:13px;font-weight:800;color:#fff">7-Day</div><div style="font-size:11px;color:var(--grey-l);margin-top:1px">The same plan compressed into 7 days flat out — checklists, notes, and optimised prompts built in.</div></div>
+      <div style="color:#FFB700;font-size:16px">→</div>
+    </div>
+    <div class="summary-card" data-goto="walkthrough" style="display:flex;gap:12px;align-items:center;background:rgba(0,200,83,.05);border:1px solid rgba(0,200,83,.2);border-radius:12px;padding:13px 14px;cursor:pointer">
+      <div style="font-size:22px;flex-shrink:0">🎯</div>
+      <div style="flex:1"><div style="font-size:13px;font-weight:800;color:#fff">Walkthrough</div><div style="font-size:11px;color:var(--grey-l);margin-top:1px">One step at a time, can't skip ahead until every action is checked off. Built so it's hard to fail.</div></div>
+      <div style="color:var(--green);font-size:16px">→</div>
+    </div>
+    <div class="summary-card" data-goto="workflow" style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:13px 14px;cursor:pointer">
+      <div style="font-size:22px;flex-shrink:0">🎬</div>
+      <div style="flex:1"><div style="font-size:13px;font-weight:800;color:#fff">Workflow</div><div style="font-size:11px;color:var(--grey-l);margin-top:1px">The actual 25-step production process — find, pitch, produce, deliver, scale.</div></div>
+      <div style="color:var(--grey-l);font-size:16px">→</div>
+    </div>
+  </div>
+
+  <!-- PROTECT YOURSELF -->
+  <div class="section-title" style="margin-bottom:10px">⚖️ Protect Yourself</div>
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:8px">
+    <div class="summary-card" data-goto="legal" style="display:flex;gap:12px;align-items:center;background:rgba(167,139,250,.06);border:1px solid rgba(167,139,250,.25);border-radius:12px;padding:13px 14px;cursor:pointer">
+      <div style="font-size:22px;flex-shrink:0">⚖️</div>
+      <div style="flex:1"><div style="font-size:13px;font-weight:800;color:#fff">Legal</div><div style="font-size:11px;color:var(--grey-l);margin-top:1px">Photo usage rights, Fair Trading Act disclaimer, the Service Agreement document, and your setup checklist.</div></div>
+      <div style="color:#A78BFA;font-size:16px">→</div>
+    </div>
+    <div class="summary-card" data-goto="brand" style="display:flex;gap:12px;align-items:center;background:rgba(255,23,68,.05);border:1px solid rgba(255,23,68,.2);border-radius:12px;padding:13px 14px;cursor:pointer">
+      <div style="font-size:22px;flex-shrink:0">🔴</div>
+      <div style="flex:1"><div style="font-size:13px;font-weight:800;color:#fff">PropShots</div><div style="font-size:11px;color:var(--grey-l);margin-top:1px">Domain, email, social handles — everything to make PropShots a real, professional brand.</div></div>
+      <div style="color:#FF1744;font-size:16px">→</div>
+    </div>
+  </div>
 </div>
 
 <!-- TODAY DASHBOARD -->

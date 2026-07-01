@@ -51,7 +51,58 @@ body{
 .nav-btn.active{color:#FF1744;border-bottom-color:#FF1744}
 /* PAGES */
 .page{display:none;padding:76px 16px 48px;max-width:900px;margin:0 auto}
-.page.active{display:block}
+.page.active{display:block;animation:pageIn .32s cubic-bezier(.16,1,.3,1)}
+@keyframes pageIn{
+  0%{opacity:0;transform:translateY(10px)}
+  100%{opacity:1;transform:translateY(0)}
+}
+/* SEARCH FAB */
+#search-fab{
+  position:fixed;bottom:20px;right:16px;z-index:90;
+  width:52px;height:52px;border-radius:50%;
+  background:linear-gradient(135deg,#FF1744,#CC0011);
+  border:none;color:#fff;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(255,23,68,.4),0 2px 8px rgba(0,0,0,.3);
+  transition:transform .2s,box-shadow .2s}
+#search-fab:hover{transform:scale(1.08);box-shadow:0 6px 26px rgba(255,23,68,.55)}
+#search-fab:active{transform:scale(.95)}
+/* SEARCH OVERLAY */
+#search-overlay{
+  position:fixed;inset:0;z-index:200;display:none;
+  background:rgba(4,4,8,.88);backdrop-filter:blur(6px);
+  padding:60px 16px;overflow-y:auto}
+#search-overlay.open{display:block;animation:fadeIn .18s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+#search-panel{
+  max-width:600px;margin:0 auto;
+  background:#0d0d10;border:1px solid rgba(255,23,68,.3);
+  border-radius:18px;overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
+  animation:searchIn .22s cubic-bezier(.16,1,.3,1)}
+@keyframes searchIn{from{opacity:0;transform:translateY(-14px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+#search-input-row{
+  display:flex;align-items:center;gap:10px;
+  padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.08)}
+#search-input{
+  flex:1;background:none;border:none;color:#fff;font-size:15px;
+  font-family:inherit;outline:none}
+#search-input::placeholder{color:var(--grey-l)}
+#search-close{
+  background:rgba(255,255,255,.06);border:none;color:var(--grey-l);
+  width:26px;height:26px;border-radius:50%;cursor:pointer;
+  font-size:13px;flex-shrink:0;font-family:inherit}
+#search-close:hover{background:rgba(255,255,255,.12);color:#fff}
+#search-results{max-height:60vh;overflow-y:auto;padding:8px}
+.search-result{
+  display:flex;gap:12px;align-items:center;padding:12px 14px;
+  border-radius:12px;cursor:pointer;transition:background .15s}
+.search-result:hover,.search-result.kb-active{background:rgba(255,23,68,.1)}
+.search-result-icon{font-size:20px;flex-shrink:0}
+.search-result-title{font-size:13px;font-weight:800;color:#fff}
+.search-result-desc{font-size:11px;color:var(--grey-l);margin-top:1px;line-height:1.4}
+.search-empty{padding:30px 16px;text-align:center;color:var(--grey-l);font-size:12.5px}
+.search-hint{padding:14px 16px;text-align:center;color:var(--grey-l);font-size:11.5px;border-top:1px solid rgba(255,255,255,.06)}
 /* COMMON */
 .section-title{font-size:10px;font-weight:700;letter-spacing:2px;
   background:linear-gradient(90deg,#FF1744,#FF6B6B);
@@ -317,6 +368,30 @@ input[type=range]{width:100%;accent-color:var(--cyan);cursor:pointer}
   </div>
   <button id="nav-scroll-right" class="nav-arrow nav-arrow-right" aria-label="Scroll right">›</button>
 </nav>
+
+<!-- FLOATING SEARCH BUTTON -->
+<button id="search-fab" aria-label="Search">
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="11" cy="11" r="7"></circle>
+    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+  </svg>
+</button>
+
+<!-- SEARCH OVERLAY -->
+<div id="search-overlay">
+  <div id="search-panel">
+    <div id="search-input-row">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--grey-l);flex-shrink:0">
+        <circle cx="11" cy="11" r="7"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" id="search-input" placeholder="Search anything — tax, Tinopai, objection, domain..." autocomplete="off">
+      <button id="search-close" aria-label="Close search">✕</button>
+    </div>
+    <div id="search-results"></div>
+    <div class="search-hint">↑↓ navigate · ↵ select · esc close</div>
+  </div>
+</div>
 
 <!-- HOME -->
 <div id="page-home" class="page active">
@@ -2470,7 +2545,127 @@ function showPage(id) {
   });
   if (activeBtn) { activeBtn.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}); }
   window.scrollTo(0, 0);
+  if (page) animateStatsIn(page);
 }
+
+// ── STAT NUMBER COUNT-UP ANIMATION ─────────────────────────────────────────────
+function animateStatsIn(pageEl) {
+  var nums = pageEl.querySelectorAll('.stat-num');
+  nums.forEach(function(el) {
+    var raw = el.textContent.trim();
+    var match = raw.match(/^([^\d]*)([\d,]+\.?\d*)([^\d]*)$/);
+    if (!match) return; // non-numeric (e.g. "M1", "—") — leave as-is
+    var prefix = match[1], numStr = match[2].replace(/,/g,''), suffix = match[3];
+    var target = parseFloat(numStr);
+    if (isNaN(target)) return;
+    var hasComma = match[2].indexOf(',') >= 0;
+    var isDecimal = numStr.indexOf('.') >= 0;
+    var duration = 650;
+    var startTime = null;
+    function frame(ts) {
+      if (!startTime) startTime = ts;
+      var progress = Math.min((ts - startTime) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var current = target * eased;
+      var display = isDecimal ? current.toFixed(1) : Math.round(current).toString();
+      if (hasComma) display = Number(display).toLocaleString();
+      el.textContent = prefix + display + suffix;
+      if (progress < 1) requestAnimationFrame(frame);
+      else el.textContent = raw;
+    }
+    requestAnimationFrame(frame);
+  });
+}
+
+// ── GLOBAL SEARCH ────────────────────────────────────────────────────────────────
+var SEARCH_INDEX = [
+  {page:'home', icon:'🏠', title:'Home', keywords:'overview intro hero start begin', desc:'The starting overview of PropShots.'},
+  {page:'summary', icon:'📋', title:'Summary', keywords:'overview index map everything all sections', desc:'Every section in one place, grouped and tappable.'},
+  {page:'today', icon:'🎯', title:'Today', keywords:'dashboard action items daily tasks follow up confidence log wins', desc:'Daily action dashboard — follow-ups, replies, deliveries, confidence log.'},
+  {page:'opportunity', icon:'📈', title:'Opportunity', keywords:'market analysis gap size drone comparison why now fair trading act', desc:'Why the gap exists, market sizing, AI vs drone.'},
+  {page:'leads', icon:'🏠', title:'13 Leads', keywords:'trade me listings tinopai te kauwhata wanaka napier gisborne agents real estate', desc:'Real verified Trade Me listings with agent contact details.'},
+  {page:'airbnb', icon:'🏡', title:'Airbnb', keywords:'queenstown luxury lodge korimako summit escape hosting rental holiday', desc:'Top 5 Queenstown Airbnb opportunities with AI prompts and emails.'},
+  {page:'earnings', icon:'📊', title:'Earnings', keywords:'scenarios conservative realistic strong scale up revenue projections', desc:'Monthly earnings scenarios side by side.'},
+  {page:'monthly', icon:'📅', title:'12 Months', keywords:'growth month by month projection year one', desc:'Month-by-month growth projection for Year 1.'},
+  {page:'tools', icon:'🧰', title:'Tools', keywords:'higgsfield capcut canva claude free paid packages subscriptions software', desc:'Every tool you need, free and paid, by growth stage.'},
+  {page:'plan', icon:'📋', title:'Plan', keywords:'30 day week action steps daily routine', desc:'The full 30-day plan, week by week.'},
+  {page:'fast7', icon:'⚡', title:'7-Day', keywords:'fast execution week checklist prompts optimised quick start', desc:'The plan compressed into 7 days flat out.'},
+  {page:'walkthrough', icon:'🎯', title:'Walkthrough', keywords:'step by step guided checklist cant skip interactive', desc:'Guided step-by-step mode — can\'t skip ahead.'},
+  {page:'workflow', icon:'🎬', title:'Workflow', keywords:'production process find pitch produce deliver scale 25 steps', desc:'The actual 25-step production process.'},
+  {page:'outreach', icon:'✉️', title:'Outreach', keywords:'pitch email builder tracker funnel win loss objection call script price calculator video length', desc:'Pitch builder, tracker, funnel, scripts, price calculator.'},
+  {page:'assess', icon:'✅', title:'Assessment', keywords:'honest probability success factors risk', desc:'Honest factor-by-factor success assessment.'},
+  {page:'cashflow', icon:'💵', title:'Cash Flow', keywords:'tax income acc levy gst hnry stripe deductions home office reserve year 2 benchmark startup forecast cogs', desc:'Full professional forecast — tax, ACC, deductions, Year 2.'},
+  {page:'legal', icon:'⚖️', title:'Legal', keywords:'contract agreement photo rights disclaimer terms checklist nzbn', desc:'Service agreement, photo rights, legal checklist.'},
+  {page:'brand', icon:'🔴', title:'PropShots', keywords:'domain email propshots.co.nz social handles brand setup cost', desc:'Domain, email, socials — the brand setup.'}
+];
+
+var searchOverlay = document.getElementById('search-overlay');
+var searchInput = document.getElementById('search-input');
+var searchResults = document.getElementById('search-results');
+var searchFab = document.getElementById('search-fab');
+var searchClose = document.getElementById('search-close');
+var searchKbIndex = -1;
+
+function openSearch() {
+  searchOverlay.classList.add('open');
+  searchInput.value = '';
+  renderSearchResults('');
+  setTimeout(function() { searchInput.focus(); }, 50);
+}
+function closeSearch() {
+  searchOverlay.classList.remove('open');
+}
+function renderSearchResults(query) {
+  searchKbIndex = -1;
+  query = query.trim().toLowerCase();
+  var results = query === '' ? SEARCH_INDEX : SEARCH_INDEX.filter(function(item) {
+    return item.title.toLowerCase().indexOf(query) >= 0 ||
+           item.keywords.toLowerCase().indexOf(query) >= 0 ||
+           item.desc.toLowerCase().indexOf(query) >= 0;
+  });
+  if (results.length === 0) {
+    searchResults.innerHTML = '<div class="search-empty">No matches for "'+query+'" — try a different word.</div>';
+    return;
+  }
+  searchResults.innerHTML = results.map(function(item, i) {
+    return '<div class="search-result" data-page="'+item.page+'" data-idx="'+i+'">'+
+      '<div class="search-result-icon">'+item.icon+'</div>'+
+      '<div><div class="search-result-title">'+item.title+'</div><div class="search-result-desc">'+item.desc+'</div></div>'+
+    '</div>';
+  }).join('');
+  searchResults.querySelectorAll('.search-result').forEach(function(el) {
+    el.addEventListener('click', function() {
+      showPage(this.getAttribute('data-page'));
+      closeSearch();
+    });
+  });
+}
+
+searchFab.addEventListener('click', openSearch);
+searchClose.addEventListener('click', closeSearch);
+searchOverlay.addEventListener('click', function(e) { if (e.target === searchOverlay) closeSearch(); });
+searchInput.addEventListener('input', function() { renderSearchResults(this.value); });
+document.addEventListener('keydown', function(e) {
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
+  if (e.key === 'Escape' && searchOverlay.classList.contains('open')) closeSearch();
+  if (searchOverlay.classList.contains('open')) {
+    var items = searchResults.querySelectorAll('.search-result');
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      searchKbIndex = Math.min(searchKbIndex + 1, items.length - 1);
+      items.forEach(function(it,i){ it.classList.toggle('kb-active', i===searchKbIndex); });
+      if (items[searchKbIndex]) items[searchKbIndex].scrollIntoView({block:'nearest'});
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      searchKbIndex = Math.max(searchKbIndex - 1, 0);
+      items.forEach(function(it,i){ it.classList.toggle('kb-active', i===searchKbIndex); });
+      if (items[searchKbIndex]) items[searchKbIndex].scrollIntoView({block:'nearest'});
+    } else if (e.key === 'Enter' && searchKbIndex >= 0 && items[searchKbIndex]) {
+      showPage(items[searchKbIndex].getAttribute('data-page'));
+      closeSearch();
+    }
+  }
+});
 
 // ── NAV SCROLL ARROWS ─────────────────────────────────────────────────────────
 var navInner = document.getElementById('nav-inner');
@@ -4463,6 +4658,8 @@ renderObjections();
 checkConfidenceMilestones();
 renderConfidenceLog();
 renderTodayDashboard();
+var initialPage = document.querySelector('.page.active');
+if (initialPage) setTimeout(function(){ animateStatsIn(initialPage); }, 150);
 </script>
 </body>
 </html>

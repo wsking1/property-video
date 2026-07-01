@@ -295,6 +295,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);cursor:pointer}
   <div class="nav-inner" id="nav-inner">
     <div class="nav-brand">📹 AI VIDEO</div>
     <button class="nav-btn active" data-page="home">Home</button>
+    <button class="nav-btn" data-page="today" style="color:#00E676;font-weight:700">🎯 Today</button>
     <button class="nav-btn" data-page="opportunity">Opportunity</button>
     <button class="nav-btn" data-page="leads">13 Leads</button>
     <button class="nav-btn" data-page="airbnb" style="color:#FFB700;font-weight:700">🏡 Airbnb</button>
@@ -308,6 +309,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);cursor:pointer}
     <button class="nav-btn" data-page="outreach">Outreach</button>
     <button class="nav-btn" data-page="assess">Assessment</button>
     <button class="nav-btn" data-page="cashflow" style="color:#00E676;font-weight:700">💵 Cash Flow</button>
+    <button class="nav-btn" data-page="legal" style="color:#A78BFA;font-weight:700">⚖️ Legal</button>
     <button class="nav-btn" data-page="brand" style="color:#FF1744;font-weight:700">🔴 PropShots</button>
   </div>
   <button id="nav-scroll-right" class="nav-arrow nav-arrow-right" aria-label="Scroll right">›</button>
@@ -329,6 +331,45 @@ input[type=range]{width:100%;accent-color:var(--cyan);cursor:pointer}
   </div>
   <div class="divider"></div>
   <div class="why-grid" id="home-why"></div>
+</div>
+
+<!-- TODAY DASHBOARD -->
+<div id="page-today" class="page">
+  <div class="section-title">Your Daily Home Base</div>
+  <div class="page-title" style="background:linear-gradient(135deg,#00E676,#00C853);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Today</div>
+  <div class="page-sub" id="today-greeting">Open this tab first every day. It tells you exactly who needs action, pulled straight from your Pitch Tracker — nothing to remember, nothing to guess.</div>
+
+  <!-- Quick stats -->
+  <div class="stat-grid" style="margin-bottom:18px">
+    <div class="stat-box"><div class="stat-num" id="today-total-active" style="color:var(--cyan)">0</div><div class="stat-lbl">Active<br>pitches</div></div>
+    <div class="stat-box"><div class="stat-num" id="today-need-action" style="color:#FF1744">0</div><div class="stat-lbl">Need action<br>today</div></div>
+    <div class="stat-box"><div class="stat-num" id="today-days-since" style="color:#FFB700">—</div><div class="stat-lbl">Days since last<br>pitch sent</div></div>
+    <div class="stat-box"><div class="stat-num" id="today-closed-count" style="color:var(--green)">0</div><div class="stat-lbl">Total sales<br>closed</div></div>
+  </div>
+
+  <!-- Action items -->
+  <div class="section-title" style="margin-bottom:10px">Action Items</div>
+  <div id="today-actions"></div>
+
+  <div class="divider"></div>
+
+  <!-- Confidence Log -->
+  <div class="section-title" style="margin-bottom:4px">Confidence Log</div>
+  <div style="font-size:12px;color:var(--grey-l);margin-bottom:14px;line-height:1.7">A running record of proof it's working. Big moments log themselves automatically — add your own wins too, however small.</div>
+
+  <div class="card" style="margin-bottom:14px">
+    <div style="display:flex;gap:8px">
+      <input type="text" id="confidence-input" placeholder="e.g. Got a compliment on the demo video from an agent..." style="flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;color:var(--white);font-size:12px;padding:10px 12px;font-family:inherit;outline:none">
+      <button id="confidence-add-btn" style="background:rgba(0,230,118,.15);border:1px solid rgba(0,230,118,.4);border-radius:10px;padding:10px 16px;font-size:12px;font-weight:800;color:var(--green);cursor:pointer;font-family:inherit;white-space:nowrap">+ Add Win</button>
+    </div>
+  </div>
+
+  <div id="confidence-log-list"></div>
+  <div id="confidence-empty" style="text-align:center;padding:24px 16px;color:var(--grey-l)">
+    <div style="font-size:28px;margin-bottom:8px">🌱</div>
+    <div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:4px">Your log starts here</div>
+    <div style="font-size:11.5px;line-height:1.6">Save your first pitch or add a win above — this fills up faster than you'd expect.</div>
+  </div>
 </div>
 
 <!-- OPPORTUNITY -->
@@ -865,6 +906,23 @@ input[type=range]{width:100%;accent-color:var(--cyan);cursor:pointer}
   <!-- Pipeline view -->
   <div id="pipeline-wrap" style="margin-bottom:16px"></div>
 
+  <!-- Live Funnel -->
+  <div class="section-title" style="margin-bottom:4px">Your Live Pitch Funnel</div>
+  <div style="font-size:11.5px;color:var(--grey-l);margin-bottom:12px;line-height:1.6">Built from every pitch logged in your tracker above — this updates automatically as you save new pitches and change their status.</div>
+  <div class="card" id="funnel-card" style="margin-bottom:18px">
+    <div id="funnel-viz"></div>
+  </div>
+
+  <!-- Reference benchmark funnel -->
+  <div class="section-title" style="margin-bottom:4px">What a Solid Month Looks Like</div>
+  <div style="font-size:11.5px;color:var(--grey-l);margin-bottom:12px;line-height:1.6">An illustrative real-world breakdown for landing 8 sales in a month — useful as a benchmark while your own tracker fills up.</div>
+  <div class="card" style="margin-bottom:12px">
+    <div id="funnel-benchmark"></div>
+  </div>
+  <div class="card" style="background:rgba(255,183,0,.05);border-color:rgba(255,183,0,.25);margin-bottom:18px">
+    <div style="font-size:11.5px;color:var(--grey-l);line-height:1.8">Out of 85 pitches, <strong style="color:#fff">72 (85%) lead nowhere or go cold</strong> — that's not a bad month, that's what a realistic 9–10% pitch-to-sale rate looks like in cold outreach. Volume is doing the work, not a high hit rate. Notice too that <strong style="color:var(--green)">1 of the 8 sales came from a follow-up</strong>, not the first email — which is exactly why the 3-day follow-up step in your Workflow tab isn't optional.</div>
+  </div>
+
   <!-- Full pitch list -->
   <div id="pitch-list"></div>
 
@@ -873,6 +931,33 @@ input[type=range]{width:100%;accent-color:var(--cyan);cursor:pointer}
     <div style="font-size:32px;margin-bottom:10px">📋</div>
     <div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:6px">No pitches saved yet</div>
     <div style="font-size:12px;line-height:1.6">Generate an email above and click<br><strong style="color:#FF1744">Save to Pitch Tracker</strong> to start tracking</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Win/Loss Analytics -->
+  <div class="section-title" style="margin-bottom:4px">Win/Loss Analytics</div>
+  <div style="font-size:11.5px;color:var(--grey-l);margin-bottom:14px;line-height:1.6">Once you start tagging why pitches don't convert, this shows the pattern — so you know exactly what to fix.</div>
+  <div class="card" id="winloss-card" style="margin-bottom:18px">
+    <div id="winloss-viz"></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Call Script & Objection Handling -->
+  <div class="section-title" style="margin-bottom:4px">Call Script &amp; Objection Handling</div>
+  <div style="font-size:12px;color:var(--grey-l);margin-bottom:14px;line-height:1.7">If an agent calls or you get on a quick chat, don't wing it. Tap each objection to see a calm, ready response.</div>
+
+  <div class="card" style="background:rgba(0,230,118,.05);border-color:rgba(0,230,118,.25);margin-bottom:12px">
+    <div style="font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Opening line</div>
+    <div style="font-size:12.5px;color:#fff;line-height:1.7;font-style:italic">"Hey [name], thanks for jumping on — I know you're busy so I'll keep this quick. I sent over a demo video of your [address] listing, wanted to see what you thought and answer any questions."</div>
+  </div>
+
+  <div id="objection-list"></div>
+
+  <div class="card" style="background:rgba(0,230,118,.05);border-color:rgba(0,230,118,.25);margin-top:8px">
+    <div style="font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Closing line</div>
+    <div style="font-size:12.5px;color:#fff;line-height:1.7;font-style:italic">"Sounds good — I'll get the full version done within 48 hours. I'll send it straight to your email along with the invoice. Anything else you want me to focus on in the edit?"</div>
   </div>
 </div>
 
@@ -1044,8 +1129,8 @@ input[type=range]{width:100%;accent-color:var(--cyan);cursor:pointer}
       <div style="font-size:11px;color:var(--grey-l);line-height:1.7">Sell more 45–60 second packages instead of defaulting to 90 seconds. A 60s Pro video uses 150 credits vs 225 for 90s — a third fewer credits per sale, and still a strong deliverable for smaller listings.</div>
     </div>
     <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:13px 15px">
-      <div style="font-size:12px;font-weight:800;color:#FFB700;margin-bottom:4px">2. Stack multiple Ultra accounts or top up with credit packs</div>
-      <div style="font-size:11px;color:var(--grey-l);line-height:1.7">Once revenue supports it (and it clearly does — margins are 97%+), the extra $50–100/mo for a second Higgsfield subscription or additional credit packs is trivial against a single video sale.</div>
+      <div style="font-size:12px;font-weight:800;color:#FFB700;margin-bottom:4px">2. Stack a second Higgsfield subscription</div>
+      <div style="font-size:11px;color:var(--grey-l);line-height:1.7">Confirmed directly with Higgsfield: one-time credit top-up packs aren't available as a standalone purchase — only plan upgrades are. So the real fallback is running a second Plus or Ultra subscription under a different login once volume demands it. Given margins of 97%+, an extra $49–$75/mo for another subscription is trivial against a single video sale.</div>
     </div>
     <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:13px 15px">
       <div style="font-size:12px;font-weight:800;color:var(--green);margin-bottom:4px">3. Bring on a second editor once volume justifies it</div>
@@ -1089,6 +1174,49 @@ input[type=range]{width:100%;accent-color:var(--cyan);cursor:pointer}
 
   <div class="divider"></div>
 
+  <!-- Startup benchmark comparison -->
+  <div class="section-title" style="margin-bottom:4px">How PropShots Compares to Typical Tech Startups</div>
+  <div style="font-size:12px;color:var(--grey-l);margin-bottom:12px;line-height:1.7">Broad, illustrative patterns for how cash flow typically unfolds over the first 24 months, based on published startup research — not exact figures, but representative shapes. All three lines are indexed to their own 24-month scale so the <em>timing</em> of breakeven is comparable, even though the dollar amounts involved are wildly different.</div>
+
+  <div class="card" style="margin-bottom:12px">
+    <div id="benchmark-chart" style="height:190px"></div>
+    <div class="chart-legend" style="flex-wrap:wrap;gap:10px 16px">
+      <span><span class="legend-dot" style="background:#FF1744"></span>VC-Backed "Hockey Stick"</span>
+      <span><span class="legend-dot" style="background:#FFB700"></span>Typical Bootstrapped Business</span>
+      <span><span class="legend-dot" style="background:var(--green)"></span>PropShots (Your Actual Model)</span>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px">
+    <div style="background:rgba(255,23,68,.06);border:1px solid rgba(255,23,68,.2);border-radius:10px;padding:10px;text-align:center">
+      <div style="font-size:9px;color:var(--grey-l);text-transform:uppercase;margin-bottom:4px">Hockey Stick</div>
+      <div style="font-size:16px;font-weight:900;color:#FF1744">Month 13</div>
+      <div style="font-size:9px;color:var(--grey-l);margin-top:2px">to break even</div>
+    </div>
+    <div style="background:rgba(255,183,0,.06);border:1px solid rgba(255,183,0,.2);border-radius:10px;padding:10px;text-align:center">
+      <div style="font-size:9px;color:var(--grey-l);text-transform:uppercase;margin-bottom:4px">Typical Bootstrap</div>
+      <div style="font-size:16px;font-weight:900;color:#FFB700">Month 5</div>
+      <div style="font-size:9px;color:var(--grey-l);margin-top:2px">to break even</div>
+    </div>
+    <div style="background:rgba(0,230,118,.06);border:1px solid rgba(0,230,118,.2);border-radius:10px;padding:10px;text-align:center">
+      <div style="font-size:9px;color:var(--grey-l);text-transform:uppercase;margin-bottom:4px">PropShots</div>
+      <div style="font-size:16px;font-weight:900;color:var(--green)">Month 1</div>
+      <div style="font-size:9px;color:var(--grey-l);margin-top:2px">to break even</div>
+    </div>
+  </div>
+
+  <div class="card" style="background:rgba(0,230,118,.05);border-color:rgba(0,230,118,.25);margin-bottom:18px">
+    <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;margin-bottom:6px">Why PropShots breaks the normal pattern</div>
+    <div style="font-size:11.5px;color:var(--grey-l);line-height:1.8">
+      Most startups — especially VC-backed "hockey stick" companies — spend heavily upfront on product development, staff, or inventory before revenue catches up, producing the classic dip-then-recover shape (often called the "valley of death"). Even typical bootstrapped small businesses usually take 3–6 months to clear initial setup costs before turning profitable.<br><br>
+      PropShots skips almost all of that: no inventory, no premises, no staff, no physical product, and a Higgsfield cost per video that's a rounding error against what you charge. That's not overoptimism in the model — it's a direct consequence of running a pure digital service with near-zero marginal cost, which is genuinely one of the most capital-efficient business structures available.
+    </div>
+  </div>
+
+  <div style="font-size:9.5px;color:var(--grey-l);text-align:center;margin-bottom:18px;line-height:1.6">Sources: U.S. Bureau of Labor Statistics business survival data · published bootstrapped-SaaS financial planning research · standard venture-backed "valley of death" cash flow patterns widely documented in startup finance literature. Benchmark curves are illustrative composites, not a single cited dataset.</div>
+
+  <div class="divider"></div>
+
   <!-- Scenario comparison -->
   <div class="section-title" style="margin-bottom:10px">After-Tax Cash Flow by Scenario</div>
   <div style="font-size:12px;color:var(--grey-l);margin-bottom:12px;line-height:1.7">Full-year distributable cash for each scenario from your Earnings tab, now with real tax and ACC applied — this is what actually lands in your account, not just gross revenue.</div>
@@ -1106,6 +1234,28 @@ input[type=range]{width:100%;accent-color:var(--cyan);cursor:pointer}
       <tbody id="scenario-tax-tbody"></tbody>
     </table>
   </div>
+
+  <div class="divider"></div>
+
+  <!-- Deductions Tracker -->
+  <div class="section-title" style="margin-bottom:4px">Deductions Tracker</div>
+  <div style="font-size:12px;color:var(--grey-l);margin-bottom:14px;line-height:1.7">Tick off what you're actually claiming and adjust the amounts as real figures come in through the year. The tax saving recalculates live against your Year 1 taxable income, using the same progressive brackets as the rest of this forecast.</div>
+
+  <div class="stat-grid" style="margin-bottom:14px">
+    <div class="stat-box"><div class="stat-num" id="ded-total-claimed" style="color:var(--cyan)">$0</div><div class="stat-lbl">Total<br>deductions</div></div>
+    <div class="stat-box"><div class="stat-num" id="ded-tax-saving" style="color:var(--green)">$0</div><div class="stat-lbl">Tax + ACC<br>saved</div></div>
+    <div class="stat-box"><div class="stat-num" id="ded-marginal-rate" style="color:#FFB700">—</div><div class="stat-lbl">Effective rate<br>on savings</div></div>
+    <div class="stat-box"><div class="stat-num" id="ded-count" style="color:var(--grey-l)">0/6</div><div class="stat-lbl">Categories<br>active</div></div>
+  </div>
+
+  <div id="deductions-list"></div>
+
+  <div class="card" style="background:rgba(255,183,0,.05);border-color:rgba(255,183,0,.25);margin-top:4px;margin-bottom:18px">
+    <div style="font-size:11px;font-weight:700;color:#FFB700;text-transform:uppercase;margin-bottom:5px">Reality check</div>
+    <div style="font-size:11.5px;color:var(--grey-l);line-height:1.7">Home office, domain, phone %, and bank fees cost you nothing extra to claim — they're money already being spent. Only new equipment or courses are genuinely new spend. Either way, every dollar ticked here comes back at roughly <strong style="color:#fff">30%+</strong> once your income sits in the higher brackets later in the year.</div>
+  </div>
+
+  <div class="divider"></div>
 
   <!-- Cash reserve recommendation -->
   <div class="section-title" style="margin-bottom:10px">Reserve Recommendation</div>
@@ -1129,6 +1279,128 @@ input[type=range]{width:100%;accent-color:var(--cyan);cursor:pointer}
         <div style="font-size:26px;font-weight:900;color:var(--green)">$59,122</div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- LEGAL -->
+<div id="page-legal" class="page">
+  <div class="section-title">Protect the Business</div>
+  <div class="page-title" style="background:linear-gradient(135deg,#A78BFA,#7C3AED);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Legal &amp; Compliance</div>
+  <div class="page-sub">Everything you need to know, register, sign, and get insured — in the order that actually matters. None of this is legal advice; it's a practical starting checklist.</div>
+
+  <!-- Interactive checklist -->
+  <div class="section-title" style="margin-bottom:10px">Setup Checklist</div>
+  <div class="card" id="legal-checklist-container" style="padding:0;overflow:hidden"></div>
+  <div id="legal-checklist-progress" style="font-size:11px;color:var(--grey-l);text-align:center;margin:8px 0 18px"></div>
+
+  <div class="divider"></div>
+
+  <!-- Documents -->
+  <div class="section-title" style="margin-bottom:10px">Documents You Need</div>
+
+  <div class="card" style="border-color:rgba(167,139,250,.3);margin-bottom:10px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px">
+      <div>
+        <div style="font-size:13px;font-weight:800;color:#fff">Service Agreement</div>
+        <div style="font-size:11px;color:var(--grey-l);margin-top:3px;line-height:1.6">Covers photo usage rights, AI content disclaimer, revisions, ownership, cancellation, and liability. Send this to every client before starting work.</div>
+      </div>
+      <div style="background:rgba(0,200,83,.15);color:var(--green);font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap">✅ Built</div>
+    </div>
+  </div>
+
+  <div class="card" style="border-color:rgba(167,139,250,.3);margin-bottom:14px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px">
+      <div>
+        <div style="font-size:13px;font-weight:800;color:#fff">Invoice Template</div>
+        <div style="font-size:11px;color:var(--grey-l);margin-top:3px;line-height:1.6">Branded PropShots invoice with all required fields — becomes GST-compliant automatically once you're registered. Fill in and send per client.</div>
+      </div>
+      <div style="background:rgba(0,200,83,.15);color:var(--green);font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap">✅ Built</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Business numbers -->
+  <div class="section-title" style="margin-bottom:10px">Business Numbers &amp; Registration</div>
+
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:18px">
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:13px 15px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+        <div style="font-size:12px;font-weight:800;color:#A78BFA">IRD Number</div>
+        <div style="font-size:10px;color:var(--green);font-weight:700">Free · Required</div>
+      </div>
+      <div style="font-size:11px;color:var(--grey-l);line-height:1.7">You already have a personal IRD number — that's what you use to file self-employed income. No separate business IRD number needed as a sole trader. This is what Hnry uses to calculate and pay your tax automatically.</div>
+    </div>
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:13px 15px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+        <div style="font-size:12px;font-weight:800;color:#A78BFA">NZBN (NZ Business Number)</div>
+        <div style="font-size:10px;color:var(--orange);font-weight:700">Free · Recommended</div>
+      </div>
+      <div style="font-size:11px;color:var(--grey-l);line-height:1.7">Not legally required for a sole trader, but free and takes minutes via RealMe at nzbn.govt.nz. Worth getting once you're pitching property management companies — an NZBN signals legitimacy and some bigger agencies expect one before they'll pay an invoice.</div>
+    </div>
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:13px 15px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+        <div style="font-size:12px;font-weight:800;color:#A78BFA">GST Registration</div>
+        <div style="font-size:10px;color:#FFB700;font-weight:700">Required at $60K</div>
+      </div>
+      <div style="font-size:11px;color:var(--grey-l);line-height:1.7">Legally required within 21 days of crossing $60,000 revenue in a 12-month period, or expecting to. Your Cash Flow forecast flags this hits around Month 11. Hnry handles registration and filing automatically once you're there.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Insurance -->
+  <div class="section-title" style="margin-bottom:10px">Insurance</div>
+  <div class="card" style="border-color:rgba(167,139,250,.3);margin-bottom:12px">
+    <div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:6px">Professional Indemnity Insurance</div>
+    <div style="font-size:11.5px;color:var(--grey-l);line-height:1.8">Covers you if a client claims financial loss from an error in your work — including, relevantly, IP or copyright claims arising from the photos you're animating. Real NZ pricing for a sole creative freelancer: <strong style="color:#fff">roughly $25–$120/month, or $600–$1,500/year</strong> for basic cover, typically for $500K–$1M of coverage.</div>
+    <div style="font-size:11.5px;color:var(--grey-l);line-height:1.8;margin-top:8px">Not legally required for what you do, but two things push it up your priority list faster than most solo creatives: the photo permission grey area covered in your Service Agreement, and the fact that larger property management companies (like the 65-villa operation in your Airbnb leads) increasingly require contractors to carry it before signing a contract.</div>
+  </div>
+  <div class="stat-grid" style="margin-bottom:18px">
+    <div class="stat-box"><div class="stat-num" style="color:#A78BFA">$25–120</div><div class="stat-lbl">Per month<br>typical range</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:#A78BFA">$600–1,500</div><div class="stat-lbl">Per year<br>sole creative</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--green)">Tax<br>deductible</div><div class="stat-lbl">Reduces your<br>taxable income</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--orange)">Not<br>required</div><div class="stat-lbl">But often needed<br>for agency deals</div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Key risks recap -->
+  <div class="section-title" style="margin-bottom:10px">Key Legal Risks — Quick Recap</div>
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:18px">
+    <div style="background:rgba(255,23,68,.05);border:1px solid rgba(255,23,68,.2);border-radius:12px;padding:13px 15px">
+      <div style="font-size:12px;font-weight:800;color:#FF6B6B;margin-bottom:4px">📸 Photo usage rights</div>
+      <div style="font-size:11px;color:var(--grey-l);line-height:1.7">Demo videos made from public listing photos before a client agrees are pitch-only, not for distribution. Covered in Clause 2 of your Service Agreement — get it signed before publishing anything.</div>
+    </div>
+    <div style="background:rgba(255,140,0,.05);border:1px solid rgba(255,140,0,.2);border-radius:12px;padding:13px 15px">
+      <div style="font-size:12px;font-weight:800;color:var(--orange);margin-bottom:4px">⚠️ Fair Trading Act — misrepresentation</div>
+      <div style="font-size:11px;color:var(--grey-l);line-height:1.7">AI video could embellish details beyond the source photos. Add "AI-enhanced representation" to published videos — covered in Clause 3 of your Service Agreement.</div>
+    </div>
+    <div style="background:rgba(167,139,250,.05);border:1px solid rgba(167,139,250,.2);border-radius:12px;padding:13px 15px">
+      <div style="font-size:12px;font-weight:800;color:#A78BFA;margin-bottom:4px">🔒 Privacy Act — client data</div>
+      <div style="font-size:11px;color:var(--grey-l);line-height:1.7">Your Pitch Tracker stores agent names, emails, and phone numbers. Keep this data only as long as needed for the business relationship, and don't share your lead list outside PropShots.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Business structure -->
+  <div class="section-title" style="margin-bottom:10px">Sole Trader vs Company — When to Reconsider</div>
+  <div class="card" style="margin-bottom:12px">
+    <div style="font-size:11.5px;color:var(--grey-l);line-height:1.85">Staying a sole trader is the right call to start — it's simpler, and Hnry handles everything automatically. Two things are worth watching as PropShots grows:</div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px">
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:13px 15px">
+      <div style="font-size:12px;font-weight:800;color:var(--cyan);margin-bottom:4px">Liability protection</div>
+      <div style="font-size:11px;color:var(--grey-l);line-height:1.7">As a sole trader, you're personally liable for any claim against the business — your personal assets aren't separated from PropShots. A Limited Company creates a legal separation. This matters more once you're carrying real revenue and dealing with larger agency contracts.</div>
+    </div>
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:13px 15px">
+      <div style="font-size:12px;font-weight:800;color:#FFB700;margin-bottom:4px">Tax on retained earnings</div>
+      <div style="font-size:11px;color:var(--grey-l);line-height:1.7">Companies pay a flat 28% on profit — versus your progressive personal rate climbing toward 33–39% as PropShots grows (see your Cash Flow tab). This only helps if you leave money in the business rather than drawing it all out, since money you pay yourself from a company is still taxed at personal rates when you take it.</div>
+    </div>
+  </div>
+  <div class="card" style="background:rgba(167,139,250,.05);border-color:rgba(167,139,250,.3)">
+    <div style="font-size:11.5px;color:var(--grey-l);line-height:1.8"><strong style="color:#fff">One important trade-off:</strong> Hnry doesn't support company structures — switching means moving to a traditional accountant or a tool like Xero, which is more admin and cost than what you have now. Worth a proper conversation with an accountant once you're consistently earning in the Year 2 range this app projects, not before.</div>
   </div>
 </div>
 
@@ -1596,6 +1868,56 @@ var SCENARIO_TAX = [
   ["Realistic",    28800,  4023.63, 15.1, 22661.97],
   ["Strong",       63360,  10821.79,18.4, 47912.93],
   ["Scale Up",     120000, 28497.11,25.6, 82894.89]
+];
+
+// ── STARTUP BENCHMARK COMPARISON DATA ─────────────────────────────────────────
+// Illustrative 24-month indexed cash flow shapes, sourced from BLS survival data and
+// published bootstrapped/VC startup financial patterns. Indexed 0-100 per own 24-mo scale.
+var BENCHMARK_VC = [-20,-35,-45,-55,-60,-62,-60,-55,-48,-38,-25,-10,
+                      0,8,15,22,28,35,42,50,58,68,80,95];
+var BENCHMARK_BOOTSTRAP = [-10,-8,-5,-2,2,6,10,14,18,22,26,30,
+                            35,40,44,48,52,56,60,64,68,72,76,80];
+// PropShots indexed from real CASHFLOW + CASHFLOW_Y2 cumulative cash, as % of own Month-24 value
+var BENCHMARK_PROPSHOTS = [0.8,2.0,3.7,6.0,8.8,11.9,15.6,19.7,24.5,29.8,34.9,40.6,
+                            45.0,49.6,54.3,59.1,64.0,69.0,74.1,79.3,84.7,90.0,94.9,100.0];
+
+// ── DEDUCTIONS TRACKER DATA ────────────────────────────────────────────────────
+var DEDUCTIONS = [
+  {id:"ded1", name:"Home office (square metre rate)", desc:"10m² dedicated space × $57.30/m² — current IRD rate. Costs nothing extra to claim.", amount:573.00},
+  {id:"ded2", name:"Domain + email", desc:"propshots.co.nz ($23/yr) + Google Workspace (~$8/mo)", amount:119.00},
+  {id:"ded3", name:"Phone — business use %", desc:"$55/mo plan × 35% business use", amount:231.00},
+  {id:"ded4", name:"Laptop (low-value asset write-off)", desc:"Under $1,000 — fully expensed in year of purchase", amount:950.00},
+  {id:"ded5", name:"Software & courses", desc:"Editing tutorials, stock music licences, tool top-ups", amount:150.00},
+  {id:"ded6", name:"Bank account fees", desc:"Small business transaction account, ~$5/mo", amount:60.00}
+];
+var DED_BASELINE_TAXABLE = 75172.00; // Year 1 taxable income before these extra deductions
+
+// Progressive tax + ACC helper (mirrors the rest of this forecast)
+var DED_BRACKETS = [[0,15600,0.105],[15600,53500,0.175],[53500,78100,0.30],[78100,180000,0.33],[180000,Infinity,0.39]];
+function calcIncomeTax(taxable) {
+  var tax = 0;
+  for (var i=0;i<DED_BRACKETS.length;i++) {
+    var lo=DED_BRACKETS[i][0], hi=DED_BRACKETS[i][1], rate=DED_BRACKETS[i][2];
+    if (taxable > lo) tax += (Math.min(taxable,hi)-lo)*rate;
+    else break;
+  }
+  return tax;
+}
+function calcAccLevy(taxable) { return Math.min(taxable, 152790) * 0.0167; }
+
+// ── LEGAL CHECKLIST DATA ──────────────────────────────────────────────────────
+var LEGAL_CHECKLIST = [
+  {id:"lc1", label:"Personal IRD number confirmed (needed for all self-employed income)", cost:"Free"},
+  {id:"lc2", label:"Signed up with Hnry (or equivalent) for automatic tax handling", cost:"1% + GST"},
+  {id:"lc3", label:"propshots.co.nz domain registered", cost:"~$23/yr"},
+  {id:"lc4", label:"haydn@propshots.co.nz professional email set up", cost:"~$8/mo"},
+  {id:"lc5", label:"NZBN registered via nzbn.govt.nz (free, boosts credibility with agencies)", cost:"Free"},
+  {id:"lc6", label:"Service Agreement ready to send before starting any client work", cost:"Done"},
+  {id:"lc7", label:"Invoice template ready to send on delivery", cost:"Done"},
+  {id:"lc8", label:"Stripe account set up for fast client payment", cost:"2.65%+30c"},
+  {id:"lc9", label:"Considered Professional Indemnity insurance (especially before agency deals)", cost:"$25-120/mo"},
+  {id:"lc10", label:"Know your GST trigger point ($60K revenue) and plan to register in time", cost:"Free to register"},
+  {id:"lc11", label:"Tax reserve savings account separate from spending account", cost:"Free"}
 ];
 
 var FREE_TOOLS = [
@@ -2486,6 +2808,44 @@ function renderCashflowY2Table() {
   }).join('');
 }
 
+function renderBenchmarkChart() {
+  var c = document.getElementById('benchmark-chart');
+  if (!c) return;
+  var w = 340, h = 175, padL = 26, padR = 8, padT = 8, padB = 20;
+  var n = 24;
+  var stepX = (w - padL - padR) / (n - 1);
+  var scaleY = (v) => (h - padB - padT) - ((v + 65) / 165) * (h - padB - padT); // range -65 to 100
+
+  function pathFor(arr) {
+    return arr.map(function(v, i) {
+      var x = padL + i * stepX;
+      var y = padT + scaleY(v);
+      return (i === 0 ? 'M ' : 'L ') + x.toFixed(1) + ',' + y.toFixed(1);
+    }).join(' ');
+  }
+
+  var zeroY = padT + scaleY(0);
+
+  // Month markers at 1, 6, 12, 18, 24
+  var monthLabels = [1,6,12,18,24].map(function(m) {
+    var x = padL + (m-1) * stepX;
+    return '<text x="'+x.toFixed(1)+'" y="'+(h-4)+'" font-size="7" fill="var(--grey-l)" text-anchor="middle">M'+m+'</text>';
+  }).join('');
+
+  // Year 1 / Year 2 divider
+  var dividerX = padL + 11.5 * stepX;
+
+  c.innerHTML = '<svg viewBox="0 0 '+w+' '+h+'" style="width:100%;height:175px;overflow:visible">'+
+    '<line x1="'+padL+'" y1="'+zeroY.toFixed(1)+'" x2="'+(w-padR)+'" y2="'+zeroY.toFixed(1)+'" stroke="rgba(255,255,255,.15)" stroke-width="1" stroke-dasharray="3,2"/>'+
+    '<text x="'+(padL-4)+'" y="'+(zeroY+3).toFixed(1)+'" font-size="6.5" fill="var(--grey-l)" text-anchor="end">B/E</text>'+
+    '<line x1="'+dividerX.toFixed(1)+'" y1="'+padT+'" x2="'+dividerX.toFixed(1)+'" y2="'+(h-padB)+'" stroke="rgba(255,255,255,.08)" stroke-width="1"/>'+
+    '<path d="'+pathFor(BENCHMARK_VC)+'" fill="none" stroke="#FF1744" stroke-width="2" stroke-linejoin="round" opacity="0.85"/>'+
+    '<path d="'+pathFor(BENCHMARK_BOOTSTRAP)+'" fill="none" stroke="#FFB700" stroke-width="2" stroke-linejoin="round" opacity="0.85"/>'+
+    '<path d="'+pathFor(BENCHMARK_PROPSHOTS)+'" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linejoin="round"/>'+
+    monthLabels +
+  '</svg>';
+}
+
 function renderScenarioTaxTable() {
   var tb = document.getElementById('scenario-tax-tbody');
   if (!tb) return;
@@ -2500,6 +2860,96 @@ function renderScenarioTaxTable() {
       '<td style="padding:9px 10px;text-align:center;font-weight:800;color:var(--green)">$'+r[4].toLocaleString()+'</td>'+
     '</tr>';
   }).join('');
+}
+
+// ── DEDUCTIONS TRACKER ─────────────────────────────────────────────────────────
+function getDedState() {
+  try { return JSON.parse(localStorage.getItem('ps_deductions') || '{}'); }
+  catch(e) { return {}; }
+}
+function setDedState(state) {
+  localStorage.setItem('ps_deductions', JSON.stringify(state));
+}
+
+function renderDeductionsTracker() {
+  var list = document.getElementById('deductions-list');
+  if (!list) return;
+  var state = getDedState();
+
+  list.innerHTML = DEDUCTIONS.map(function(d) {
+    var s = state[d.id] || { checked: false, amount: d.amount };
+    var amt = (s.amount !== undefined) ? s.amount : d.amount;
+    var checked = s.checked ? 'checked' : '';
+    return '<div style="display:flex;gap:10px;align-items:flex-start;background:'+(s.checked?'rgba(0,230,118,.06)':'rgba(255,255,255,.02)')+';border:1px solid '+(s.checked?'rgba(0,230,118,.25)':'rgba(255,255,255,.07)')+';border-radius:12px;padding:12px 14px;margin-bottom:8px;transition:all .2s">'+
+      '<input type="checkbox" class="ded-check" data-id="'+d.id+'" '+checked+' style="margin-top:3px;width:18px;height:18px;accent-color:var(--green);flex-shrink:0;cursor:pointer">'+
+      '<div style="flex:1;min-width:0">'+
+        '<div style="font-size:13px;font-weight:700;color:'+(s.checked?'#fff':'var(--grey-l)')+'">'+d.name+'</div>'+
+        '<div style="font-size:10.5px;color:var(--grey-l);line-height:1.5;margin-top:2px">'+d.desc+'</div>'+
+      '</div>'+
+      '<div style="flex-shrink:0;text-align:right">'+
+        '<div style="display:flex;align-items:center;gap:2px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:4px 6px">'+
+          '<span style="font-size:11px;color:var(--grey-l)">$</span>'+
+          '<input type="number" class="ded-amount" data-id="'+d.id+'" value="'+amt+'" step="1" style="width:56px;background:transparent;border:none;color:#fff;font-size:12px;font-weight:700;outline:none;text-align:right">'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+
+  // Bind checkboxes
+  list.querySelectorAll('.ded-check').forEach(function(cb) {
+    cb.addEventListener('change', function() {
+      var st = getDedState();
+      var id = this.getAttribute('data-id');
+      if (!st[id]) st[id] = { checked:false, amount: DEDUCTIONS.find(function(d){return d.id===id;}).amount };
+      st[id].checked = this.checked;
+      setDedState(st);
+      renderDeductionsTracker();
+    });
+  });
+
+  // Bind amount inputs
+  list.querySelectorAll('.ded-amount').forEach(function(inp) {
+    inp.addEventListener('change', function() {
+      var st = getDedState();
+      var id = this.getAttribute('data-id');
+      if (!st[id]) st[id] = { checked:false, amount: DEDUCTIONS.find(function(d){return d.id===id;}).amount };
+      st[id].amount = parseFloat(this.value) || 0;
+      setDedState(st);
+      updateDedSummary();
+    });
+  });
+
+  updateDedSummary();
+}
+
+function updateDedSummary() {
+  var state = getDedState();
+  var totalClaimed = 0;
+  var activeCount = 0;
+  DEDUCTIONS.forEach(function(d) {
+    var s = state[d.id];
+    if (s && s.checked) {
+      totalClaimed += (s.amount !== undefined ? s.amount : d.amount);
+      activeCount++;
+    }
+  });
+
+  var newTaxable = DED_BASELINE_TAXABLE - totalClaimed;
+  var taxBefore = calcIncomeTax(DED_BASELINE_TAXABLE);
+  var taxAfter = calcIncomeTax(newTaxable);
+  var accBefore = calcAccLevy(DED_BASELINE_TAXABLE);
+  var accAfter = calcAccLevy(newTaxable);
+  var totalSaving = (taxBefore - taxAfter) + (accBefore - accAfter);
+  var effRate = totalClaimed > 0 ? (totalSaving / totalClaimed) * 100 : 0;
+
+  var elTotal = document.getElementById('ded-total-claimed');
+  var elSaving = document.getElementById('ded-tax-saving');
+  var elRate = document.getElementById('ded-marginal-rate');
+  var elCount = document.getElementById('ded-count');
+  if (elTotal) elTotal.textContent = '$' + totalClaimed.toLocaleString(undefined,{maximumFractionDigits:0});
+  if (elSaving) elSaving.textContent = '$' + totalSaving.toLocaleString(undefined,{maximumFractionDigits:0});
+  if (elRate) elRate.textContent = totalClaimed > 0 ? effRate.toFixed(1)+'%' : '—';
+  if (elCount) elCount.textContent = activeCount + '/' + DEDUCTIONS.length;
 }
 
 function renderFreeTools() {
@@ -2616,6 +3066,37 @@ function renderChecklist() {
       }
     });
   });
+}
+
+function getLegalChecks() { try { return JSON.parse(localStorage.getItem('ps_legal_checks') || '{}'); } catch(e) { return {}; } }
+function setLegalCheck(id, v) { var d = getLegalChecks(); d[id] = v; localStorage.setItem('ps_legal_checks', JSON.stringify(d)); }
+
+function renderLegalChecklist() {
+  var c = document.getElementById('legal-checklist-container');
+  if (!c) return;
+  var checks = getLegalChecks();
+  c.innerHTML = LEGAL_CHECKLIST.map(function(item, i) {
+    var done = checks[item.id];
+    var bg = done ? 'rgba(0,200,83,.05)' : (i % 2 === 0 ? 'rgba(255,255,255,.02)' : 'transparent');
+    return '<label style="display:flex;align-items:flex-start;gap:10px;padding:11px 14px;cursor:pointer;background:'+bg+';border-bottom:1px solid rgba(255,255,255,.04)">'+
+      '<input type="checkbox" data-legal-id="'+item.id+'" '+(done?'checked':'')+' style="margin-top:2px;width:16px;height:16px;accent-color:#A78BFA;flex-shrink:0;cursor:pointer">'+
+      '<div style="flex:1">'+
+        '<div style="font-size:12px;color:'+(done?'var(--grey-l)':'#fff')+';line-height:1.5;'+(done?'text-decoration:line-through':'')+'">'+item.label+'</div>'+
+        '<div style="font-size:10px;color:'+(done?'var(--green)':'#A78BFA')+';font-weight:700;margin-top:3px">'+item.cost+'</div>'+
+      '</div>'+
+    '</label>';
+  }).join('');
+
+  c.querySelectorAll('input[type=checkbox]').forEach(function(cb) {
+    cb.addEventListener('change', function() {
+      setLegalCheck(this.getAttribute('data-legal-id'), this.checked);
+      renderLegalChecklist();
+    });
+  });
+
+  var doneCount = LEGAL_CHECKLIST.filter(function(item) { return checks[item.id]; }).length;
+  var progEl = document.getElementById('legal-checklist-progress');
+  if (progEl) progEl.textContent = doneCount + ' of ' + LEGAL_CHECKLIST.length + ' complete';
 }
 
 function renderAssess() {
@@ -2769,6 +3250,41 @@ var STATUS_CONFIG = {
   'not_interested':{label:'Not Interested ✗',color:'#FF4444',bg:'rgba(255,68,68,.1)'}
 };
 
+// Statuses that represent a "lost" pitch — these trigger the loss reason dropdown
+var LOST_STATUSES = ['no_response', 'not_interested'];
+
+var LOSS_REASONS = [
+  {v:'price',       l:'Price too high'},
+  {v:'timing',       l:'Bad timing / not ready'},
+  {v:'has_provider',l:'Already has a photographer/videographer'},
+  {v:'chose_other',  l:'Chose a different provider'},
+  {v:'ghosted',      l:'Went quiet — no response after follow-ups'},
+  {v:'other',        l:'Other'}
+];
+
+var OBJECTIONS = [
+  {q:"We already use a photographer / videographer", a:"Totally get it — most agents do. What I do is a bit different though, it's not a replacement for your photographer, it's turning the photos you've already paid for into a moving video for a fraction of what a drone operator charges. Happy to show you both side by side."},
+  {q:"It's too expensive / we don't have budget for this", a:"Fair — worth knowing it's usually cheaper than what you'd think. A drone video normally runs $400-900. Mine starts at $150, delivered in 48 hours instead of a week. For a listing at this price point, it's a pretty small ask against the commission."},
+  {q:"Not interested right now", a:"No worries at all. Mind if I check back in with you for your next listing? A lot of agents find it easier to say yes once they've actually seen one in action — I can send you an example if that helps."},
+  {q:"I need to think about it / talk to my manager", a:"Of course, take your time. I'll send a follow-up in a few days in case it's useful, but no pressure either way. If it helps, I can put together a quick demo using your current listing so it's easier to picture."},
+  {q:"Does AI video actually look any good?", a:"Fair question — happy to send you a couple of examples first so you can judge for yourself rather than take my word for it. Most people are surprised how far it's come."},
+  {q:"Can you send some examples first?", a:"Yep, absolutely — I'll send a couple over now. Once you've had a look, let me know if you'd like one done for your own listing."}
+];
+
+// Parse NZ-format date string (DD/MM/YYYY) back into a Date object
+function parseNZDate(str) {
+  if (!str) return null;
+  var parts = str.split('/');
+  if (parts.length !== 3) return null;
+  return new Date(parseInt(parts[2]), parseInt(parts[1]) - 1, parseInt(parts[0]));
+}
+function daysSince(dateStr) {
+  var d = parseNZDate(dateStr);
+  if (!d) return null;
+  var diffMs = new Date().setHours(0,0,0,0) - d.setHours(0,0,0,0);
+  return Math.round(diffMs / 86400000);
+}
+
 function loadPitches() {
   try { return JSON.parse(localStorage.getItem('propshots_pitches') || '[]'); }
   catch(e) { return []; }
@@ -2789,10 +3305,12 @@ function addPitch(data) {
     listPrice: data.listPrice,
     status: 'sent',
     notes: '',
+    lossReason: '',
     datePitched: new Date().toLocaleDateString('en-NZ'),
     dateUpdated: new Date().toLocaleDateString('en-NZ')
   });
   savePitches(pitches);
+  checkConfidenceMilestones(pitches);
   renderTracker();
 }
 
@@ -2800,6 +3318,17 @@ function updatePitchStatus(id, status) {
   var pitches = loadPitches();
   pitches = pitches.map(function(p) {
     if (p.id === id) { p.status = status; p.dateUpdated = new Date().toLocaleDateString('en-NZ'); }
+    return p;
+  });
+  savePitches(pitches);
+  checkConfidenceMilestones(pitches);
+  renderTracker();
+}
+
+function updatePitchLossReason(id, reason) {
+  var pitches = loadPitches();
+  pitches = pitches.map(function(p) {
+    if (p.id === id) { p.lossReason = reason; }
     return p;
   });
   savePitches(pitches);
@@ -2833,6 +3362,9 @@ function renderTracker() {
     summary.innerHTML = '';
     pipeline.innerHTML = '';
     list.innerHTML = '';
+    renderFunnel(pitches);
+    renderWinLoss(pitches);
+    renderTodayDashboard(pitches);
     return;
   }
   empty.style.display = 'none';
@@ -2884,6 +3416,10 @@ function renderTracker() {
     var statusOpts = Object.keys(STATUS_CONFIG).map(function(k) {
       return '<option value="'+k+'"'+(p.status===k?' selected':'')+'>'+STATUS_CONFIG[k].label+'</option>';
     }).join('');
+    var isLost = LOST_STATUSES.indexOf(p.status) >= 0;
+    var reasonOpts = LOSS_REASONS.map(function(r) {
+      return '<option value="'+r.v+'"'+(p.lossReason===r.v?' selected':'')+'>'+r.l+'</option>';
+    }).join('');
 
     return '<div id="pitch-'+p.id+'" style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden;margin-bottom:10px;transition:border-color .2s">'+
       // Header row
@@ -2909,6 +3445,12 @@ function renderTracker() {
           '<label style="font-size:10px;color:var(--grey-l);white-space:nowrap;font-weight:600;letter-spacing:.3px;text-transform:uppercase">Status</label>'+
           '<select onchange="updatePitchStatus('+p.id+', this.value)" style="flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:var(--white);font-size:12px;padding:6px 10px;font-family:inherit;outline:none">'+statusOpts+'</select>'+
         '</div>'+
+        (isLost ? '<div style="display:flex;gap:8px;align-items:center">'+
+          '<label style="font-size:10px;color:#FF4444;white-space:nowrap;font-weight:600;letter-spacing:.3px;text-transform:uppercase">Why?</label>'+
+          '<select onchange="updatePitchLossReason('+p.id+', this.value)" style="flex:1;background:rgba(255,68,68,.06);border:1px solid rgba(255,68,68,.25);border-radius:8px;color:var(--white);font-size:12px;padding:6px 10px;font-family:inherit;outline:none">'+
+            '<option value="">— select a reason —</option>'+reasonOpts+
+          '</select>'+
+        '</div>' : '')+
         '<div style="display:flex;gap:8px;align-items:flex-start">'+
           '<label style="font-size:10px;color:var(--grey-l);white-space:nowrap;font-weight:600;letter-spacing:.3px;text-transform:uppercase;padding-top:7px">Notes</label>'+
           '<textarea onchange="updatePitchNotes('+p.id+', this.value)" onblur="updatePitchNotes('+p.id+', this.value)" placeholder="e.g. Replied asking for pricing, follow up Friday..." style="flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:var(--grey-l);font-size:11px;padding:7px 10px;font-family:inherit;outline:none;resize:none;min-height:48px;line-height:1.5">'+p.notes+'</textarea>'+
@@ -2916,7 +3458,300 @@ function renderTracker() {
       '</div>'+
     '</div>';
   }).join('');
+
+  renderFunnel(pitches);
+  renderWinLoss(pitches);
+  renderTodayDashboard(pitches);
 }
+
+// ── LIVE FUNNEL ─────────────────────────────────────────────────────────────────
+function renderFunnel(pitches) {
+  var el = document.getElementById('funnel-viz');
+  if (!el) return;
+  if (!pitches || pitches.length === 0) {
+    el.innerHTML = '<div style="text-align:center;padding:20px 10px;color:var(--grey-l);font-size:11.5px">No pitches logged yet — your funnel will build itself as you save pitches above.</div>';
+    return;
+  }
+  var total = pitches.length;
+  var replied = pitches.filter(function(p){ return ['replied','interested','video_sent','invoiced','closed'].indexOf(p.status)>=0; }).length;
+  var interested = pitches.filter(function(p){ return ['interested','video_sent','invoiced','closed'].indexOf(p.status)>=0; }).length;
+  var closed = pitches.filter(function(p){ return p.status==='closed'; }).length;
+
+  var stages = [
+    {label:'Sent',       count:total,      color:'#00C2CB'},
+    {label:'Replied',    count:replied,    color:'#A855F7'},
+    {label:'Interested', count:interested, color:'#FFB700'},
+    {label:'Closed',     count:closed,     color:'#00C853'}
+  ];
+
+  el.innerHTML = stages.map(function(s, i) {
+    var pct = total > 0 ? Math.round((s.count/total)*100) : 0;
+    var widthPct = Math.max(15, pct); // never fully collapse visually
+    return '<div style="margin-bottom:10px">'+
+      '<div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px">'+
+        '<span style="font-weight:700;color:#fff">'+s.label+'</span>'+
+        '<span style="color:'+s.color+';font-weight:800">'+s.count+' <span style="color:var(--grey-l);font-weight:400">('+pct+'%)</span></span>'+
+      '</div>'+
+      '<div style="background:rgba(255,255,255,.05);border-radius:8px;height:22px;overflow:hidden">'+
+        '<div style="height:100%;width:'+widthPct+'%;background:linear-gradient(90deg,'+s.color+'AA,'+s.color+');border-radius:8px;transition:width .4s"></div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+
+function renderBenchmarkFunnel() {
+  var el = document.getElementById('funnel-benchmark');
+  if (!el) return;
+  var stages = [
+    {label:'Pitches Sent', count:85, pct:100, color:'#00C2CB'},
+    {label:'Opened',       count:51, pct:60,  color:'#A855F7'},
+    {label:'Replied',      count:13, pct:15,  color:'#FFB700'},
+    {label:'Closed (sales)',count:8, pct:9,   color:'#00C853'}
+  ];
+  el.innerHTML = stages.map(function(s) {
+    return '<div style="margin-bottom:10px">'+
+      '<div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px">'+
+        '<span style="font-weight:700;color:#fff">'+s.label+'</span>'+
+        '<span style="color:'+s.color+';font-weight:800">'+s.count+' <span style="color:var(--grey-l);font-weight:400">('+s.pct+'%)</span></span>'+
+      '</div>'+
+      '<div style="background:rgba(255,255,255,.05);border-radius:8px;height:20px;overflow:hidden">'+
+        '<div style="height:100%;width:'+s.pct+'%;background:linear-gradient(90deg,'+s.color+'AA,'+s.color+');border-radius:8px"></div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+
+// ── WIN/LOSS ANALYTICS ───────────────────────────────────────────────────────────
+function renderWinLoss(pitches) {
+  var el = document.getElementById('winloss-viz');
+  if (!el) return;
+  var lostPitches = (pitches || []).filter(function(p) { return LOST_STATUSES.indexOf(p.status) >= 0 && p.lossReason; });
+
+  if (lostPitches.length < 2) {
+    el.innerHTML = '<div style="text-align:center;padding:16px 10px;color:var(--grey-l);font-size:11.5px">Not enough data yet — tag a reason when you mark a pitch "No Response" or "Not Interested" and this fills in automatically after a couple of examples.</div>';
+    return;
+  }
+
+  var counts = {};
+  lostPitches.forEach(function(p) {
+    counts[p.lossReason] = (counts[p.lossReason] || 0) + 1;
+  });
+  var total = lostPitches.length;
+  var ranked = LOSS_REASONS
+    .map(function(r) { return {label:r.l, count: counts[r.v] || 0}; })
+    .filter(function(r) { return r.count > 0; })
+    .sort(function(a,b) { return b.count - a.count; });
+
+  el.innerHTML = ranked.map(function(r, i) {
+    var pct = Math.round((r.count/total)*100);
+    var color = i === 0 ? '#FF1744' : i === 1 ? '#FFB700' : 'var(--grey-l)';
+    return '<div style="margin-bottom:10px">'+
+      '<div style="display:flex;justify-content:space-between;font-size:11.5px;margin-bottom:4px">'+
+        '<span style="font-weight:700;color:#fff">'+r.label+'</span>'+
+        '<span style="color:'+color+';font-weight:800">'+r.count+' ('+pct+'%)</span>'+
+      '</div>'+
+      '<div style="background:rgba(255,255,255,.05);border-radius:8px;height:16px;overflow:hidden">'+
+        '<div style="height:100%;width:'+pct+'%;background:'+color+';border-radius:8px"></div>'+
+      '</div>'+
+    '</div>';
+  }).join('') +
+  '<div style="font-size:10.5px;color:var(--grey-l);margin-top:8px;font-style:italic">Based on '+total+' tagged loss'+(total===1?'':'es')+'. The bigger this sample gets, the more useful the pattern.</div>';
+}
+
+// ── TODAY DASHBOARD ──────────────────────────────────────────────────────────────
+function renderTodayDashboard(pitches) {
+  var actionsEl = document.getElementById('today-actions');
+  if (!actionsEl) return; // Today tab not in DOM yet on first paint order — safe guard
+  pitches = pitches || loadPitches();
+
+  var alive = pitches.filter(function(p) { return ['closed','not_interested','no_response'].indexOf(p.status) < 0; });
+  var closedCount = pitches.filter(function(p) { return p.status === 'closed'; }).length;
+
+  // Stats
+  var elTotalActive = document.getElementById('today-total-active');
+  var elNeedAction = document.getElementById('today-need-action');
+  var elDaysSince = document.getElementById('today-days-since');
+  var elClosedCount = document.getElementById('today-closed-count');
+
+  // Categorise
+  var followUps = pitches.filter(function(p) { return p.status === 'sent' && daysSince(p.datePitched) !== null && daysSince(p.datePitched) >= 3; });
+  var needsReply = pitches.filter(function(p) { return p.status === 'replied'; });
+  var readyToProduce = pitches.filter(function(p) { return p.status === 'interested'; });
+  var awaitingPayment = pitches.filter(function(p) { return p.status === 'invoiced'; });
+
+  var mostRecentPitchDate = null;
+  pitches.forEach(function(p) {
+    var d = parseNZDate(p.datePitched);
+    if (d && (!mostRecentPitchDate || d > mostRecentPitchDate)) mostRecentPitchDate = d;
+  });
+  var daysSinceLastPitch = mostRecentPitchDate ? Math.round((new Date().setHours(0,0,0,0) - mostRecentPitchDate.setHours(0,0,0,0))/86400000) : null;
+
+  var needActionCount = followUps.length + needsReply.length + readyToProduce.length + awaitingPayment.length;
+  if (daysSinceLastPitch === null || daysSinceLastPitch >= 2) needActionCount++;
+
+  if (elTotalActive) elTotalActive.textContent = alive.length;
+  if (elNeedAction) elNeedAction.textContent = needActionCount;
+  if (elDaysSince) elDaysSince.textContent = daysSinceLastPitch === null ? '—' : daysSinceLastPitch;
+  if (elClosedCount) elClosedCount.textContent = closedCount;
+
+  function pitchChip(p) {
+    return '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(255,255,255,.03);border-radius:8px;margin-bottom:5px">'+
+      '<div><div style="font-size:11.5px;font-weight:700;color:#fff">'+p.address+'</div><div style="font-size:10px;color:var(--grey-l)">'+p.agent+'</div></div>'+
+      '<div style="font-size:9.5px;color:var(--grey-l);white-space:nowrap">'+p.datePitched+'</div>'+
+    '</div>';
+  }
+
+  function actionCard(icon, title, color, bg, items, emptyNote) {
+    var body = items.length > 0
+      ? items.map(pitchChip).join('')
+      : '<div style="font-size:11px;color:var(--grey-l);font-style:italic;padding:4px 2px">'+emptyNote+'</div>';
+    return '<div style="background:'+bg+';border:1px solid '+color+'33;border-radius:14px;padding:14px;margin-bottom:10px">'+
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">'+
+        '<div style="font-size:13px;font-weight:800;color:'+color+'">'+icon+' '+title+'</div>'+
+        (items.length > 0 ? '<div style="background:'+color+';color:#080808;font-size:11px;font-weight:900;padding:2px 9px;border-radius:20px">'+items.length+'</div>' : '')+
+      '</div>'+
+      body+
+    '</div>';
+  }
+
+  var html = '';
+  html += actionCard('🔴','Follow Up Today','#FF1744','rgba(255,23,68,.05)', followUps, 'Nothing overdue for follow-up right now.');
+  html += actionCard('🟣','Needs Your Reply','#A855F7','rgba(168,85,247,.05)', needsReply, 'No one is waiting on a reply from you.');
+  html += actionCard('🟡','Ready to Produce & Deliver','#FFB700','rgba(255,183,0,.05)', readyToProduce, 'No confirmed jobs waiting on production.');
+  html += actionCard('💸','Awaiting Payment','#00E676','rgba(0,230,118,.05)', awaitingPayment, 'Nothing invoiced and unpaid.');
+
+  if (pitches.length === 0) {
+    html += '<div style="background:rgba(255,183,0,.06);border:1px solid rgba(255,183,0,.25);border-radius:14px;padding:16px;text-align:center">'+
+      '<div style="font-size:24px;margin-bottom:6px">🚀</div>'+
+      '<div style="font-size:13px;font-weight:800;color:#FFB700;margin-bottom:4px">No pitches logged yet</div>'+
+      '<div style="font-size:11.5px;color:var(--grey-l);line-height:1.6">Head to the Outreach tab, generate your first email, and save it to the tracker. This dashboard fills itself in from there.</div>'+
+    '</div>';
+  } else if (daysSinceLastPitch === null || daysSinceLastPitch >= 2) {
+    html += '<div style="background:rgba(255,183,0,.06);border:1px solid rgba(255,183,0,.25);border-radius:14px;padding:14px">'+
+      '<div style="font-size:13px;font-weight:800;color:#FFB700;margin-bottom:4px">⚠️ '+(daysSinceLastPitch === null ? 'No pitches sent yet' : daysSinceLastPitch+' days since your last pitch')+'</div>'+
+      '<div style="font-size:11.5px;color:var(--grey-l);line-height:1.6">Momentum matters more than any single email. Head to Outreach and find 3-5 more listings today.</div>'+
+    '</div>';
+  }
+
+  actionsEl.innerHTML = html;
+
+  // Greeting personalisation
+  var greetEl = document.getElementById('today-greeting');
+  if (greetEl) {
+    if (needActionCount === 0 && pitches.length > 0) {
+      greetEl.textContent = "Nothing urgent right now — good time to go find fresh leads and keep the pipeline fed.";
+    } else if (needActionCount > 0) {
+      greetEl.textContent = "You've got " + needActionCount + " thing" + (needActionCount===1?'':'s') + " worth doing today. Start from the top.";
+    }
+  }
+}
+
+// ── CONFIDENCE LOG ───────────────────────────────────────────────────────────────
+function getConfidenceLog() {
+  try { return JSON.parse(localStorage.getItem('ps_confidence_log') || '[]'); }
+  catch(e) { return []; }
+}
+function saveConfidenceLog(log) { localStorage.setItem('ps_confidence_log', JSON.stringify(log)); }
+
+function getConfidenceMilestonesFired() {
+  try { return JSON.parse(localStorage.getItem('ps_confidence_milestones') || '{}'); }
+  catch(e) { return {}; }
+}
+function saveConfidenceMilestonesFired(obj) { localStorage.setItem('ps_confidence_milestones', JSON.stringify(obj)); }
+
+function addConfidenceEntry(text, icon) {
+  var log = getConfidenceLog();
+  log.unshift({ id: Date.now(), text: text, icon: icon || '⭐', date: new Date().toLocaleDateString('en-NZ'), auto: !!icon && icon !== '⭐' ? true : false });
+  saveConfidenceLog(log);
+  renderConfidenceLog();
+}
+
+function checkConfidenceMilestones(pitches) {
+  pitches = pitches || loadPitches();
+  var fired = getConfidenceMilestonesFired();
+  var total = pitches.length;
+  var hasReplied = pitches.some(function(p){ return ['replied','interested','video_sent','invoiced','closed'].indexOf(p.status)>=0; });
+  var hasInterested = pitches.some(function(p){ return ['interested','video_sent','invoiced','closed'].indexOf(p.status)>=0; });
+  var hasClosed = pitches.some(function(p){ return p.status==='closed'; });
+
+  var milestones = [
+    {id:'first_pitch',    cond: total>=1,  icon:'📌', text:'First pitch logged — the journey begins.'},
+    {id:'first_reply',    cond: hasReplied,icon:'✉️', text:'First reply from an agent!'},
+    {id:'first_interested',cond:hasInterested,icon:'🔥', text:'First agent showed real interest.'},
+    {id:'first_closed',   cond: hasClosed, icon:'🎉', text:'First sale closed — PropShots is real income now.'},
+    {id:'ten_pitches',    cond: total>=10, icon:'📈', text:'10 pitches sent — momentum is building.'},
+    {id:'twentyfive_pitches',cond:total>=25,icon:'🚀', text:'25 pitches sent — you\'re in the game properly now.'},
+    {id:'fifty_pitches',  cond: total>=50, icon:'💪', text:'50 pitches sent — real consistency showing.'}
+  ];
+
+  var changed = false;
+  milestones.forEach(function(m) {
+    if (m.cond && !fired[m.id]) {
+      fired[m.id] = true;
+      changed = true;
+      var log = getConfidenceLog();
+      log.unshift({ id: Date.now()+Math.random(), text: m.text, icon: m.icon, date: new Date().toLocaleDateString('en-NZ'), auto: true });
+      saveConfidenceLog(log);
+    }
+  });
+  if (changed) saveConfidenceMilestonesFired(fired);
+}
+
+function renderConfidenceLog() {
+  var listEl = document.getElementById('confidence-log-list');
+  var emptyEl = document.getElementById('confidence-empty');
+  if (!listEl) return;
+  var log = getConfidenceLog();
+
+  if (log.length === 0) {
+    listEl.innerHTML = '';
+    if (emptyEl) emptyEl.style.display = 'block';
+    return;
+  }
+  if (emptyEl) emptyEl.style.display = 'none';
+
+  listEl.innerHTML = log.map(function(entry) {
+    return '<div style="display:flex;gap:10px;align-items:flex-start;background:'+(entry.auto?'rgba(0,230,118,.05)':'rgba(255,255,255,.02)')+';border:1px solid '+(entry.auto?'rgba(0,230,118,.2)':'rgba(255,255,255,.07)')+';border-radius:12px;padding:11px 13px;margin-bottom:7px">'+
+      '<div style="font-size:16px;flex-shrink:0">'+entry.icon+'</div>'+
+      '<div style="flex:1">'+
+        '<div style="font-size:12px;color:#fff;line-height:1.5">'+entry.text+'</div>'+
+        '<div style="font-size:9.5px;color:var(--grey-l);margin-top:2px">'+entry.date+(entry.auto?' · auto-logged':'')+'</div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+
+document.getElementById('confidence-add-btn') && document.getElementById('confidence-add-btn').addEventListener('click', function() {
+  var input = document.getElementById('confidence-input');
+  if (!input || !input.value.trim()) return;
+  addConfidenceEntry(input.value.trim(), '⭐');
+  input.value = '';
+});
+document.getElementById('confidence-input') && document.getElementById('confidence-input').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') { document.getElementById('confidence-add-btn').click(); }
+});
+
+// ── OBJECTION HANDLING ACCORDION ─────────────────────────────────────────────────
+function renderObjections() {
+  var el = document.getElementById('objection-list');
+  if (!el) return;
+  el.innerHTML = OBJECTIONS.map(function(o, i) {
+    return '<div class="accordion" data-obj="'+i+'" style="margin-bottom:8px">'+
+      '<div class="acc-header" style="cursor:pointer">'+
+        '<span class="acc-title" style="font-size:12.5px">"'+o.q+'"</span>'+
+        '<span class="acc-icon">+</span>'+
+      '</div>'+
+      '<div class="acc-body" style="font-size:12px;color:var(--grey-l);line-height:1.7;font-style:italic">"'+o.a+'"</div>'+
+    '</div>';
+  }).join('');
+  el.querySelectorAll('.acc-header').forEach(function(header) {
+    header.addEventListener('click', function() {
+      header.parentElement.classList.toggle('open');
+    });
+  });
+}
+
+
 
 // Save pitch button
 document.getElementById('save-pitch-btn').addEventListener('click', function() {
@@ -3484,7 +4319,9 @@ renderCashflowChart();
 renderCashflowTable();
 renderQuarterlyTable();
 renderCashflowY2Table();
+renderBenchmarkChart();
 renderScenarioTaxTable();
+renderDeductionsTracker();
 renderFreeTools();
 renderPaidTools();
 renderPackages();
@@ -3493,10 +4330,16 @@ renderFast7();
 renderWalkthrough();
 renderWorkflow();
 renderChecklist();
+renderLegalChecklist();
 renderAssess();
 renderTracker();
 renderPricingMenu();
 updateVideoCalc();
+renderBenchmarkFunnel();
+renderObjections();
+checkConfidenceMilestones();
+renderConfidenceLog();
+renderTodayDashboard();
 </script>
 </body>
 </html>

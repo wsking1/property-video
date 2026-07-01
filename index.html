@@ -307,6 +307,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);cursor:pointer}
     <button class="nav-btn" data-page="workflow">Workflow</button>
     <button class="nav-btn" data-page="outreach">Outreach</button>
     <button class="nav-btn" data-page="assess">Assessment</button>
+    <button class="nav-btn" data-page="cashflow" style="color:#00E676;font-weight:700">💵 Cash Flow</button>
     <button class="nav-btn" data-page="brand" style="color:#FF1744;font-weight:700">🔴 PropShots</button>
   </div>
   <button id="nav-scroll-right" class="nav-arrow nav-arrow-right" aria-label="Scroll right">›</button>
@@ -738,7 +739,69 @@ input[type=range]{width:100%;accent-color:var(--cyan);cursor:pointer}
   <div class="page-title">Outreach Builder</div>
   <div class="page-sub">Generate a personalised pitch email, save it to your tracker, and manage every lead from first contact to closed deal.</div>
 
+  <!-- Video Length & Quality Calculator -->
+  <div class="section-title" style="margin-bottom:4px">Step 1 · Build the Package</div>
+  <div style="font-size:12px;color:var(--grey-l);margin-bottom:14px">Pick a length and quality with the client, see the exact credit cost and a suggested price update live. 15 seconds is the realistic minimum for a usable walkthrough — 2 minutes (120s) is the practical maximum per video.</div>
+
+  <div class="card" style="border-color:rgba(255,183,0,.25)">
+    <div class="form-row">
+      <label class="form-label">Video Length: <strong id="vlen-display" style="color:#FFB700">90 seconds (1:30)</strong></label>
+      <input type="range" id="vlen-slider" min="15" max="120" step="15" value="90">
+      <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--grey-l);margin-top:4px">
+        <span>15s min</span><span>30s</span><span>45s</span><span>60s</span><span>75s</span><span>90s</span><span>105s</span><span>120s max</span>
+      </div>
+    </div>
+
+    <div class="form-row" style="margin-top:14px">
+      <label class="form-label">Quality Tier</label>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px" id="vqual-buttons">
+        <button class="vqual-btn" data-q="std" style="padding:12px 6px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);cursor:pointer;font-family:inherit;text-align:center">
+          <div style="font-size:12px;font-weight:800;color:#fff">Standard</div>
+          <div style="font-size:9px;color:var(--grey-l);margin-top:2px">Good quality</div>
+        </button>
+        <button class="vqual-btn active" data-q="pro" style="padding:12px 6px;border-radius:10px;border:1px solid #FFB700;background:rgba(255,183,0,.12);cursor:pointer;font-family:inherit;text-align:center">
+          <div style="font-size:12px;font-weight:800;color:#FFB700">Pro · High Quality</div>
+          <div style="font-size:9px;color:var(--grey-l);margin-top:2px">Recommended</div>
+        </button>
+        <button class="vqual-btn" data-q="4k" style="padding:12px 6px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);cursor:pointer;font-family:inherit;text-align:center">
+          <div style="font-size:12px;font-weight:800;color:#fff">4K Ultra</div>
+          <div style="font-size:9px;color:var(--grey-l);margin-top:2px">Rarely needed</div>
+        </button>
+      </div>
+    </div>
+
+    <div class="stat-grid" style="margin-top:16px;margin-bottom:0">
+      <div class="stat-box"><div class="stat-num" id="vcalc-clips" style="color:var(--cyan)">12</div><div class="stat-lbl">Clips<br>needed</div></div>
+      <div class="stat-box"><div class="stat-num" id="vcalc-credits" style="color:#FFB700">225</div><div class="stat-lbl">Higgsfield<br>credits</div></div>
+      <div class="stat-box"><div class="stat-num" id="vcalc-cost" style="color:var(--grey-l)">$5.63</div><div class="stat-lbl">Your real<br>cost (NZD)</div></div>
+      <div class="stat-box"><div class="stat-num" id="vcalc-price" style="color:var(--green)">$230</div><div class="stat-lbl">Suggested<br>client price</div></div>
+    </div>
+
+    <div style="margin-top:14px;background:rgba(0,200,83,.06);border:1px solid rgba(0,200,83,.2);border-radius:10px;padding:10px 12px;text-align:center">
+      <span style="font-size:11px;color:var(--grey-l)">Margin on this video: </span>
+      <span id="vcalc-margin" style="font-size:13px;font-weight:800;color:var(--green)">97.6%</span>
+    </div>
+  </div>
+
+  <!-- Full pricing menu table -->
+  <div class="section-title" style="margin-top:18px;margin-bottom:10px">Full Pricing Menu — Show This to Clients</div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <table style="width:100%;border-collapse:collapse;font-size:11px">
+      <thead>
+        <tr style="background:rgba(0,0,0,.4)">
+          <th style="text-align:left;padding:9px 10px;color:var(--grey-l);font-size:9px;text-transform:uppercase;letter-spacing:.5px;font-weight:700">Length</th>
+          <th style="text-align:center;padding:9px 8px;color:var(--grey-l);font-size:9px;text-transform:uppercase;letter-spacing:.5px;font-weight:700">Standard</th>
+          <th style="text-align:center;padding:9px 8px;color:#FFB700;font-size:9px;text-transform:uppercase;letter-spacing:.5px;font-weight:700">Pro / HQ</th>
+          <th style="text-align:center;padding:9px 8px;color:var(--grey-l);font-size:9px;text-transform:uppercase;letter-spacing:.5px;font-weight:700">4K Ultra</th>
+        </tr>
+      </thead>
+      <tbody id="pricing-menu-tbody"></tbody>
+    </table>
+  </div>
+  <div style="font-size:10px;color:var(--grey-l);text-align:center;margin-top:6px;margin-bottom:18px">Prices are suggested starting points — adjust for property size, location, and listing value.</div>
+
   <!-- Email builder -->
+  <div class="section-title" style="margin-bottom:4px">Step 2 · Generate the Pitch</div>
   <div class="card">
     <div class="form-row">
       <label class="form-label">Select listing</label>
@@ -837,6 +900,235 @@ input[type=range]{width:100%;accent-color:var(--cyan);cursor:pointer}
     <div class="progress-track"><div class="progress-fill" style="width:55%;background:var(--orange)"></div></div>
     <div class="progress-label"><span>Risk level</span><span style="color:var(--green)">Very Low</span></div>
     <div class="progress-track" style="margin-bottom:0"><div class="progress-fill" style="width:92%;background:var(--green)"></div></div>
+  </div>
+</div>
+
+<!-- CASH FLOW FORECAST -->
+<div id="page-cashflow" class="page">
+  <div class="section-title">Financial Planning</div>
+  <div class="page-title" style="background:linear-gradient(135deg,#00E676,#00C853);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Cash Flow Forecast</div>
+  <div class="page-sub">A full 2-year cash flow model — revenue, COGS, operating expenses, income tax, ACC levy, GST threshold monitoring, and true distributable cash. Built from real Higgsfield credit pricing and current IRD tax brackets, not rough estimates.</div>
+
+  <!-- Methodology -->
+  <div class="card" style="margin-bottom:14px">
+    <div style="font-size:11px;font-weight:700;color:var(--green);letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px">Methodology &amp; Assumptions</div>
+    <div style="font-size:11.5px;color:var(--grey-l);line-height:1.8">
+      <strong style="color:#fff">COGS</strong> — Higgsfield credit cost per video, interpolated from confirmed live pricing (std/pro/4K rates), at $0.025 NZD per credit.<br>
+      <strong style="color:#fff">OpEx</strong> — monthly subscription costs from your Tools tab package tiers (Starter → Growth → Scale as volume grows).<br>
+      <strong style="color:#fff">Payment &amp; Accounting Fees</strong> — Stripe processing at 2.65% + $0.30 per transaction, plus Hnry's fee at 1% + GST (1.15% effective) of revenue for automated tax handling. Both were recommended earlier in this build, so both are now priced in.<br>
+      <strong style="color:#fff">Income Tax</strong> — NZ progressive brackets for 2025/26: 10.5% to $15,600 · 17.5% to $53,500 · 30% to $78,100 · 33% to $180,000 · 39% above. No tax-free threshold — tax applies from the first dollar.<br>
+      <strong style="color:#fff">ACC Earner's Levy</strong> — 1.67% of net profit, capped once cumulative taxable income hits $152,790. <em>Note: this is the PAYE employee rate used as an estimate — actual self-employed ACC CoverPlus premiums vary by industry risk classification and may differ.</em><br>
+      <strong style="color:#fff">GST</strong> — not charged or claimed until revenue crosses $60,000 in a 12-month period (flagged below when this happens).<br>
+      <strong style="color:#fff">Domain renewal</strong> — propshots.co.nz costs $23/year, not just once — this recurs in Year 2 (reflected below).<br>
+      Tax and ACC are calculated progressively on <em>cumulative</em> profit each month, mirroring how IRD actually assesses annual income — not a flat rate applied per month.
+    </div>
+  </div>
+
+  <!-- Month 0 -->
+  <div class="section-title" style="margin-bottom:10px">Month 0 — Startup Outlay</div>
+  <div class="card" style="border-color:rgba(255,23,68,.25);margin-bottom:16px">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <div style="font-size:13px;font-weight:700;color:#fff">propshots.co.nz domain registration</div>
+        <div style="font-size:11px;color:var(--grey-l);margin-top:2px">Recurs annually at $23/yr — this is Year 1's payment</div>
+      </div>
+      <div style="font-size:22px;font-weight:900;color:#FF1744">−$23</div>
+    </div>
+  </div>
+
+  <!-- Summary stats -->
+  <div class="stat-grid" style="margin-bottom:10px">
+    <div class="stat-box"><div class="stat-num" style="color:var(--green)">M1</div><div class="stat-lbl">Cash flow<br>turns positive</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:#FF1744">$14,772</div><div class="stat-lbl">Year 1 income<br>tax owed</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:#FF6B6B">$3,186</div><div class="stat-lbl">Year 1 Stripe +<br>Hnry fees</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--green)">$59,122</div><div class="stat-lbl">Year 1 true<br>distributable cash</div></div>
+  </div>
+  <div class="card" style="background:rgba(255,23,68,.05);border-color:rgba(255,23,68,.25);margin-bottom:18px">
+    <div style="font-size:12px;color:var(--grey-l);line-height:1.7"><strong style="color:#FF1744">The number that matters isn't $81,000 revenue — it's $59,122.</strong> That's what's actually yours after Higgsfield credits, subscriptions, Stripe processing fees, Hnry's fee, income tax, and ACC. The gap ($21,878) is money that needs to be set aside or paid out monthly, not spent as it arrives.</div>
+  </div>
+
+  <!-- Cumulative cash chart -->
+  <div class="section-title" style="margin-bottom:10px">Cumulative Distributable Cash — Year 1</div>
+  <div class="card">
+    <div style="display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap" id="chart-type-selector">
+      <button class="chart-type-btn active" data-type="bar" style="flex:1;min-width:60px;padding:8px 4px;border-radius:8px;border:1px solid var(--green);background:rgba(0,230,118,.12);cursor:pointer;font-family:inherit">
+        <div style="font-size:14px">📊</div><div style="font-size:8.5px;color:var(--green);font-weight:700;margin-top:2px">Bar</div>
+      </button>
+      <button class="chart-type-btn" data-type="line" style="flex:1;min-width:60px;padding:8px 4px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);cursor:pointer;font-family:inherit">
+        <div style="font-size:14px">📈</div><div style="font-size:8.5px;color:var(--grey-l);font-weight:700;margin-top:2px">Line</div>
+      </button>
+      <button class="chart-type-btn" data-type="area" style="flex:1;min-width:60px;padding:8px 4px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);cursor:pointer;font-family:inherit">
+        <div style="font-size:14px">🏔️</div><div style="font-size:8.5px;color:var(--grey-l);font-weight:700;margin-top:2px">Area</div>
+      </button>
+      <button class="chart-type-btn" data-type="stepped" style="flex:1;min-width:60px;padding:8px 4px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);cursor:pointer;font-family:inherit">
+        <div style="font-size:14px">🪜</div><div style="font-size:8.5px;color:var(--grey-l);font-weight:700;margin-top:2px">Stepped</div>
+      </button>
+      <button class="chart-type-btn" data-type="hbar" style="flex:1;min-width:60px;padding:8px 4px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);cursor:pointer;font-family:inherit">
+        <div style="font-size:14px">▭</div><div style="font-size:8.5px;color:var(--grey-l);font-weight:700;margin-top:2px">Ranked</div>
+      </button>
+    </div>
+    <div id="cashflow-chart" style="min-height:170px"></div>
+    <div class="chart-legend">
+      <span><span class="legend-dot" style="background:var(--green)"></span>True Cash Balance (after tax &amp; ACC)</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Full cash flow table -->
+  <div class="section-title" style="margin-bottom:10px">Year 1 — Monthly Cash Flow Statement</div>
+  <div class="card" style="overflow-x:auto;padding:0">
+    <table style="width:100%;border-collapse:collapse;font-size:10px;min-width:920px">
+      <thead>
+        <tr style="background:rgba(0,0,0,.4)">
+          <th style="text-align:left;padding:7px 6px;color:var(--grey-l);font-size:8.5px;text-transform:uppercase;font-weight:700">Mo.</th>
+          <th style="text-align:center;padding:7px 4px;color:var(--cyan);font-size:8.5px;text-transform:uppercase;font-weight:700">Revenue</th>
+          <th style="text-align:center;padding:7px 4px;color:var(--grey-l);font-size:8.5px;text-transform:uppercase;font-weight:700">Gross Profit</th>
+          <th style="text-align:center;padding:7px 4px;color:#FFB700;font-size:8.5px;text-transform:uppercase;font-weight:700">OpEx</th>
+          <th style="text-align:center;padding:7px 4px;color:#FF6B6B;font-size:8.5px;text-transform:uppercase;font-weight:700">Stripe+Hnry</th>
+          <th style="text-align:center;padding:7px 4px;color:var(--grey-l);font-size:8.5px;text-transform:uppercase;font-weight:700">Net Profit</th>
+          <th style="text-align:center;padding:7px 4px;color:#FF1744;font-size:8.5px;text-transform:uppercase;font-weight:700">Income Tax</th>
+          <th style="text-align:center;padding:7px 4px;color:#FF1744;font-size:8.5px;text-transform:uppercase;font-weight:700">ACC Levy</th>
+          <th style="text-align:center;padding:7px 4px;color:var(--green);font-size:8.5px;text-transform:uppercase;font-weight:700">Distributable</th>
+          <th style="text-align:center;padding:7px 6px;color:var(--green);font-size:8.5px;text-transform:uppercase;font-weight:700">Cash Bal.</th>
+        </tr>
+      </thead>
+      <tbody id="cashflow-tbody"></tbody>
+    </table>
+  </div>
+  <div style="font-size:10px;color:#FFB700;text-align:center;margin-top:6px">⚠️ ACC levy shown uses the 1.67% PAYE Earner's Levy rate as an estimate — actual self-employed ACC CoverPlus premiums depend on your industry risk classification and may differ slightly. Confirm your exact rate with ACC or Hnry once registered.</div>
+  <div style="font-size:10px;color:var(--grey-l);text-align:center;margin-top:8px;margin-bottom:18px">Income Tax and ACC Levy shown are the incremental amount owed each month based on cumulative YTD profit — set this aside as it's earned, don't wait until tax season.</div>
+
+  <div class="divider"></div>
+
+  <!-- Quarterly rollup -->
+  <div class="section-title" style="margin-bottom:10px">Year 1 — Quarterly Summary</div>
+  <div class="card" style="overflow-x:auto;padding:0;margin-bottom:18px">
+    <table style="width:100%;border-collapse:collapse;font-size:11px">
+      <thead>
+        <tr style="background:rgba(0,0,0,.4)">
+          <th style="text-align:left;padding:9px 10px;color:var(--grey-l);font-size:9px;text-transform:uppercase;font-weight:700">Quarter</th>
+          <th style="text-align:center;padding:9px 8px;color:var(--cyan);font-size:9px;text-transform:uppercase;font-weight:700">Revenue</th>
+          <th style="text-align:center;padding:9px 8px;color:#FF1744;font-size:9px;text-transform:uppercase;font-weight:700">Tax Owed</th>
+          <th style="text-align:center;padding:9px 8px;color:var(--green);font-size:9px;text-transform:uppercase;font-weight:700">Distributable</th>
+          <th style="text-align:center;padding:9px 10px;color:var(--green);font-size:9px;text-transform:uppercase;font-weight:700">Cash at Quarter End</th>
+        </tr>
+      </thead>
+      <tbody id="quarterly-tbody"></tbody>
+    </table>
+  </div>
+
+  <!-- GST Alert -->
+  <div class="card" style="background:rgba(255,183,0,.06);border-color:rgba(255,183,0,.3);margin-bottom:18px">
+    <div style="display:flex;gap:12px;align-items:flex-start">
+      <div style="font-size:24px">🧾</div>
+      <div>
+        <div style="font-size:12px;font-weight:800;color:#FFB700;margin-bottom:4px">GST Registration Trigger — Month 11</div>
+        <div style="font-size:11.5px;color:var(--grey-l);line-height:1.7">Your cumulative revenue crosses <strong style="color:#fff">$60,000</strong> during Month 11 (projected at $68,000 cumulative). Once you exceed this threshold, or expect to within the next 12 months, you're legally required to register for GST within 21 days. After registering, you'll charge 15% GST on top of your prices and can claim back GST on business purchases — worth a quick chat with Hnry or an accountant when you're approaching this point.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Credit capacity warning -->
+  <div class="section-title" style="margin-bottom:10px">⚠️ Credit Capacity Reality Check</div>
+  <div class="card" style="background:rgba(255,140,0,.06);border-color:rgba(255,140,0,.3);margin-bottom:12px">
+    <div style="font-size:12px;color:var(--grey-l);line-height:1.85">This financial forecast assumes you can actually <em>produce</em> the video volume shown — but Higgsfield credits are the real bottleneck, not money. <strong style="color:#fff">Even Month 1's 8 videos need ~1,200 credits</strong> — more than Higgsfield Plus provides (1,000/mo). By <strong style="color:#fff">Month 4, you'd need ~3,760 credits</strong> — more than even Higgsfield Ultra provides (3,000/mo).</div>
+    <div style="font-size:12px;color:var(--grey-l);line-height:1.85;margin-top:10px">This isn't a reason to doubt the business — it's a sign you're planning to grow faster than one person's tool budget can produce alone. Three realistic paths forward once you approach these limits:</div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:18px">
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:13px 15px">
+      <div style="font-size:12px;font-weight:800;color:var(--cyan);margin-bottom:4px">1. Shorten the average video</div>
+      <div style="font-size:11px;color:var(--grey-l);line-height:1.7">Sell more 45–60 second packages instead of defaulting to 90 seconds. A 60s Pro video uses 150 credits vs 225 for 90s — a third fewer credits per sale, and still a strong deliverable for smaller listings.</div>
+    </div>
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:13px 15px">
+      <div style="font-size:12px;font-weight:800;color:#FFB700;margin-bottom:4px">2. Stack multiple Ultra accounts or top up with credit packs</div>
+      <div style="font-size:11px;color:var(--grey-l);line-height:1.7">Once revenue supports it (and it clearly does — margins are 97%+), the extra $50–100/mo for a second Higgsfield subscription or additional credit packs is trivial against a single video sale.</div>
+    </div>
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:13px 15px">
+      <div style="font-size:12px;font-weight:800;color:var(--green);margin-bottom:4px">3. Bring on a second editor once volume justifies it</div>
+      <div style="font-size:11px;color:var(--grey-l);line-height:1.7">At 30+ videos/month, production time (not just credits) becomes the real constraint for one person. This is exactly where the Agency tier VA assistant from your Tools tab starts to make sense — someone else handling generation and editing while you focus on sales.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- YEAR 2 -->
+  <div class="section-title" style="margin-bottom:4px">Year 2 Extrapolation</div>
+  <div style="font-size:12px;color:var(--grey-l);margin-bottom:14px;line-height:1.7">Assumes video volume plateaus near a realistic solo-operator ceiling (~54–60/mo) while average price continues climbing as PropShots' reputation and premium packages take hold. Tool tier upgrades to Scale/Agency reflected in rising OpEx.</div>
+
+  <div class="stat-grid" style="margin-bottom:14px">
+    <div class="stat-box"><div class="stat-num" style="color:var(--cyan)">$186K</div><div class="stat-lbl">Year 2<br>revenue</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:#FF1744">$45,787</div><div class="stat-lbl">Year 2<br>tax owed</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--green)">$86,671</div><div class="stat-lbl">Year 2<br>distributable</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--green)">$145,793</div><div class="stat-lbl">Cumulative cash<br>end of Year 2</div></div>
+  </div>
+
+  <div class="card" style="overflow-x:auto;padding:0;margin-bottom:14px">
+    <table style="width:100%;border-collapse:collapse;font-size:10px;min-width:680px">
+      <thead>
+        <tr style="background:rgba(0,0,0,.4)">
+          <th style="text-align:left;padding:7px 8px;color:var(--grey-l);font-size:8.5px;text-transform:uppercase;font-weight:700">Mo.</th>
+          <th style="text-align:center;padding:7px 6px;color:var(--grey-l);font-size:8.5px;text-transform:uppercase;font-weight:700">Vids</th>
+          <th style="text-align:center;padding:7px 6px;color:var(--cyan);font-size:8.5px;text-transform:uppercase;font-weight:700">Revenue</th>
+          <th style="text-align:center;padding:7px 6px;color:#FF1744;font-size:8.5px;text-transform:uppercase;font-weight:700">Tax</th>
+          <th style="text-align:center;padding:7px 6px;color:var(--green);font-size:8.5px;text-transform:uppercase;font-weight:700">Distributable</th>
+          <th style="text-align:center;padding:7px 8px;color:var(--green);font-size:8.5px;text-transform:uppercase;font-weight:700">Cash Bal.</th>
+        </tr>
+      </thead>
+      <tbody id="cashflow2-tbody"></tbody>
+    </table>
+  </div>
+
+  <div class="card" style="background:rgba(255,183,0,.05);border-color:rgba(255,183,0,.25);margin-bottom:18px">
+    <div style="font-size:11px;font-weight:700;color:#FFB700;text-transform:uppercase;margin-bottom:5px">Watch the tax bracket climb</div>
+    <div style="font-size:11.5px;color:var(--grey-l);line-height:1.7">By Year 2, cumulative taxable income pushes well into the 33% bracket, and your ACC levy caps out around Month 7–8 of Year 2 once cumulative profit passes $152,790. Your effective tax + ACC rate rises from ~21% in Year 1 to closer to 30% by Year 2 — worth discussing structuring options (like moving to a company structure) with an accountant once you're consistently at this income level.</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Scenario comparison -->
+  <div class="section-title" style="margin-bottom:10px">After-Tax Cash Flow by Scenario</div>
+  <div style="font-size:12px;color:var(--grey-l);margin-bottom:12px;line-height:1.7">Full-year distributable cash for each scenario from your Earnings tab, now with real tax and ACC applied — this is what actually lands in your account, not just gross revenue.</div>
+  <div class="card" style="overflow-x:auto;padding:0;margin-bottom:18px">
+    <table style="width:100%;border-collapse:collapse;font-size:10.5px;min-width:600px">
+      <thead>
+        <tr style="background:rgba(0,0,0,.4)">
+          <th style="text-align:left;padding:8px 10px;color:var(--grey-l);font-size:9px;text-transform:uppercase;font-weight:700">Scenario</th>
+          <th style="text-align:center;padding:8px 6px;color:var(--cyan);font-size:9px;text-transform:uppercase;font-weight:700">Annual Rev</th>
+          <th style="text-align:center;padding:8px 6px;color:#FF1744;font-size:9px;text-transform:uppercase;font-weight:700">Tax + ACC</th>
+          <th style="text-align:center;padding:8px 6px;color:var(--grey-l);font-size:9px;text-transform:uppercase;font-weight:700">Eff. Rate</th>
+          <th style="text-align:center;padding:8px 10px;color:var(--green);font-size:9px;text-transform:uppercase;font-weight:700">Real Cash in Pocket</th>
+        </tr>
+      </thead>
+      <tbody id="scenario-tax-tbody"></tbody>
+    </table>
+  </div>
+
+  <!-- Cash reserve recommendation -->
+  <div class="section-title" style="margin-bottom:10px">Reserve Recommendation</div>
+  <div class="card" style="background:linear-gradient(135deg,rgba(0,230,118,.06),rgba(0,0,0,0));border-color:rgba(0,230,118,.25);margin-bottom:18px">
+    <div style="font-size:12px;color:var(--grey-l);line-height:1.85">
+      <strong style="color:#fff">Keep your tax reserve in a completely separate bank account</strong> from your spending money — ideally a savings account you never touch except for IRD payments. Based on Year 1's effective rate (~21%), set aside <strong style="color:var(--green)">22 cents of every dollar</strong> the moment it lands — the extra cent is a buffer against ACC rate uncertainty. As income grows into Year 2 and beyond, that rate climbs toward 25–30% — Hnry automates this exactly, calculating and setting aside the right amount per payment as it arrives, which removes the guesswork entirely.
+    </div>
+  </div>
+
+  <!-- Year 1 summary -->
+  <div class="section-title" style="margin-bottom:10px">Year 1 Summary</div>
+  <div class="card" style="background:linear-gradient(135deg,rgba(0,230,118,.08),rgba(0,0,0,0));border-color:rgba(0,230,118,.3)">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;text-align:center">
+      <div><div style="font-size:10px;color:var(--grey-l);margin-bottom:4px;text-transform:uppercase;letter-spacing:.3px">Total Revenue</div><div style="font-size:18px;font-weight:900;color:var(--cyan)">$81,000</div></div>
+      <div><div style="font-size:10px;color:var(--grey-l);margin-bottom:4px;text-transform:uppercase;letter-spacing:.3px">Total COGS</div><div style="font-size:18px;font-weight:900;color:#FF1744">$1,968</div></div>
+      <div><div style="font-size:10px;color:var(--grey-l);margin-bottom:4px;text-transform:uppercase;letter-spacing:.3px">Total OpEx</div><div style="font-size:18px;font-weight:900;color:#FFB700">$675</div></div>
+      <div><div style="font-size:10px;color:var(--grey-l);margin-bottom:4px;text-transform:uppercase;letter-spacing:.3px">Stripe + Hnry Fees</div><div style="font-size:18px;font-weight:900;color:#FF6B6B">$3,186</div></div>
+      <div style="grid-column:1/3"><div style="font-size:10px;color:var(--grey-l);margin-bottom:4px;text-transform:uppercase;letter-spacing:.3px">Income Tax + ACC Levy</div><div style="font-size:18px;font-weight:900;color:#FF1744">$16,027</div></div>
+      <div style="grid-column:1/3;border-top:1px solid rgba(0,230,118,.2);padding-top:10px;margin-top:2px">
+        <div style="font-size:10px;color:var(--grey-l);margin-bottom:4px;text-transform:uppercase;letter-spacing:.3px">True Distributable Cash</div>
+        <div style="font-size:26px;font-weight:900;color:var(--green)">$59,122</div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1212,6 +1504,32 @@ var AIRBNB_PROPERTIES = [
   }
 ];
 
+// ── VIDEO LENGTH / QUALITY / PRICING DATA ─────────────────────────────────────
+// Confirmed live from Higgsfield Kling 3.0 cost preflight: std=2cr/sec, pro=2.5cr/sec, 4k=6cr/sec
+// Credit cost is identical across Plus and Ultra plans: $0.025 NZD per credit
+var VIDEO_RATES = { std: 2, pro: 2.5, "4k": 6 };
+var CREDIT_COST_NZD = 0.025;
+
+var VIDEO_PRICING = [
+  { len:15,  std:60,  pro:75,  k4:100 },
+  { len:30,  std:90,  pro:110, k4:150 },
+  { len:45,  std:120, pro:145, k4:190 },
+  { len:60,  std:150, pro:175, k4:230 },
+  { len:75,  std:175, pro:200, k4:260 },
+  { len:90,  std:200, pro:230, k4:290 },
+  { len:105, std:230, pro:260, k4:320 },
+  { len:120, std:250, pro:280, k4:350 }
+];
+
+function vCredits(len, q) { return Math.round(len * VIDEO_RATES[q]); }
+function vCost(len, q) { return vCredits(len, q) * CREDIT_COST_NZD; }
+function vPrice(len, q) {
+  var row = VIDEO_PRICING.find(function(r) { return r.len === len; });
+  if (!row) return 0;
+  return q === 'std' ? row.std : q === 'pro' ? row.pro : row.k4;
+}
+function vClips(len) { return Math.max(1, Math.ceil(len / 7)); } // ~7 sec average shot length
+
 var MONTHLY = [
   ["M1",8,175,1400,25,1375,"First clients. Refine the pitch."],
   ["M2",12,185,2220,25,2195,"Word of mouth begins."],
@@ -1225,6 +1543,59 @@ var MONTHLY = [
   ["M10",44,235,10340,75,10265,"Agency retainer talks."],
   ["M11",48,240,11520,100,11420,"White-label potential."],
   ["M12",52,250,13000,100,12900,"Year 1 complete."]
+];
+
+// ── CASH FLOW FORECAST DATA (with NZ income tax, ACC levy, Stripe + Hnry fees) ──
+// Verified via Python: progressive tax on cumulative YTD profit, 2025/26 IRD brackets
+// [month, revenue, grossProfit, opex, paymentFees(Stripe+Hnry), netProfit, incomeTax(this mo), accLevy(this mo), distributable, cashBalance]
+// Cash balance starts at -$23 (Month 0 domain registration)
+// Stripe: 2.65% + $0.30/transaction. Hnry: 1% + GST (1.15% effective) of revenue.
+var CASHFLOW = [
+  ["M1",  1400,  1370,  25,  55.60,  1289.40,  135.39, 21.53,  1132.48, 1109.48],
+  ["M2",  2220,  2170,  25,  87.96,  2057.04,  215.99, 34.35,  1806.70, 2916.18],
+  ["M3",  3120,  3048,  25,  123.36, 2899.64,  304.46, 48.42,  2546.75, 5462.93],
+  ["M4",  4000,  3906,  25,  158.00, 3723.00,  390.92, 62.17,  3269.91, 8732.84],
+  ["M5",  5040,  4920,  50,  198.72, 4671.28,  490.48, 78.01,  4102.79, 12835.63],
+  ["M6",  6020,  5875,  50,  237.16, 5587.84,  910.70, 93.32,  4583.83, 17419.45],
+  ["M7",  7040,  6870,  50,  277.12, 6542.88,  1145.00,109.27, 5288.61, 22708.06],
+  ["M8",  8100,  7903,  75,  318.60, 7509.40,  1314.15,125.41, 6069.85, 28777.91],
+  ["M9",  9200,  8975,  75,  361.60, 8538.40,  1494.22,142.59, 6901.59, 35679.50],
+  ["M10", 10340, 10086, 75,  406.12, 9604.88,  1680.85,160.40, 7763.62, 43443.13],
+  ["M11", 11520, 11235, 100, 452.16, 10682.84, 3070.32,178.40, 7434.11, 50877.24],
+  ["M12", 13000, 12675, 100, 509.60, 12065.40, 3619.62,201.49, 8244.29, 59121.53]
+];
+
+var QUARTERLY = [
+  ["Q1 (M1-3)",  6740,  655.84,  5485.93, 5462.93],
+  ["Q2 (M4-6)",  15060, 1792.10, 11956.52,17419.45],
+  ["Q3 (M7-9)",  24340, 3953.37, 18260.05,35679.50],
+  ["Q4 (M10-12)",34860, 8370.80, 23442.03,59121.53]
+];
+
+// Year 2 extrapolation — includes $23 annual domain renewal in Y2-M4, plus Stripe+Hnry fees throughout
+// [month, videos, avgPrice, revenue, incomeTax(this mo), distributable, cashBalance]
+var CASHFLOW_Y2 = [
+  ["Y2-M1", 54, 255, 13770, 3178.35, 6553.90, 65675.43],
+  ["Y2-M2", 55, 258, 14190, 3368.73, 6669.07, 72344.50],
+  ["Y2-M3", 56, 260, 14560, 3458.37, 6846.53, 79191.03],
+  ["Y2-M4", 57, 262, 14934, 3533.44, 6995.15, 86186.18],
+  ["Y2-M5", 58, 264, 15312, 3632.89, 7192.01, 93378.19],
+  ["Y2-M6", 58, 266, 15428, 3661.79, 7249.24, 100627.43],
+  ["Y2-M7", 59, 268, 15812, 3747.63, 7419.16, 108046.59],
+  ["Y2-M8", 59, 270, 15930, 3777.17, 7620.98, 115667.57],
+  ["Y2-M9", 60, 272, 16320, 3871.18, 7859.66, 123527.23],
+  ["Y2-M10",60, 274, 16440, 4196.51, 7624.77, 131152.01],
+  ["Y2-M11",60, 276, 16560, 4645.18, 7265.54, 138417.54],
+  ["Y2-M12",60, 280, 16800, 4715.33, 7375.27, 145792.81]
+];
+
+// Scenario after-tax comparison (full year at steady-state monthly volume, fees included)
+// [scenario, annualRevenue, taxPlusAcc, effRatePct, realCashInPocket]
+var SCENARIO_TAX = [
+  ["Conservative", 14400,  1611.06, 12.2, 11626.94],
+  ["Realistic",    28800,  4023.63, 15.1, 22661.97],
+  ["Strong",       63360,  10821.79,18.4, 47912.93],
+  ["Scale Up",     120000, 28497.11,25.6, 82894.89]
 ];
 
 var FREE_TOOLS = [
@@ -1918,6 +2289,219 @@ function renderMonthlyTable() {
   }).join('');
 }
 
+var currentChartType = 'bar';
+
+function renderCashflowChart() {
+  var c = document.getElementById('cashflow-chart');
+  if (!c) return;
+  var renderers = {
+    bar: renderChart_Bar,
+    line: renderChart_Line,
+    area: renderChart_Area,
+    stepped: renderChart_Stepped,
+    hbar: renderChart_HBar
+  };
+  (renderers[currentChartType] || renderChart_Bar)(c);
+}
+
+// 1. BAR — classic vertical bars
+function renderChart_Bar(c) {
+  var maxCum = 60000;
+  c.style.cssText = 'display:flex;align-items:flex-end;gap:4px;height:170px;padding-bottom:22px';
+  c.innerHTML = CASHFLOW.map(function(r) {
+    var h = Math.max(2, Math.round((Math.max(0,r[9])/maxCum)*148));
+    return '<div class="bar-group"><div class="bar-wrap" style="height:'+h+'px;background:var(--green);border-radius:4px 4px 0 0"></div><div class="bar-lbl">'+r[0]+'</div></div>';
+  }).join('');
+}
+
+// 2. LINE — SVG polyline with dots
+function renderChart_Line(c) {
+  var w = 320, h = 150, pad = 8;
+  var maxCum = 60000;
+  var n = CASHFLOW.length;
+  var stepX = (w - pad*2) / (n - 1);
+  var pts = CASHFLOW.map(function(r, i) {
+    var x = pad + i*stepX;
+    var y = h - pad - (Math.max(0,r[9])/maxCum)*(h-pad*2);
+    return [x, y];
+  });
+  var polyline = pts.map(function(p){ return p[0].toFixed(1)+','+p[1].toFixed(1); }).join(' ');
+  var dots = pts.map(function(p,i){
+    return '<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="3.5" fill="var(--green)" stroke="#080808" stroke-width="1.5"/>';
+  }).join('');
+  var labels = CASHFLOW.map(function(r,i){
+    return '<text x="'+pts[i][0].toFixed(1)+'" y="'+(h-1)+'" font-size="6" fill="var(--grey-l)" text-anchor="middle">'+r[0]+'</text>';
+  }).join('');
+  c.style.cssText = 'height:170px';
+  c.innerHTML = '<svg viewBox="0 0 '+w+' '+h+'" style="width:100%;height:150px;overflow:visible">'+
+    '<polyline points="'+polyline+'" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>'+
+    dots + labels +
+  '</svg>';
+}
+
+// 3. AREA — filled gradient beneath the line
+function renderChart_Area(c) {
+  var w = 320, h = 150, pad = 8;
+  var maxCum = 60000;
+  var n = CASHFLOW.length;
+  var stepX = (w - pad*2) / (n - 1);
+  var pts = CASHFLOW.map(function(r, i) {
+    var x = pad + i*stepX;
+    var y = h - pad - (Math.max(0,r[9])/maxCum)*(h-pad*2);
+    return [x, y];
+  });
+  var line = pts.map(function(p){ return p[0].toFixed(1)+','+p[1].toFixed(1); }).join(' L ');
+  var areaPath = 'M '+pts[0][0].toFixed(1)+','+(h-pad)+' L '+line+' L '+pts[n-1][0].toFixed(1)+','+(h-pad)+' Z';
+  var linePath = 'M '+line;
+  var labels = CASHFLOW.map(function(r,i){
+    return '<text x="'+pts[i][0].toFixed(1)+'" y="'+(h-1)+'" font-size="6" fill="var(--grey-l)" text-anchor="middle">'+r[0]+'</text>';
+  }).join('');
+  c.style.cssText = 'height:170px';
+  c.innerHTML = '<svg viewBox="0 0 '+w+' '+h+'" style="width:100%;height:150px;overflow:visible">'+
+    '<defs><linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">'+
+      '<stop offset="0%" stop-color="var(--green)" stop-opacity="0.55"/>'+
+      '<stop offset="100%" stop-color="var(--green)" stop-opacity="0.02"/>'+
+    '</linearGradient></defs>'+
+    '<path d="'+areaPath+'" fill="url(#areaGrad)"/>'+
+    '<path d="'+linePath+'" fill="none" stroke="var(--green)" stroke-width="2" stroke-linejoin="round"/>'+
+    labels +
+  '</svg>';
+}
+
+// 4. STEPPED — staircase, emphasises discrete monthly jumps
+function renderChart_Stepped(c) {
+  var w = 320, h = 150, pad = 8;
+  var maxCum = 60000;
+  var n = CASHFLOW.length;
+  var stepX = (w - pad*2) / n;
+  var segs = [];
+  var prevY = h - pad;
+  for (var i = 0; i < n; i++) {
+    var x0 = pad + i*stepX;
+    var x1 = pad + (i+1)*stepX;
+    var y = h - pad - (Math.max(0,CASHFLOW[i][9])/maxCum)*(h-pad*2);
+    segs.push([x0, prevY]);
+    segs.push([x0, y]);
+    segs.push([x1, y]);
+    prevY = y;
+  }
+  var pathD = 'M ' + segs.map(function(p){ return p[0].toFixed(1)+','+p[1].toFixed(1); }).join(' L ');
+  var labels = CASHFLOW.map(function(r,i){
+    var cx = pad + (i+0.5)*stepX;
+    return '<text x="'+cx.toFixed(1)+'" y="'+(h-1)+'" font-size="6" fill="var(--grey-l)" text-anchor="middle">'+r[0]+'</text>';
+  }).join('');
+  c.style.cssText = 'height:170px';
+  c.innerHTML = '<svg viewBox="0 0 '+w+' '+h+'" style="width:100%;height:150px;overflow:visible">'+
+    '<path d="'+pathD+'" fill="none" stroke="#FFB700" stroke-width="2.2" stroke-linejoin="round"/>'+
+    labels +
+  '</svg>';
+}
+
+// 5. HORIZONTAL RANKED BAR — months sorted by cash balance, sideways bars
+function renderChart_HBar(c) {
+  var maxCum = 60000;
+  var sorted = CASHFLOW.slice().sort(function(a,b){ return b[9]-a[9]; });
+  c.style.cssText = 'height:auto;max-height:220px;overflow-y:auto';
+  c.innerHTML = sorted.map(function(r) {
+    var pct = Math.max(2, Math.round((Math.max(0,r[9])/maxCum)*100));
+    return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">'+
+      '<div style="width:28px;font-size:9px;font-weight:700;color:var(--cyan);flex-shrink:0">'+r[0]+'</div>'+
+      '<div style="flex:1;background:rgba(255,255,255,.05);border-radius:5px;height:16px;position:relative;overflow:hidden">'+
+        '<div style="height:100%;width:'+pct+'%;background:linear-gradient(90deg,var(--green),#00E676);border-radius:5px"></div>'+
+      '</div>'+
+      '<div style="width:56px;font-size:9px;font-weight:700;color:var(--green);text-align:right;flex-shrink:0">$'+Math.round(r[9]).toLocaleString()+'</div>'+
+    '</div>';
+  }).join('');
+}
+
+// Bind chart type buttons
+document.querySelectorAll('.chart-type-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.chart-type-btn').forEach(function(b) {
+      b.classList.remove('active');
+      b.style.border = '1px solid rgba(255,255,255,.12)';
+      b.style.background = 'rgba(255,255,255,.03)';
+      b.querySelector('div:last-child').style.color = 'var(--grey-l)';
+    });
+    this.classList.add('active');
+    this.style.border = '1px solid var(--green)';
+    this.style.background = 'rgba(0,230,118,.12)';
+    this.querySelector('div:last-child').style.color = 'var(--green)';
+    currentChartType = this.getAttribute('data-type');
+    renderCashflowChart();
+  });
+});
+
+function renderCashflowTable() {
+  var tb = document.getElementById('cashflow-tbody');
+  if (!tb) return;
+  // r = [month, revenue, grossProfit, opex, paymentFees, netProfit, incomeTax, accLevy, distributable, cashBalance]
+  tb.innerHTML = CASHFLOW.map(function(r, i) {
+    var bg = i % 2 === 0 ? 'rgba(255,255,255,.02)' : 'transparent';
+    var cumCol = r[9] < 0 ? '#FF1744' : 'var(--green)';
+    return '<tr style="background:'+bg+';border-bottom:1px solid rgba(255,255,255,.04)">'+
+      '<td style="padding:6px 6px;font-weight:700;color:var(--cyan)">'+r[0]+'</td>'+
+      '<td style="padding:6px 4px;text-align:center;color:var(--cyan)">$'+r[1].toLocaleString()+'</td>'+
+      '<td style="padding:6px 4px;text-align:center;color:var(--grey-l)">$'+r[2].toLocaleString()+'</td>'+
+      '<td style="padding:6px 4px;text-align:center;color:#FFB700">$'+r[3]+'</td>'+
+      '<td style="padding:6px 4px;text-align:center;color:#FF6B6B">$'+r[4].toFixed(0)+'</td>'+
+      '<td style="padding:6px 4px;text-align:center;color:var(--grey-l)">$'+r[5].toLocaleString()+'</td>'+
+      '<td style="padding:6px 4px;text-align:center;color:#FF1744">$'+r[6].toFixed(0)+'</td>'+
+      '<td style="padding:6px 4px;text-align:center;color:#FF1744">$'+r[7].toFixed(0)+'</td>'+
+      '<td style="padding:6px 4px;text-align:center;font-weight:700;color:var(--green)">$'+r[8].toLocaleString()+'</td>'+
+      '<td style="padding:6px 6px;text-align:center;font-weight:800;color:'+cumCol+'">$'+r[9].toLocaleString()+'</td>'+
+    '</tr>';
+  }).join('');
+}
+
+function renderQuarterlyTable() {
+  var tb = document.getElementById('quarterly-tbody');
+  if (!tb) return;
+  tb.innerHTML = QUARTERLY.map(function(r, i) {
+    var bg = i % 2 === 0 ? 'rgba(255,255,255,.02)' : 'transparent';
+    return '<tr style="background:'+bg+';border-bottom:1px solid rgba(255,255,255,.04)">'+
+      '<td style="padding:9px 10px;font-weight:700;color:#fff">'+r[0]+'</td>'+
+      '<td style="padding:9px 8px;text-align:center;color:var(--cyan)">$'+r[1].toLocaleString()+'</td>'+
+      '<td style="padding:9px 8px;text-align:center;color:#FF1744">$'+r[2].toLocaleString()+'</td>'+
+      '<td style="padding:9px 8px;text-align:center;font-weight:700;color:var(--green)">$'+r[3].toLocaleString()+'</td>'+
+      '<td style="padding:9px 10px;text-align:center;font-weight:800;color:var(--green)">$'+r[4].toLocaleString()+'</td>'+
+    '</tr>';
+  }).join('');
+}
+
+function renderCashflowY2Table() {
+  var tb = document.getElementById('cashflow2-tbody');
+  if (!tb) return;
+  // r = [month, videos, avgPrice, revenue, incomeTax, distributable, cashBalance]
+  tb.innerHTML = CASHFLOW_Y2.map(function(r, i) {
+    var bg = i % 2 === 0 ? 'rgba(255,255,255,.02)' : 'transparent';
+    return '<tr style="background:'+bg+';border-bottom:1px solid rgba(255,255,255,.04)">'+
+      '<td style="padding:6px 8px;font-weight:700;color:var(--cyan)">'+r[0]+'</td>'+
+      '<td style="padding:6px 6px;text-align:center">'+r[1]+'</td>'+
+      '<td style="padding:6px 6px;text-align:center;color:var(--cyan)">$'+r[3].toLocaleString()+'</td>'+
+      '<td style="padding:6px 6px;text-align:center;color:#FF1744">$'+r[4].toFixed(0)+'</td>'+
+      '<td style="padding:6px 6px;text-align:center;font-weight:700;color:var(--green)">$'+r[5].toLocaleString()+'</td>'+
+      '<td style="padding:6px 8px;text-align:center;font-weight:800;color:var(--green)">$'+r[6].toLocaleString()+'</td>'+
+    '</tr>';
+  }).join('');
+}
+
+function renderScenarioTaxTable() {
+  var tb = document.getElementById('scenario-tax-tbody');
+  if (!tb) return;
+  tb.innerHTML = SCENARIO_TAX.map(function(r, i) {
+    var bg = i % 2 === 0 ? 'rgba(255,255,255,.02)' : 'transparent';
+    var hl = r[0] === 'Realistic' ? 'rgba(0,230,118,.06)' : bg;
+    return '<tr style="background:'+hl+';border-bottom:1px solid rgba(255,255,255,.04)">'+
+      '<td style="padding:9px 10px;font-weight:700;color:#fff">'+r[0]+'</td>'+
+      '<td style="padding:9px 6px;text-align:center;color:var(--cyan)">$'+r[1].toLocaleString()+'</td>'+
+      '<td style="padding:9px 6px;text-align:center;color:#FF1744">$'+r[2].toLocaleString()+'</td>'+
+      '<td style="padding:9px 6px;text-align:center;color:var(--grey-l)">'+r[3]+'%</td>'+
+      '<td style="padding:9px 10px;text-align:center;font-weight:800;color:var(--green)">$'+r[4].toLocaleString()+'</td>'+
+    '</tr>';
+  }).join('');
+}
+
 function renderFreeTools() {
   var c = document.getElementById('free-tools');
   c.innerHTML = FREE_TOOLS.map(function(t) {
@@ -2054,6 +2638,67 @@ document.getElementById('price-slider').addEventListener('input', function() {
 });
 
 // ── OUTREACH ──────────────────────────────────────────────────────────────────
+
+// Video Length & Quality Calculator
+var currentQuality = 'pro';
+
+function formatLen(sec) {
+  var m = Math.floor(sec / 60);
+  var s = sec % 60;
+  return sec + ' seconds (' + m + ':' + (s < 10 ? '0' : '') + s + ')';
+}
+
+function updateVideoCalc() {
+  var len = parseInt(document.getElementById('vlen-slider').value);
+  var clips = vClips(len);
+  var credits = vCredits(len, currentQuality);
+  var cost = vCost(len, currentQuality);
+  var price = vPrice(len, currentQuality);
+  var margin = price > 0 ? (((price - cost) / price) * 100).toFixed(1) : 0;
+
+  document.getElementById('vlen-display').textContent = formatLen(len);
+  document.getElementById('vcalc-clips').textContent = clips;
+  document.getElementById('vcalc-credits').textContent = credits;
+  document.getElementById('vcalc-cost').textContent = '$' + cost.toFixed(2);
+  document.getElementById('vcalc-price').textContent = '$' + price;
+  document.getElementById('vcalc-margin').textContent = margin + '%';
+}
+
+document.getElementById('vlen-slider').addEventListener('input', updateVideoCalc);
+
+document.querySelectorAll('.vqual-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.vqual-btn').forEach(function(b) {
+      b.classList.remove('active');
+      b.style.border = '1px solid rgba(255,255,255,.12)';
+      b.style.background = 'rgba(255,255,255,.03)';
+      b.querySelector('div').style.color = '#fff';
+    });
+    this.classList.add('active');
+    this.style.border = '1px solid #FFB700';
+    this.style.background = 'rgba(255,183,0,.12)';
+    this.querySelector('div').style.color = '#FFB700';
+    currentQuality = this.getAttribute('data-q');
+    updateVideoCalc();
+  });
+});
+
+function renderPricingMenu() {
+  var tb = document.getElementById('pricing-menu-tbody');
+  if (!tb) return;
+  tb.innerHTML = VIDEO_PRICING.map(function(r, i) {
+    var m = Math.floor(r.len / 60), s = r.len % 60;
+    var timeLabel = m > 0 ? (m + ':' + (s < 10 ? '0' : '') + s) : (r.len + 's');
+    var bg = i % 2 === 0 ? 'rgba(255,255,255,.02)' : 'transparent';
+    return '<tr style="background:'+bg+';border-bottom:1px solid rgba(255,255,255,.04)">'+
+      '<td style="padding:9px 10px;font-weight:700;color:#fff">'+timeLabel+'</td>'+
+      '<td style="padding:9px 8px;text-align:center;color:var(--grey-l)">$'+r.std+'</td>'+
+      '<td style="padding:9px 8px;text-align:center;font-weight:800;color:#FFB700">$'+r.pro+'</td>'+
+      '<td style="padding:9px 8px;text-align:center;color:var(--grey-l)">$'+r.k4+'</td>'+
+    '</tr>';
+  }).join('');
+}
+
 document.getElementById('lead-select').addEventListener('change', function() {
   document.getElementById('custom-fields').style.display = this.value === 'custom' ? 'block' : 'none';
 });
@@ -2835,6 +3480,11 @@ renderAirbnb();
 renderEarnChart();
 renderMonthlyChart();
 renderMonthlyTable();
+renderCashflowChart();
+renderCashflowTable();
+renderQuarterlyTable();
+renderCashflowY2Table();
+renderScenarioTaxTable();
 renderFreeTools();
 renderPaidTools();
 renderPackages();
@@ -2845,6 +3495,8 @@ renderWorkflow();
 renderChecklist();
 renderAssess();
 renderTracker();
+renderPricingMenu();
+updateVideoCalc();
 </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Property Video — Business Plan</title>
+<title>PropShots — AI Property Video Business</title>
 <style>
 :root {
   --dark:#080808; --dark2:#0f0a0a; --card:#0e0a0a;
@@ -346,7 +346,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);cursor:pointer}
 <nav class="nav">
   <button id="nav-scroll-left" class="nav-arrow nav-arrow-left" aria-label="Scroll left">‹</button>
   <div class="nav-inner" id="nav-inner">
-    <div class="nav-brand">📹 AI VIDEO</div>
+    <div class="nav-brand">🔴 PropShots</div>
     <button class="nav-btn active" data-page="home">Home</button>
     <button class="nav-btn" data-page="summary" style="color:#FFB700;font-weight:700">📋 Summary</button>
     <button class="nav-btn" data-page="today" style="color:#00E676;font-weight:700">🎯 Today</button>
@@ -397,7 +397,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);cursor:pointer}
 <div id="page-home" class="page active">
   <div class="hero">
     <div class="hero-eyebrow">New Zealand Market · June 2026</div>
-    <div class="hero-title">AI Property Video<br>Side Hustle</div>
+    <div class="hero-title">PropShots<br>AI Property Video</div>
     <div class="hero-sub">Find NZ listings with no video. Generate cinematic AI fly-throughs. Sell them to agents for $150–$300. Takes 2–3 hours per video. Fully remote.</div>
     <button class="hero-cta" data-goto="opportunity">Explore the Plan →</button>
   </div>
@@ -1436,19 +1436,32 @@ input[type=range]{width:100%;accent-color:var(--cyan);cursor:pointer}
   <div class="divider"></div>
 
   <!-- Deductions Tracker -->
-  <div class="section-title" style="margin-bottom:4px">Deductions Tracker</div>
-  <div style="font-size:12px;color:var(--grey-l);margin-bottom:14px;line-height:1.7">Tick off what you're actually claiming and adjust the amounts as real figures come in through the year. The tax saving recalculates live against your Year 1 taxable income, using the same progressive brackets as the rest of this forecast.</div>
+  <div class="section-title" style="margin-bottom:4px">Tax Calculator — What Can You Claim Back</div>
+  <div style="font-size:12px;color:var(--grey-l);margin-bottom:14px;line-height:1.7">Tick off presets, add anything else you can think of, and watch the tax saving recalculate live — using the same progressive brackets as the rest of this forecast.</div>
 
   <div class="stat-grid" style="margin-bottom:14px">
-    <div class="stat-box"><div class="stat-num" id="ded-total-claimed" style="color:var(--cyan)">$0</div><div class="stat-lbl">Total<br>deductions</div></div>
+    <div class="stat-box"><div class="stat-num" id="ded-total-claimed" style="color:var(--cyan)">$0</div><div class="stat-lbl">Total<br>claimed back</div></div>
     <div class="stat-box"><div class="stat-num" id="ded-tax-saving" style="color:var(--green)">$0</div><div class="stat-lbl">Tax + ACC<br>saved</div></div>
     <div class="stat-box"><div class="stat-num" id="ded-marginal-rate" style="color:#FFB700">—</div><div class="stat-lbl">Effective rate<br>on savings</div></div>
-    <div class="stat-box"><div class="stat-num" id="ded-count" style="color:var(--grey-l)">0/6</div><div class="stat-lbl">Categories<br>active</div></div>
+    <div class="stat-box"><div class="stat-num" id="ded-count" style="color:var(--grey-l)">0</div><div class="stat-lbl">Items<br>active</div></div>
   </div>
 
+  <!-- Add custom item -->
+  <div class="card" style="border-color:rgba(0,230,118,.3);margin-bottom:14px">
+    <div style="font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Add anything else you can claim</div>
+    <div style="display:flex;gap:8px">
+      <input type="text" id="ded-custom-label" placeholder="e.g. Mileage to a client meeting" style="flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;color:#fff;font-size:12px;padding:10px 12px;font-family:inherit;outline:none">
+      <input type="number" id="ded-custom-amount" placeholder="$" style="width:80px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;color:#fff;font-size:12px;padding:10px 10px;font-family:inherit;outline:none">
+    </div>
+    <button id="ded-custom-add-btn" style="width:100%;margin-top:8px;background:rgba(0,230,118,.15);border:1px solid rgba(0,230,118,.4);border-radius:10px;padding:10px;font-size:12px;font-weight:800;color:var(--green);cursor:pointer;font-family:inherit">+ Add to Calculator</button>
+  </div>
+
+  <div style="font-size:10px;font-weight:700;color:var(--grey-l);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Common presets</div>
   <div id="deductions-list"></div>
 
-  <div class="card" style="background:rgba(255,183,0,.05);border-color:rgba(255,183,0,.25);margin-top:4px;margin-bottom:18px">
+  <div id="deductions-custom-list" style="margin-top:4px"></div>
+
+  <div class="card" style="background:rgba(255,183,0,.05);border-color:rgba(255,183,0,.25);margin-top:10px;margin-bottom:18px">
     <div style="font-size:11px;font-weight:700;color:#FFB700;text-transform:uppercase;margin-bottom:5px">Reality check</div>
     <div style="font-size:11.5px;color:var(--grey-l);line-height:1.7">Home office, domain, phone %, and bank fees cost you nothing extra to claim — they're money already being spent. Only new equipment or courses are genuinely new spend. Either way, every dollar ticked here comes back at roughly <strong style="color:#fff">30%+</strong> once your income sits in the higher brackets later in the year.</div>
   </div>
@@ -3188,9 +3201,28 @@ function getDedState() {
 function setDedState(state) {
   localStorage.setItem('ps_deductions', JSON.stringify(state));
 }
+function getCustomDeductions() {
+  try { return JSON.parse(localStorage.getItem('ps_custom_deductions') || '[]'); }
+  catch(e) { return []; }
+}
+function setCustomDeductions(arr) {
+  localStorage.setItem('ps_custom_deductions', JSON.stringify(arr));
+}
+function addCustomDeduction(label, amount) {
+  var arr = getCustomDeductions();
+  arr.push({ id: 'custom_' + Date.now(), label: label, amount: amount, checked: true });
+  setCustomDeductions(arr);
+  renderDeductionsTracker();
+}
+function removeCustomDeduction(id) {
+  var arr = getCustomDeductions().filter(function(d) { return d.id !== id; });
+  setCustomDeductions(arr);
+  renderDeductionsTracker();
+}
 
 function renderDeductionsTracker() {
   var list = document.getElementById('deductions-list');
+  var customList = document.getElementById('deductions-custom-list');
   if (!list) return;
   var state = getDedState();
 
@@ -3213,7 +3245,7 @@ function renderDeductionsTracker() {
     '</div>';
   }).join('');
 
-  // Bind checkboxes
+  // Bind preset checkboxes
   list.querySelectorAll('.ded-check').forEach(function(cb) {
     cb.addEventListener('change', function() {
       var st = getDedState();
@@ -3225,7 +3257,7 @@ function renderDeductionsTracker() {
     });
   });
 
-  // Bind amount inputs
+  // Bind preset amount inputs
   list.querySelectorAll('.ded-amount').forEach(function(inp) {
     inp.addEventListener('change', function() {
       var st = getDedState();
@@ -3237,8 +3269,64 @@ function renderDeductionsTracker() {
     });
   });
 
+  // Render custom items
+  if (customList) {
+    var customItems = getCustomDeductions();
+    if (customItems.length > 0) {
+      customList.innerHTML = '<div style="font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Your own items</div>' +
+        customItems.map(function(d) {
+          return '<div style="display:flex;gap:10px;align-items:flex-start;background:'+(d.checked?'rgba(0,230,118,.06)':'rgba(255,255,255,.02)')+';border:1px solid '+(d.checked?'rgba(0,230,118,.25)':'rgba(255,255,255,.07)')+';border-radius:12px;padding:12px 14px;margin-bottom:8px">'+
+            '<input type="checkbox" class="ded-custom-check" data-id="'+d.id+'" '+(d.checked?'checked':'')+' style="margin-top:3px;width:18px;height:18px;accent-color:var(--green);flex-shrink:0;cursor:pointer">'+
+            '<div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:700;color:'+(d.checked?'#fff':'var(--grey-l)')+'">'+d.label+'</div></div>'+
+            '<div style="flex-shrink:0;display:flex;align-items:center;gap:6px">'+
+              '<div style="display:flex;align-items:center;gap:2px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:4px 6px">'+
+                '<span style="font-size:11px;color:var(--grey-l)">$</span>'+
+                '<input type="number" class="ded-custom-amount" data-id="'+d.id+'" value="'+d.amount+'" step="1" style="width:56px;background:transparent;border:none;color:#fff;font-size:12px;font-weight:700;outline:none;text-align:right">'+
+              '</div>'+
+              '<button class="ded-custom-remove" data-id="'+d.id+'" style="background:rgba(255,68,68,.1);border:1px solid rgba(255,68,68,.2);border-radius:8px;padding:5px 8px;font-size:11px;color:#FF4444;cursor:pointer;font-family:inherit">✕</button>'+
+            '</div>'+
+          '</div>';
+        }).join('');
+
+      customList.querySelectorAll('.ded-custom-check').forEach(function(cb) {
+        cb.addEventListener('change', function() {
+          var arr = getCustomDeductions();
+          var id = this.getAttribute('data-id');
+          arr.forEach(function(d) { if (d.id === id) d.checked = cb.checked; });
+          setCustomDeductions(arr);
+          renderDeductionsTracker();
+        });
+      });
+      customList.querySelectorAll('.ded-custom-amount').forEach(function(inp) {
+        inp.addEventListener('change', function() {
+          var arr = getCustomDeductions();
+          var id = this.getAttribute('data-id');
+          arr.forEach(function(d) { if (d.id === id) d.amount = parseFloat(inp.value) || 0; });
+          setCustomDeductions(arr);
+          updateDedSummary();
+        });
+      });
+      customList.querySelectorAll('.ded-custom-remove').forEach(function(btn) {
+        btn.addEventListener('click', function() { removeCustomDeduction(this.getAttribute('data-id')); });
+      });
+    } else {
+      customList.innerHTML = '';
+    }
+  }
+
   updateDedSummary();
 }
+
+document.getElementById('ded-custom-add-btn') && document.getElementById('ded-custom-add-btn').addEventListener('click', function() {
+  var labelInp = document.getElementById('ded-custom-label');
+  var amountInp = document.getElementById('ded-custom-amount');
+  var label = labelInp.value.trim();
+  var amount = parseFloat(amountInp.value);
+  if (!label || isNaN(amount) || amount <= 0) return;
+  addCustomDeduction(label, amount);
+  labelInp.value = '';
+  amountInp.value = '';
+});
 
 function updateDedSummary() {
   var state = getDedState();
@@ -3248,6 +3336,12 @@ function updateDedSummary() {
     var s = state[d.id];
     if (s && s.checked) {
       totalClaimed += (s.amount !== undefined ? s.amount : d.amount);
+      activeCount++;
+    }
+  });
+  getCustomDeductions().forEach(function(d) {
+    if (d.checked) {
+      totalClaimed += d.amount;
       activeCount++;
     }
   });
@@ -3267,7 +3361,7 @@ function updateDedSummary() {
   if (elTotal) elTotal.textContent = '$' + totalClaimed.toLocaleString(undefined,{maximumFractionDigits:0});
   if (elSaving) elSaving.textContent = '$' + totalSaving.toLocaleString(undefined,{maximumFractionDigits:0});
   if (elRate) elRate.textContent = totalClaimed > 0 ? effRate.toFixed(1)+'%' : '—';
-  if (elCount) elCount.textContent = activeCount + '/' + DEDUCTIONS.length;
+  if (elCount) elCount.textContent = activeCount;
 }
 
 function renderFreeTools() {
@@ -3518,16 +3612,17 @@ document.getElementById('gen-btn').addEventListener('click', function() {
     address = l.name + ', ' + l.suburb;
     listPrice = l.price;
   }
+  var signature = '\n\nBest regards,\n' + me + '\nPropShots — AI Cinematic Property Video\npropshots.co.nz';
   var subject, body;
   if (tone === 'direct') {
-    subject = 'Free demo video for ' + address;
-    body = 'Hi ' + agent + ',\n\nI noticed your listing at ' + address + ' (' + listPrice + ') doesn\'t have a video tour yet — so I made one.\n\nAttached is a free demo fly-through I put together using the listing photos. Takes about 30 seconds to watch.\n\nI create cinematic AI property videos for NZ agents at ' + price + ' per video, delivered in 24–48 hours. That\'s a fraction of what a drone operator charges, with faster turnaround and no weather delays.\n\nIf you like what you see, I can have the full version ready before your next open home.\n\nWorth a quick call?\n\n' + me;
+    subject = 'Free demo video — ' + address;
+    body = 'Hi ' + agent + ',\n\nI noticed your listing at ' + address + ' (' + listPrice + ') doesn\'t yet have a video tour, so I put one together.\n\nAttached is a complimentary demo fly-through created from your existing listing photos — worth thirty seconds of your time.\n\nI produce cinematic AI property videos for New Zealand real estate agents at ' + price + ' per video, delivered within 24–48 hours. It\'s a fraction of the cost of a drone operator, with no weather delays and a significantly faster turnaround.\n\nIf the quality works for you, I can have the full version ready ahead of your next open home.\n\nWould you have five minutes for a quick call this week?' + signature;
   } else if (tone === 'friendly') {
-    subject = 'Hey — made a quick video for your ' + address.split(',')[0] + ' listing';
-    body = 'Hey ' + agent + ',\n\nSpotted your listing at ' + address + ' and put together a quick AI fly-through demo — thought you might get a kick out of seeing your own listing in video form!\n\nVideo is attached. Took me about an hour to make.\n\nI do these for NZ agents at ' + price + ' a pop — way cheaper than hiring a drone operator, and I turn them around in 24–48 hours.\n\nWould love to make a proper one for you if you\'re keen!\n\n' + me;
+    subject = 'A quick video for your ' + address.split(',')[0] + ' listing';
+    body = 'Hi ' + agent + ',\n\nI came across your listing at ' + address + ' and put together a short AI-generated video using your existing photos — I think it captures the property nicely, and wanted to share it with you.\n\nIt\'s attached below, no obligation at all.\n\nI create videos like this for real estate agents across New Zealand at ' + price + ' each, usually turned around within 24–48 hours — a fraction of the time and cost of a traditional drone shoot.\n\nIf you like what you see, I\'d love to put together a full version for the listing.\n\nHappy to answer any questions in the meantime.' + signature.replace('Best regards','Warm regards');
   } else {
-    subject = 'Cinematic property video for ' + address + ' — Demo enclosed';
-    body = 'Dear ' + agent + ',\n\nI am writing regarding your current listing at ' + address + ', listed at ' + listPrice + '.\n\nI have produced a complimentary demonstration video for the property using AI video generation technology. Please find this attached for your review.\n\nMy service offers:\n• Professional cinematic quality at ' + price + ' per video\n• 24–48 hour turnaround\n• Significantly lower cost than traditional drone videography\n• Vertical social media cut included at no extra charge\n\nShould you wish to proceed, I would be pleased to discuss further.\n\nKind regards,\n' + me;
+    subject = 'Cinematic Property Video — ' + address;
+    body = 'Dear ' + agent + ',\n\nI am writing in relation to your current listing at ' + address + ', offered at ' + listPrice + '.\n\nI have prepared a complimentary demonstration video for this property using AI-assisted cinematic video technology, generated from the listing\'s existing photography. Please find this enclosed for your review.\n\nPropShots provides professional property video production for New Zealand real estate agents, with the following included in every project:\n\n• Cinematic-grade video production at ' + price + ' per listing\n• 24–48 hour turnaround\n• A cost substantially below traditional drone videography\n• A complimentary vertical cut optimised for social media\n\nShould this be of interest, I would welcome the opportunity to discuss producing the full version for your listing.' + signature.replace('Best regards','Kind regards');
   }
   var out = document.getElementById('email-out');
   document.getElementById('email-text').textContent = 'Subject: ' + subject + '\n\n' + body;
